@@ -15,8 +15,15 @@ module.exports = {
     {
       resolve: 'gatsby-source-filesystem',
       options: {
-        name: 'content',
-        path: `${__dirname}/src/content`
+        name: 'blogPosts',
+        path: `${__dirname}/src/content/blog`
+      }
+    },
+    {
+      resolve: 'gatsby-source-filesystem',
+      options: {
+        name: 'docs',
+        path: `${__dirname}/src/content/docs`
       }
     },
     {
@@ -63,6 +70,7 @@ module.exports = {
                     frontmatter {
                       title
                       date
+                      slug
                     }
                   }
                 }

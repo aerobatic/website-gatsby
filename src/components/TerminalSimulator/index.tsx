@@ -109,22 +109,10 @@ class TerminalSimulation extends React.Component<{}, ISimulationState> {
     terminalInput: ''
   };
 
-  // setStateAsync = (newState: Pick<ISimulationState, keyof ISimulationState> | ISimulationState | null): Promise<void> => {
-  //   return new Promise(resolve => {
-  //     this.setState(newState, resolve);
-  //   });
-  // };
-
   handleGeneratorClick = async (event: SyntheticEvent, generatorKey: string) => {
     event.preventDefault();
 
     if (this.state.isRunning) return;
-
-    // await this.setStateAsync({
-    //   isRunning: true,
-    //   activeGenerator: generatorKey,
-    //   terminalInput: ''
-    // });
 
     this.setState(
       {
