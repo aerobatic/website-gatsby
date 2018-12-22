@@ -18,6 +18,7 @@ type StaticQueryProps = {
       title: string;
       description: string;
       siteUrl: string;
+      keywords: string;
     };
   };
 };
@@ -30,6 +31,7 @@ const IndexLayout: React.SFC = ({ children }) => (
           siteMetadata {
             title
             description
+            keywords
           }
         }
       }
@@ -40,7 +42,7 @@ const IndexLayout: React.SFC = ({ children }) => (
           title={data.site.siteMetadata.title}
           meta={[
             { name: 'description', content: data.site.siteMetadata.description },
-            { name: 'keywords', content: 'gatsbyjs, gatsby, javascript, sample, something' }
+            { name: 'keywords', content: data.site.siteMetadata.keywords }
           ]}
         >
           <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />

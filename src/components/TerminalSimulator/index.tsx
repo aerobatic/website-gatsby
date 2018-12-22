@@ -1,5 +1,5 @@
 import React, { SyntheticEvent } from 'react';
-import styled from 'react-emotion';
+import styled from 'styled-components';
 import { Link } from 'gatsby';
 import classNames from 'classnames';
 import { colors } from '../../styles/variables';

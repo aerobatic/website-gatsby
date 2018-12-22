@@ -1,10 +1,13 @@
 import * as React from 'react';
-import styled from 'react-emotion';
+import styled from 'styled-components';
+import { colors } from '../styles/variables';
 
 const StyledLayoutMain = styled.main`
   display: flex;
   flex-direction: column;
   flex: 1;
+  border-top: solid 1px ${colors.lightGray};
+  padding-top: 20px;
 `;
 
 interface LayoutMainProps {

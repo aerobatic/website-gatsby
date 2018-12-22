@@ -1,6 +1,8 @@
 'use strict';
 
 const path = require('path');
+const componentWithMDXScope = require('gatsby-mdx/component-with-mdx-scope');
+const { createFilePath } = require('gatsby-source-filesystem');
 
 exports.onCreateNode = ({ node, actions, getNode }) => {
   const { createNodeField } = actions;
@@ -11,15 +13,16 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
   // trip up. An empty string is still required in replacement to `null`.
 
   switch (node.internal.type) {
-    case 'MarkdownRemark': {
-      const { permalink, layout, date } = node.frontmatter;
+    case 'Mdx': {
+      const { slug, layout, date } = node.frontmatter;
       const { relativePath } = getNode(node.parent);
+      // const value = createFilePath({ node, getNode });
 
-      let slug = permalink;
+      // let slug = permalink;
 
-      if (!slug) {
-        slug = `/${relativePath.replace('.md', '')}/`;
-      }
+      // if (!slug) {
+      //   slug = `/${relativePath.replace('.md', '')}/`;
+      // }
 
       // Used to generate URL to view this content.
       createNodeField({
@@ -35,31 +38,55 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
         value: layout || ''
       });
 
+      createNodeField({
+        name: 'keywords',
+        node,
+        value: node.frontmatter.keywords || []
+      });
+
       // createNodeField({
       //   node,
-      //   name: 'date',
-      //   value: date
+      //   name: 'description',
+      //   value: description
       // });
     }
   }
 };
 
+exports.onCreateWebpackConfig = ({ actions }) => {
+  actions.setWebpackConfig({
+    resolve: {
+      modules: [path.resolve(__dirname, 'src'), 'node_modules'],
+      alias: {
+        $components: path.resolve(__dirname, 'src/components')
+      }
+    }
+  });
+};
+
 exports.createPages = async ({ graphql, actions }) => {
   const { createPage } = actions;
 
-  // filter: {fileAbsolutePath: {regex: "/blog/.*\\.md$/"}}
-  // sort: { order: DESC, fields: [frontmatter___date] }
-  const allBlogPosts = await graphql(`
-    {
-      allMarkdownRemark {
+  // const fileRegex = '"/blog/.*.md$/"';
+  const fileRegex = '"/blog/.*announcing-i18n-plugin.md$/"';
+
+  const { data, errors } = await graphql(`
+    query {
+      allMdx(sort: { order: DESC, fields: [frontmatter___date] }) {
         edges {
           node {
-            excerpt(pruneLength: 250)
             id
+            excerpt(pruneLength: 250)
             frontmatter {
-              slug
               title
-              date(formatString: "MMMM DD, YYYY")
+              slug
+              date(formatString: "DDDD, MMM DD, YYYY")
+            }
+            fields {
+              slug
+            }
+            code {
+              scope
             }
           }
         }
@@ -67,31 +94,47 @@ exports.createPages = async ({ graphql, actions }) => {
     }
   `);
 
-  // const allMarkdown = await graphql(`
+  // const allBlogPosts = await graphql(`
   //   {
-  //     allMarkdownRemark(limit: 1000) {
+  //     query {
+  //     allMdx(filter: { fileAbsolutePath: { regex: ${fileRegex} } }, sort: { order: DESC, fields: [frontmatter___date] }) {
   //       edges {
   //         node {
+  //           excerpt(pruneLength: 250)
+  //           id
   //           fields {
-  //             layout
   //             slug
+  //           }
+  //           frontmatter {
+  //             slug
+  //             title
+  //             date(formatString: "DDD, MMM DD, YYYY")
+  //           }
+  //           code {
+  //             scope
   //           }
   //         }
   //       }
   //     }
   //   }
-  // `);
+  //   }`);
 
-  if (allBlogPosts.errors) {
-    console.error(allBlogPosts.errors);
-    throw new Error(allBlogPosts.errors);
+  if (errors) {
+    console.error(errors);
+    throw new Error(errors);
   }
 
-  allBlogPosts.data.allMarkdownRemark.edges.forEach(({ node }) => {
+  const { edges } = data.allMdx;
+
+  edges.forEach(({ node }, index) => {
     const { slug, layout, date } = node.frontmatter;
 
+    const prev = index === 0 ? null : edges[index - 1].node;
+    const next = index === edges.length - 1 ? null : edges[index + 1].node;
+
+    console.log(`Create page for slug ${slug}`);
     createPage({
-      path: slug,
+      path: `/blog/${slug}/`,
       // This will automatically resolve the template to a corresponding
       // `layout` frontmatter in the Markdown.
       //
@@ -101,11 +144,13 @@ exports.createPages = async ({ graphql, actions }) => {
       // template.
       //
       // Note that the template has to exist first, or else the build will fail.
-      component: path.resolve(`./src/templates/blog.tsx`),
+      component: componentWithMDXScope(path.resolve(`./src/templates/post.tsx`), node.code.scope, __dirname),
       context: {
         // Data passed to context is available in page queries as GraphQL variables.
         slug,
-        date
+        date,
+        prev,
+        next
       }
     });
   });

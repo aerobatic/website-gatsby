@@ -1,5 +1,5 @@
 import React from 'react';
-import styled from 'react-emotion';
+import styled from 'styled-components';
 
 const StyledSection = styled.section`
   background-color: #4e7ce5;

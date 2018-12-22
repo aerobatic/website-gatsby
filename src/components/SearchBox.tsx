@@ -1,6 +1,6 @@
 import React from 'react';
 import searchIcon from '../img/search.svg';
-import styled from 'react-emotion';
+import styled from 'styled-components';
 
 const StyledForm = styled.div`
   display: flex;

@@ -1,6 +1,8 @@
 import * as React from 'react';
 import { graphql } from 'gatsby';
-
+import MDXRenderer from 'gatsby-mdx/mdx-renderer';
+import { MDXProvider } from '@mdx-js/tag';
+import mdxComponents from '../components/mdx';
 import Page from '../components/Page';
 import Container from '../components/Container';
 import IndexLayout from '../layouts';
@@ -17,8 +19,8 @@ interface BlogTemplateProps {
         };
       };
     };
-    markdownRemark: {
-      html: string;
+    mdx: {
+      code: { body: string };
       excerpt: string;
       frontmatter: {
         title: string;
@@ -29,13 +31,17 @@ interface BlogTemplateProps {
 }
 
 const BlogTemplate: React.SFC<BlogTemplateProps> = ({ data }) => {
+  console.log(data);
   return (
     <IndexLayout>
       <Page>
         <Container>
-          {data.markdownRemark}
-          {/* <h1>{data.markdownRemark.frontmatter.title}</h1>
-          <div dangerouslySetInnerHTML={{ __html: data.markdownRemark.html }} /> */}
+          <h1>{data.mdx.frontmatter.title}</h1>
+          <MDXProvider components={mdxComponents}>
+            {/* {JSON.stringify(data.mdx)} */}
+            <MDXRenderer>{data.mdx.code.body}</MDXRenderer>
+            {/* <div dangerouslySetInnerHTML={{ __html: data.mdx.html }} /> */}
+          </MDXProvider>
         </Container>
       </Page>
     </IndexLayout>
@@ -44,24 +50,22 @@ const BlogTemplate: React.SFC<BlogTemplateProps> = ({ data }) => {
 
 export default BlogTemplate;
 
-export const query = graphql`
-  query BlogTemplateQuery($slug: String!) {
+export const pageQuery = graphql`
+  query($slug: String!) {
     site {
       siteMetadata {
         title
-        description
-        author {
-          name
-          url
-        }
       }
     }
-    markdownRemark(fields: { slug: { eq: $slug } }) {
-      html
-      excerpt
+    mdx(fields: { slug: { eq: $slug } }) {
+      id
+      excerpt(pruneLength: 160)
       frontmatter {
         title
-        slug
+        date(formatString: "MMMM DD, YYYY")
+      }
+      code {
+        body
       }
     }
   }

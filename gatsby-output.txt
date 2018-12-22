@@ -1,0 +1,127 @@
+
+> gatsby-starter-typescript-plus@1.0.0 build /Users/davidvonlehman/src/aerobatic/marketing/website-gatsby
+> gatsby build
+
+success open and validate gatsby-config — 0.007 s
+success load plugins — 0.181 s
+success onPreInit — 0.933 s
+success delete html and css files from previous builds — 0.064 s
+success initialize cache — 0.029 s
+success copy gatsby files — 0.045 s
+success onPreBootstrap — 0.007 s
+success source and transform nodes — 0.448 s
+success building schema — 0.258 s
+
+[0m
+[0m  [0m[97m[41mTypeError[0m[37m[41m:[0m[37m[41m [0m[97m[41mCannot destructure property `edges` of 'undefined' or 'null'.[0m
+[0m  [0m
+[0m  [0m[90m-[0m [0m[93mgatsby-node.js[0m[90m:[0m[93m93[0m[37m [0m[37mObject.exports.createPages[0m
+[0m  [0m  [0m[90m/Users/davidvonlehman/src/aerobatic/marketing/website-gatsby/gatsby-node.js:[0m  [0m  [0m[90m93:39[0m
+[0m  [0m
+[0m  [0m[90m-[0m [0m[37mFrom previous event:[0m
+[0m  [0m
+[0m  [0m[90m-[0m [0m[93mapi-runner-node.js[0m[90m:[0m[93m139[0m[37m [0m[37mrunAPI[0m
+[0m  [0m  [0m[90m[website-gatsby]/[gatsby]/dist/utils/api-runner-node.js:139:22[0m
+[0m  [0m
+[0m  [0m[90m-[0m [0m[93mapi-runner-node.js[0m[90m:[0m[93m247[0m[37m [0m[37mPromise.mapSeries.plugin[0m
+[0m  [0m  [0m[90m[website-gatsby]/[gatsby]/dist/utils/api-runner-node.js:247:32[0m
+[0m  [0m
+[0m  [0m[90m-[0m [0m[37mFrom previous event:[0m
+[0m  [0m
+[0m  [0m[90m-[0m [0m[93mapi-runner-node.js[0m[90m:[0m[93m240[0m[37m [0m[37mresolve[0m
+[0m  [0m  [0m[90m[website-gatsby]/[gatsby]/dist/utils/api-runner-node.js:240:15[0m
+[0m  [0m
+[0m  [0m[90m-[0m [0m[37mFrom previous event:[0m
+[0m  [0m
+[0m  [0m[90m-[0m [0m[93mapi-runner-node.js[0m[90m:[0m[93m158[0m[37m [0m
+[0m  [0m  [0m[90m[website-gatsby]/[gatsby]/dist/utils/api-runner-node.js:158:12[0m
+[0m  [0m
+[0m  [0m[90m-[0m [0m[37mGenerator.next[0m
+[0m  [0m
+[0m  [0m[90m-[0m [0m[37mFrom previous event:[0m
+[0m  [0m
+[0m  [0m[90m-[0m [0m[93mapi-runner-node.js[0m[90m:[0m[93m301[0m[37m [0m
+[0m  [0m  [0m[90m[website-gatsby]/[gatsby]/dist/utils/api-runner-node.js:301:17[0m
+[0m  [0m
+[0m  [0m[90m-[0m [0m[93mindex.js[0m[90m:[0m[93m308[0m[37m [0m
+[0m  [0m  [0m[90m[website-gatsby]/[gatsby]/dist/bootstrap/index.js:308:11[0m
+[0m  [0m
+[0m  [0m[90m-[0m [0m[37mGenerator.next[0m
+[0m  [0m
+[0m  [0m[90m-[0m [0m[37mFrom previous event:[0m
+[0m  [0m
+[0m  [0m[90m-[0m [0m[37mFrom previous event:[0m
+[0m  [0m
+[0m  [0m[90m-[0m [0m[93mbuild.js[0m[90m:[0m[93m81[0m[37m [0m[37mbuild[0m
+[0m  [0m  [0m[90m[website-gatsby]/[gatsby]/dist/commands/build.js:81:19[0m
+[0m  [0m
+[0m  [0m[90m-[0m [0m[93mcreate-cli.js[0m[90m:[0m[93m134[0m[37m [0m[37mcli.command.handler.getCommandHandler[0m
+[0m  [0m  [0m[90m[website-gatsby]/[gatsby]/[gatsby-cli]/lib/create-cli.js:134:14[0m
+[0m  [0m
+[0m  [0m[90m-[0m [0m[93mcreate-cli.js[0m[90m:[0m[93m69[0m[37m [0m[37margv[0m
+[0m  [0m  [0m[90m[website-gatsby]/[gatsby]/[gatsby-cli]/lib/create-cli.js:69:24[0m
+[0m  [0m
+[0m  [0m[90m-[0m [0m[93mcreate-cli.js[0m[90m:[0m[93m18[0m[37m [0m[37mObject.args [as handler][0m
+[0m  [0m  [0m[90m[website-gatsby]/[gatsby]/[gatsby-cli]/lib/create-cli.js:18:19[0m
+[0m  [0m
+[0m  [0m[90m-[0m [0m[93mcommand.js[0m[90m:[0m[93m235[0m[37m [0m[37mObject.runCommand[0m
+[0m  [0m  [0m[90m[website-gatsby]/[yargs]/lib/command.js:235:44[0m
+[0m  [0m
+[0m  [0m[90m-[0m [0m[93myargs.js[0m[90m:[0m[93m1046[0m[37m [0m[37mObject.parseArgs [as _parseArgs][0m
+[0m  [0m  [0m[90m[website-gatsby]/[yargs]/yargs.js:1046:30[0m
+[0m  [0m
+[0m  [0m[90m-[0m [0m[93myargs.js[0m[90m:[0m[93m551[0m[37m [0m[37mObject.parse[0m
+[0m  [0m  [0m[90m[website-gatsby]/[yargs]/yargs.js:551:25[0m
+[0m  [0m
+[0m  [0m[90m-[0m [0m[93mcreate-cli.js[0m[90m:[0m[93m243[0m[37m [0m[37mmodule.exports[0m
+[0m  [0m  [0m[90m[website-gatsby]/[gatsby]/[gatsby-cli]/lib/create-cli.js:243:157[0m
+[0m  [0m
+[0m  [0m[90m-[0m [0m[93mindex.js[0m[90m:[0m[93m103[0m[37m [0m[37mObject.<anonymous>[0m
+[0m  [0m  [0m[90m[website-gatsby]/[gatsby]/[gatsby-cli]/lib/index.js:103:1[0m
+[0m  [0m
+[0m  [0m[90m-[0m [0m[93mloader.js[0m[90m:[0m[93m688[0m[37m [0m[37mModule._compile[0m
+[0m  [0m  [0m[90minternal/modules/cjs/loader.js:688:30[0m
+[0m  [0m
+[0m  [0m[90m-[0m [0m[93mloader.js[0m[90m:[0m[93m699[0m[37m [0m[37mObject.Module._extensions..js[0m
+[0m  [0m  [0m[90minternal/modules/cjs/loader.js:699:10[0m
+[0m  [0m
+[0m  [0m[90m-[0m [0m[93mloader.js[0m[90m:[0m[93m598[0m[37m [0m[37mModule.load[0m
+[0m  [0m  [0m[90minternal/modules/cjs/loader.js:598:32[0m
+[0m  [0m
+[0m  [0m[90m-[0m [0m[93mloader.js[0m[90m:[0m[93m537[0m[37m [0m[37mtryModuleLoad[0m
+[0m  [0m  [0m[90minternal/modules/cjs/loader.js:537:12[0m
+[0m  [0m
+[0m  [0m[90m-[0m [0m[93mloader.js[0m[90m:[0m[93m529[0m[37m [0m[37mFunction.Module._load[0m
+[0m  [0m  [0m[90minternal/modules/cjs/loader.js:529:3[0m
+[0m  [0m
+[0m  [0m[90m-[0m [0m[93mloader.js[0m[90m:[0m[93m636[0m[37m [0m[37mModule.require[0m
+[0m  [0m  [0m[90minternal/modules/cjs/loader.js:636:17[0m
+[0m  [0m
+[0m  [0m[90m-[0m [0m[93mhelpers.js[0m[90m:[0m[93m20[0m[37m [0m[37mrequire[0m
+[0m  [0m  [0m[90minternal/modules/cjs/helpers.js:20:18[0m
+[0m  [0m
+[0m  [0m[90m-[0m [0m[93mgatsby.js[0m[90m:[0m[93m4[0m[37m [0m[37mObject.<anonymous>[0m
+[0m  [0m  [0m[90m[website-gatsby]/[gatsby]/dist/bin/gatsby.js:4:1[0m
+[0m  [0m
+[0m  [0m[90m-[0m [0m[93mloader.js[0m[90m:[0m[93m688[0m[37m [0m[37mModule._compile[0m
+[0m  [0m  [0m[90minternal/modules/cjs/loader.js:688:30[0m
+[0m  [0m
+[0m  [0m[90m-[0m [0m[93mloader.js[0m[90m:[0m[93m699[0m[37m [0m[37mObject.Module._extensions..js[0m
+[0m  [0m  [0m[90minternal/modules/cjs/loader.js:699:10[0m
+[0m  [0m
+[0m  [0m[90m-[0m [0m[93mloader.js[0m[90m:[0m[93m598[0m[37m [0m[37mModule.load[0m
+[0m  [0m  [0m[90minternal/modules/cjs/loader.js:598:32[0m
+[0m  [0m
+[0m  [0m[90m-[0m [0m[93mloader.js[0m[90m:[0m[93m537[0m[37m [0m[37mtryModuleLoad[0m
+[0m  [0m  [0m[90minternal/modules/cjs/loader.js:537:12[0m
+[0m  [0m
+[0m  [0m[90m-[0m [0m[93mloader.js[0m[90m:[0m[93m529[0m[37m [0m[37mFunction.Module._load[0m
+[0m  [0m  [0m[90minternal/modules/cjs/loader.js:529:3[0m
+[0m  [0m
+[0m  [0m[90m-[0m [0m[93mloader.js[0m[90m:[0m[93m741[0m[37m [0m[37mFunction.Module.runMain[0m
+[0m  [0m  [0m[90minternal/modules/cjs/loader.js:741:12[0m
+[0m  [0m
+[0m  [0m[90m-[0m [0m[93mnode.js[0m[90m:[0m[93m285[0m[37m [0m[37mstartup[0m
+[0m  [0m  [0m[90minternal/bootstrap/node.js:285:19[0m
+[0m  [0m
+[0m
