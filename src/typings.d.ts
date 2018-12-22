@@ -16,3 +16,11 @@ declare module '*.module.css' {
 
 declare module '*.png';
 declare module '*.svg';
+
+declare module 'gatsby-mdx' {
+  declare class MDXRenderer extends React.Component<any> {}
+}
+
+declare module '@mdx-js/tag' {
+  declare class MDXProvider extends React.Component<any> {}
+}

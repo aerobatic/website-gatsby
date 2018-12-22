@@ -94,6 +94,7 @@ interface ISimulationState {
   terminalInput?: string;
   terminalOutput?: string[];
   showSpinner: boolean;
+  isUnmounted: boolean;
 }
 
 const delay = async (duration: number) => {
@@ -106,6 +107,7 @@ class TerminalSimulation extends React.Component<{}, ISimulationState> {
   state: ISimulationState = {
     isRunning: false,
     showSpinner: false,
+    isUnmounted: false,
     terminalInput: ''
   };
 
@@ -122,6 +124,8 @@ class TerminalSimulation extends React.Component<{}, ISimulationState> {
       },
       async () => {
         for (const command of generators[generatorKey].commands) {
+          if (this.state.isUnmounted) break;
+
           // Clear the previous command's output
           this.setState({
             terminalInput: '',
@@ -137,15 +141,18 @@ class TerminalSimulation extends React.Component<{}, ISimulationState> {
           await delay(COMMAND_DELAY);
         }
 
-        this.setState({
-          isRunning: false
-        });
+        if (!this.state.isUnmounted) {
+          this.setState({
+            isRunning: false
+          });
+        }
       }
     );
   };
 
   autotypeInput = async (commandText: string) => {
     for (let i = 0; i < commandText.length; i += 1) {
+      if (this.state.isUnmounted) return;
       this.setState({
         terminalInput: `${this.state.terminalInput || ''}${commandText[i]}`
       });
@@ -156,6 +163,7 @@ class TerminalSimulation extends React.Component<{}, ISimulationState> {
 
   writeCommandOutput = async (command: IGeneratorCommand) => {
     for (const output of command.output || []) {
+      if (this.state.isUnmounted) return;
       this.setState({
         showSpinner: true,
         terminalOutput: [...(this.state.terminalOutput || []), `> ${output}`]
@@ -172,6 +180,11 @@ class TerminalSimulation extends React.Component<{}, ISimulationState> {
 
   componentDidMount() {
     this.autotypeInput(DEFAULT_INPUT);
+  }
+
+  componentWillUnmount() {
+    // TODO: cancel all subscriptions and asynchronous tasks in the componentWillUnmount method.
+    this.setState({ isUnmounted: true });
   }
 
   renderLearnMore() {

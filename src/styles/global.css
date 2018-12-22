@@ -1,5 +1,5 @@
 body {
-  color: #9DA6A7;
+  color: #272E39;
   font-family: "Muli", -apple-system, ".SFNSText-Regular", "San Francisco", "Roboto", "Segoe UI", "Helvetica Neue", "Lucida Grande", sans-serif;
   font-size: 16px !important;
 }
@@ -19,10 +19,12 @@ pre code {
   border-radius: 0;
 }
 
-code,
+/* code,
 span.code {
   font-family: Menlo, Monaco, Consolas, "Courier New", monospace;
-  font-size: 90%;
-  color: #205081;
-  background-color: #f8f8f8;
-}
+  font-size: 88%;
+  color: #272E39;
+  padding: 3px;
+  border-radius: 2px;
+  background-color: #e1e4ea;
+} */

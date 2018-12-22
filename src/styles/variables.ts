@@ -14,14 +14,15 @@ export const colors = {
   darkGray: '#272E39',
   black: '#222222',
   linkBlue: '#4E7CE5',
-  softBlue: '#c8d6f5'
+  softBlue: '#c8d6f5',
+  inlineCode: '#e1e4ea'
 };
 
 export const fonts = {
   sansSerif:
     '-apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", Arial, sans-serif',
   serif: 'Georgia, "Times New Roman", Times, serif',
-  monospace: 'Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace, monospace'
+  monospace: 'Menlo, Monaco, Consolas, "Courier New", monospace;'
 };
 
 export const breakpoints = {

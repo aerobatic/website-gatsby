@@ -1,11 +1,13 @@
 import * as React from 'react';
 import { graphql } from 'gatsby';
-import MDXRenderer from 'gatsby-mdx/mdx-renderer';
+import { MDXRenderer } from 'gatsby-mdx';
 import { MDXProvider } from '@mdx-js/tag';
+import styled from 'styled-components';
 import mdxComponents from '../components/mdx';
 import Page from '../components/Page';
-import Container from '../components/Container';
 import IndexLayout from '../layouts';
+import { colors } from '../styles/variables';
+import MdxContainer from '../components/mdx/Container';
 
 interface BlogTemplateProps {
   data: {
@@ -30,19 +32,32 @@ interface BlogTemplateProps {
   };
 }
 
+const StyledHeading = styled.h1`
+  font-weight: 300;
+  margin-top: 0;
+  margin-bottom: 10px;
+`;
+
+const StyledDate = styled.div`
+  color: ${colors.gray};
+  margin-bottom: 15px;
+  font-style: italic;
+`;
+
 const BlogTemplate: React.SFC<BlogTemplateProps> = ({ data }) => {
   console.log(data);
   return (
     <IndexLayout>
       <Page>
-        <Container>
-          <h1>{data.mdx.frontmatter.title}</h1>
-          <MDXProvider components={mdxComponents}>
-            {/* {JSON.stringify(data.mdx)} */}
-            <MDXRenderer>{data.mdx.code.body}</MDXRenderer>
-            {/* <div dangerouslySetInnerHTML={{ __html: data.mdx.html }} /> */}
-          </MDXProvider>
-        </Container>
+        <div className="container">
+          <StyledHeading>{data.mdx.frontmatter.title}</StyledHeading>
+          <StyledDate>{data.mdx.frontmatter.date}</StyledDate>
+          <MdxContainer>
+            <MDXProvider components={mdxComponents}>
+              <MDXRenderer>{data.mdx.code.body}</MDXRenderer>
+            </MDXProvider>
+          </MdxContainer>
+        </div>
       </Page>
     </IndexLayout>
   );

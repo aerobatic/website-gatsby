@@ -13,17 +13,17 @@ const PostTile = styled.div`
   cursor: pointer;
   margin-bottom: 20px;
 
-  a {
+  > a {
     display: block;
     padding: 15px;
     height: 100%;
 
-    & :hover {
+    &:hover {
       text-decoration: none;
       background-color: #c8d6f5;
     }
 
-    h3 {
+    > h3 {
       margin-top: 0;
       margin-bottom: 7px;
       color: #000;
