@@ -3,7 +3,7 @@ import { fonts, colors } from '../../styles/variables';
 import ExternalLink from '../../icons/external-link.svg';
 
 export default styled.section`
-  code.language-text {
+  code {
     font-family: ${fonts.monospace};
     font-size: 88%;
     color: ${colors.black};

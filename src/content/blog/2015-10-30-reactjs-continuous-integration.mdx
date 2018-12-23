@@ -8,6 +8,8 @@ tags:
   - continuous integration
 ---
 
+import MdxImage from '$components/mdx/Image';
+
 [ReactJS](https://facebook.github.io/react/) is a JavaScript library for building user interfaces, typically used in the context of building modern Single Page Apps. Sometimes, when we talk about static hosting, we tend to think only of website generators like Jekyll or Hugo, but web apps built with ReactJS are also great for hosting with Aerobatic, since their output is typically HTML, CSS, and JavaScript i.e. static assets.
 
 In this tutorial, we'll take the [React-Starterify](https://github.com/Granze/react-starterify) app, clone the repo in Bitbucket, hook it up to [Wercker](http://wercker.com/) for continuous deployment, and then host the compiled assets on Aerobatic.
@@ -61,7 +63,12 @@ We previously used Wercker to build a [Hugo static blog](/hugo-continuous-integr
 
 You'll need to create a Wercker account and connect with Bitbucket. Rather than spell out all the details here, head on over to [Wercker](http://wercker.com/) and get started there. They have a really nice on-boarding flow:
 
-<img class="img-responsive marketing-feature-showcase--screenshot" src="//www.aerobatic.com/media/blog/hugo/wercker-setup.png" alt="Screenshot of Wercker onboarding process">
+<MdxImage
+  screenshot
+  alt="Screenshot of Wercker onboarding process"
+  src="https://www.aerobatic.com/media/blog/hugo/wercker-setup.png"
+  alt="Screenshot of Wercker onboarding process"
+/>
 
 #### Step 2: Create a wercker.yml
 
@@ -103,33 +110,41 @@ You'll update the `repo` field to match the name of the repo you created in Bitb
 
 In Wercker, create a new SSH Key pair. Copy the public key in Wercker and then add that to your Bitbucket account SSH Keys.
 
-<img class="img-responsive marketing-feature-showcase--screenshot" src="//www.aerobatic.com/media/blog/react-starterify/ssh-wercker.png" alt="Screenshot of getting SSH keys in Wercker">
+<MdxImage
+  screenshot
+  alt="Screenshot of Wercker onboarding process"
+  src="https:////www.aerobatic.com/media/blog/react-starterify/ssh-wercker.png"
+  alt="Screenshot of getting SSH keys in Wercker"
+/>
 
-<img class="img-responsive marketing-feature-showcase--screenshot" src="//www.aerobatic.com/media/blog/react-starterify/ssh-bb.png" alt="Screenshot of setting up SSH keys in Bitbucket">
+<MdxImage
+  screenshot
+  src="https://www.aerobatic.com/media/blog/react-starterify/ssh-bb.png"
+  alt="Screenshot of setting up SSH keys in Bitbucket"
+/>
 
 #### Step 4: Create Wercker Environment Variable
 
 Using the SSH key that we just created, create a new environment variable in Wercker and name it `DEPLOY_SSH`
 
-<img class="img-responsive marketing-feature-showcase--screenshot" src="//www.aerobatic.com/media/blog/react-starterify/wercker-env-var.png" alt="Screenshot of setting up an environment variable in Wercker">
+<MdxImage
+  screenshot
+  src="//www.aerobatic.com/media/blog/react-starterify/wercker-env-var.png"
+  alt="Screenshot of setting up an environment variable in Wercker"
+/>
 
 #### Step 5: Create Wercker Deploy Target
 
 The final step in Wercker is to create a deploy target.
 
-<img class="img-responsive marketing-feature-showcase--screenshot" src="//www.aerobatic.com/media/blog/react-starterify/wercker-deploy-target.png" alt="Screenshot of setting up a deploy target in Wercker">
+<MdxImage
+  src="//www.aerobatic.com/media/blog/react-starterify/wercker-deploy-target.png"
+  alt="Screenshot of setting up a deploy target in Wercker"
+/>
 
 ## Link The Repo to Aerobatic
 
 With Wercker set up to run our gulp tests and build, we can now git push to the master branch and Wercker will deploy our successfully compiled assets to the **dist** branch.
-
-To host the static website, we now just need to link the **dist** branch to Aerobatic, assuming you've already installed the [Aerobatic add-on](https://bitbucket.org/account/addon-directory/) for Bitbucket. Make sure you also check the **Yes, deploy my site now!** option.
-
-<img class="img-responsive marketing-feature-showcase--screenshot" src="//www.aerobatic.com/media/blog/react-starterify/link-repo.png" alt="Screenshot of linking a repo to Aerobatic for static hosting">
-
-After ~15 seconds, your app will be live to the public!
-
-<img class="img-responsive marketing-feature-showcase--screenshot" src="//www.aerobatic.com/media/blog/react-starterify/app-deployed.png" alt="Screenshot of a live static website version in Aerobatic">
 
 #### Demo App
 

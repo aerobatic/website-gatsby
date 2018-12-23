@@ -7,7 +7,8 @@ description: Use a Slack inbound webhook and the Aerobatic API proxy to post a J
 tags:
 ---
 
-import MdxImage from '$components/image';
+import MdxImage from '$components/mdx/Image';
+import MdxCli from '$components/mdx/Cli';
 
 At Aerobatic, we're big fans of [Jekyll](http://jekyllrb.com/) for its elegant simplicity as a blog templating solution. One of the things that's also nice about Jekyll are the many themes that are available, especially on [http://jekyllthemes.org/](http://jekyllthemes.org/).
 
@@ -51,7 +52,7 @@ We'll assume you're already familiar with how to host a Jekyll site on Aerobatic
 
 Once your site is hosted, you're then ready to create that environment variable. The URL will be the same as the one you got when you set up the Slack incoming webhook. The `aero env` command is used to set the value:
 
-{{< cli "aero env --name SLACK_WEBHOOK --value https://hooks.slack.com/services/xxx" >}}
+<MdxCli>aero env --name SLACK_WEBHOOK --value https://hooks.slack.com/services/xxx</MdxCli>
 
 ## Step 4: Modify contact_me.js
 

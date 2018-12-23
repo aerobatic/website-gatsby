@@ -62,8 +62,7 @@ const Sidebar = styled.section`
     border-bottom: solid 1px ${colors.lightGray};
   }
   a.active {
-    color: ${colors.black};
-    font-weight: bold;
+    color: ${colors.darkGray};
     &:hover {
       text-decoration: none;
     }

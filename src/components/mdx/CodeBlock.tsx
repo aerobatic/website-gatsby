@@ -12,10 +12,18 @@ SyntaxHighlighter.registerLanguage('css', languages.css);
 SyntaxHighlighter.registerLanguage('markdown', languages.markdown);
 SyntaxHighlighter.registerLanguage('shell', languages.shell);
 SyntaxHighlighter.registerLanguage('handlebars', languages.handlebars);
+SyntaxHighlighter.registerLanguage('yaml', languages.yaml);
+
+const LANG_ALIASES: { [key: string]: string } = {
+  sh: 'shell',
+  js: 'javascript',
+  yml: 'yaml'
+};
 
 const CodeBlock = (props: any) => {
   const languageClassname = props.children.props.props.className;
-  const language = languageClassname.substr('language-'.length);
+  let language = languageClassname.substr('language-'.length);
+  language = LANG_ALIASES[language] || language;
 
   return (
     <SyntaxHighlighter language={language} style={monoBlue}>

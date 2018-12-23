@@ -15,7 +15,7 @@ export const colors = {
   black: '#222222',
   linkBlue: '#4E7CE5',
   softBlue: '#c8d6f5',
-  inlineCode: '#e1e4ea'
+  inlineCode: 'rgb(234, 238, 243)'
 };
 
 export const fonts = {

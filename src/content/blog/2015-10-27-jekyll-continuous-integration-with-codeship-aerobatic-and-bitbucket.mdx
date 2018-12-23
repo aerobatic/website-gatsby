@@ -7,10 +7,6 @@ date: 2015-10-27
 tags: continuous integration, static hosting, jekyll
 ---
 
-{% alert warning %}
-**UPDATE:** Aerobatic now has [built-in support](/blog/automated-continuous-deployment-of-jekyll-sites) for building Jekyll sites. You no longer need to rely upon an external CI service for this. However, this article is still valid for other static site generators.
-{% endalert %}
-
 [Codeship](https://codeship.com) is a popular Continuous Deployment (CD) tool that integrates nicely with Bitbucket, and [Jekyll](http://jekyllrb.com) is a static site generator. In fact, this site is built with Jekyll. Frequently, Jekyll users will deploy their site to Github Pages. In this post, we'll show you how to build your Jekyll site with Codeship and deploy to Bitbucket, with Aerobatic hosting the resultant static site.
 
 In doing so, Codeship will take your Jekyll markdown files, generate your static assets, push them to Bitbucket, and Aerobatic will automatically update your hosted site. The benefit to this kind of flow is that you don't need to generate the static content locally. In fact, you can then get in the habit of editing markdown files in Bitbucket directly, and everything else will happen automatically.

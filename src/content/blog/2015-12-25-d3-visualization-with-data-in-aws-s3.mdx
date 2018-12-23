@@ -6,8 +6,6 @@ date: 2015-12-25
 tags: d3js, visualization, s3-proxy
 ---
 
-<script script src="//d3js.org/d3.v3.min.js" charset="utf-8"></script>
-
 [D3.js](http://d3js.org/) is a popular JavaScript library for manipulating documents based on data. A common pattern for working with d3 is to read in data from .csv, .tsv, or .json files. However, what happens when those data files are large? Storing them in a git repository alongside the code can be inefficient with the repo becoming bloated, and every push taking a long time.
 
 A better solution would be to keep the data files separate from the code, and an ideal place for them is Amazon Web Services (AWS) Simple Storage Service (S3). Aerobatic makes it possible to take those data files in S3 and serve them from our global CDN with their own cache value that’s separate from the rest of the site’s code, using our [S3 proxy](/docs/plugins/s3-proxy/) plugin. That way, your code is being updated instantly when you push to Bitbucket, while assets that change infrequently, such as your source data on S3, are not having their cache expired with each code deploy. Another benefit is that perhaps some other team at your company is responsible for publishing an updated daily data feed. Again, in this scenario, that team can publish to S3 without needing access to the site source code and having to republish the repo with the latest data file.
@@ -28,17 +26,15 @@ Upload the [Geographical Targets](https://goo.gl/qVgiYp) file to your AWS S3 buc
 At a minimum, you'll create an **index.html** like the following:
 
 ```html
-<!doctype html>
+<!DOCTYPE html>
 <html>
-<head>
+  <head>
     <script script src="//d3js.org/d3.v3.min.js" charset="utf-8"></script>
-</head>
-<body>
-  <h1>My D3.js Demo</h1>
-  <div id="d3div" class="d3">
-    <script src='js/analysis.js'></script>
-  </div>
-</body>
+  </head>
+  <body>
+    <h1>My D3.js Demo</h1>
+    <div id="d3div" class="d3"><script src="js/analysis.js"></script></div>
+  </body>
 </html>
 ```
 
@@ -208,16 +204,6 @@ d3.csv(
   }
 );
 ```
-
-## Putting it together
-
-Your final visualization should look something like below:
-
-<div id="d3div" class="d3">
-  <script src='/js/analysis.js'></script>
-</div>
-
-And again:
 
 - The demo site can be found at [https://d3s3.aerobaticapp.com/](https://d3s3.aerobaticapp.com/)
 - The source code for the demo is on Bitbucket at [https://bitbucket.org/aerobatic/d3s3/src](https://bitbucket.org/aerobatic/d3s3/src)
