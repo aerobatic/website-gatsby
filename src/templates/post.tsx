@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { graphql } from 'gatsby';
+import { graphql, Link } from 'gatsby';
 import { MDXRenderer } from 'gatsby-mdx';
 import { MDXProvider } from '@mdx-js/tag';
 import styled from 'styled-components';
@@ -7,6 +7,7 @@ import mdxComponents from '../components/mdx';
 import Page from '../components/Page';
 import IndexLayout from '../layouts';
 import { colors } from '../styles/variables';
+import { IBlogPost } from '../types';
 import MdxContainer from '../components/mdx/Container';
 
 interface BlogTemplateProps {
@@ -29,6 +30,9 @@ interface BlogTemplateProps {
         date: string;
       };
     };
+    allMdx: {
+      edges: { node: IBlogPost }[];
+    };
   };
 }
 
@@ -44,19 +48,57 @@ const StyledDate = styled.div`
   font-style: italic;
 `;
 
+const Sidebar = styled.section`
+  h3 {
+    margin: 0;
+  }
+  ul {
+    margin: 0;
+    padding: 0;
+  }
+  li {
+    list-style-type: none;
+    padding: 10px 0;
+    border-bottom: solid 1px ${colors.lightGray};
+  }
+  a.active {
+    color: ${colors.black};
+    font-weight: bold;
+    &:hover {
+      text-decoration: none;
+    }
+  }
+`;
+
 const BlogTemplate: React.SFC<BlogTemplateProps> = ({ data }) => {
   console.log(data);
   return (
     <IndexLayout>
       <Page>
         <div className="container">
-          <StyledHeading>{data.mdx.frontmatter.title}</StyledHeading>
-          <StyledDate>{data.mdx.frontmatter.date}</StyledDate>
-          <MdxContainer>
-            <MDXProvider components={mdxComponents}>
-              <MDXRenderer>{data.mdx.code.body}</MDXRenderer>
-            </MDXProvider>
-          </MdxContainer>
+          <div className="col-md-9">
+            <StyledHeading>{data.mdx.frontmatter.title}</StyledHeading>
+            <StyledDate>{data.mdx.frontmatter.date}</StyledDate>
+            <MdxContainer>
+              <MDXProvider components={mdxComponents}>
+                <MDXRenderer>{data.mdx.code.body}</MDXRenderer>
+              </MDXProvider>
+            </MdxContainer>
+          </div>
+          <div className="col-md-3">
+            <Sidebar>
+              <h3>Blog Posts</h3>
+              <ul>
+                {data.allMdx.edges.map(({ node }) => (
+                  <li key={node.id}>
+                    <Link activeClassName="active" to={`/blog/${node.frontmatter.slug}/`}>
+                      {node.frontmatter.title}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </Sidebar>
+          </div>
         </div>
       </Page>
     </IndexLayout>
@@ -81,6 +123,17 @@ export const pageQuery = graphql`
       }
       code {
         body
+      }
+    }
+    allMdx(sort: { order: DESC, fields: [frontmatter___date] }, limit: 20) {
+      edges {
+        node {
+          id
+          frontmatter {
+            slug
+            title
+          }
+        }
       }
     }
   }

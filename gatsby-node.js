@@ -67,12 +67,13 @@ exports.onCreateWebpackConfig = ({ actions }) => {
 exports.createPages = async ({ graphql, actions }) => {
   const { createPage } = actions;
 
-  // const fileRegex = '"/blog/.*.md$/"';
-  const fileRegex = '"/blog/.*announcing-i18n-plugin.md$/"';
+  const fileRegex = '"/blog/.*.mdx$/"';
+  // const fileRegex = '"/blog/.*announcing-i18n-plugin.md$/"';
+  //
 
   const { data, errors } = await graphql(`
     query {
-      allMdx(sort: { order: DESC, fields: [frontmatter___date] }) {
+      allMdx(sort: { order: DESC, fields: [frontmatter___date] }, filter: { fileAbsolutePath: { regex: ${fileRegex} } }) {
         edges {
           node {
             id

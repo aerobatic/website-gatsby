@@ -4,6 +4,7 @@ import Page from '../components/Page';
 import IndexLayout from '../layouts';
 import styled from 'styled-components';
 import { colors } from '../styles/variables';
+import { IBlogPost } from '../types';
 
 const PostTile = styled.div`
   display: block;
@@ -42,17 +43,6 @@ const PostTile = styled.div`
     }
   }
 `;
-
-interface IBlogPost {
-  id: string;
-  excerpt: string;
-  frontmatter: {
-    date: string;
-    slug: string;
-    description: string;
-    title: string;
-  };
-}
 
 interface IBlogIndexPageProps {
   data: {

@@ -1,0 +1,111 @@
+# id: f593b673-75f2-4c7e-8a65-6e0d7a6e0f05
+deploy:
+  ignore: []
+  directory: public
+  alerts:
+    default:
+      slack:
+        webhookUrl: $SLACK_WEBHOOK_ALERT
+      email:
+        to: [david.vonlehman@gmail.com]
+
+plugins:
+  - name: http-headers
+    options:
+      security: true
+      "Content-Security-Policy": "default-src 'none'; img-src 'self' data: https://www.google-analytics.com https://www.google.com https://stats.g.doubleclick.net https://aerobatic-media.s3.amazonaws.com; script-src 'self' 'unsafe-eval' 'unsafe-inline' https://www.google-analytics.com https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://d3js.org; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com https://cdn.jsdelivr.net; font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com; connect-src 'self' https://*.algolianet.com https://*.algolia.net; form-action 'self'; base-uri 'self'; frame-ancestors 'self'"
+
+  - name: http-proxy
+    path: /slack
+    method: post
+    options:
+      url: $SLACK_WEBHOOK
+
+  - name: cors
+    path: /api/*
+    options:
+      origin:
+        - https://www.aerobatic.com
+        - http://localhost:1313
+
+  - name: http-proxy
+    path: /api/github/*
+    method: get
+    options:
+      url: https://api.github.com/*
+      # Cache on CDN for 1 hour
+      cacheMaxAge: 3600
+      headers:
+        # new Buffer('dvonlehman:{PERSONAL_TOKEN}').toString('base64')
+        Authorization: Basic $GITHUB_API_AUTH
+  - name: http-proxy
+    path: /api/github-raw/*
+    method: get
+    options:
+      url: https://raw.githubusercontent.com/*
+      cacheMaxAge: 86400
+
+  - name: http-proxy
+    path: /api/slack-invite
+    method: post
+    options:
+      url: https://aerobatic-public.slack.com/api/users.admin.invite
+      query:
+        token: $SLACK_OAUTH_TOKEN
+
+  - name: s3-proxy
+    path: /media
+    options:
+      bucket: aerobatic-media
+      prefix: website
+      region: us-west-2
+      overrideCacheControl: max-age=2592000
+      accessKeyId: $S3_ACCESS_KEY_ID
+      secretAccessKey: $S3_SECRET_ACCESS_KEY
+  - name: keyword-search
+    path: /search
+    method: get
+    options:
+      resultsTemplate: /search/index.html
+      mustacheTags: ["<%=", "%>"]
+  - name: redirect
+    options:
+      /docs: /docs/getting-started/
+      /docs/environment-variables: "/docs/configuration/#environment-variables"
+      /docs/api-proxy: /docs/plugins/http-proxy/
+      /docs/performance: "/docs/overview/#performance"
+      /docs/ssl: /docs/custom-domains-ssl/
+      /docs/custom-domains: /docs/custom-domains-ssl/
+      /docs/automated-builds: /docs/static-generators/
+      /docs/http-proxy: /docs/plugins/http-proxy/
+      /docs/s3-proxy: /docs/plugins/s3-proxy/
+      /docs/cors: /docs/plugins/cors/
+      /docs/redirects: /docs/plugins/redirect/
+      /docs/http-basic-authentication: /docs/plugins/basic-auth/
+      /docs/custom-error-pages: /docs/plugins/custom-errors/
+      /docs/static-http-hosting: /docs/static-serving/
+      /docs/continuous-deployment: /docs/deployment/#continuous-deployment
+      /bitbucket-changes: /blog/announcing-aerobatic-transition/
+      /feed.xml: /index.xml
+      /themes/: /quickstarts/jekyll/
+      /themes/*: /quickstarts/*
+      /blog/hosting-swagger-api-documentation-wth-bitbucket: /blog/hosting-swagger-api-documentation
+      /blog/announcing-aerobatic-transition: /
+      /blog/easy-hugo-continuous-deployment: /blog/hugo-bitbucket-pipelines/
+      /blog/how-to-host-your-static-web-site-with-hexo-js: /docs/deployment/#continuous-deployment
+      /blog/faster-website-deployment-with-bitbucket-and-s3: /docs/plugins/s3-proxy/
+      /blog/basic-auth-for-static-web-sites: /docs/plugins/password-protect/
+  - name: health-check
+    path: /health
+  - name: custom-errors
+    options:
+      errors:
+        "404": 404.html
+
+scanne/blog/easy-hugo-continuous-deployment: /blog/hugo-bitbucket-pipelines/r:
+  keywordSearch:
+    noIndexPatterns:
+      - /tags/**
+      - /legal/**
+      - /search/**
+    titleStripStart: "Aerobatic - "
