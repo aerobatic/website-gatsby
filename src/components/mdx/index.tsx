@@ -6,6 +6,7 @@ import Paragraph from './Paragraph';
 import Link from './Link';
 import CodeBlock from './CodeBlock';
 import List from './List';
+import Blockquote from './Blockquote';
 
 export default {
   h1: (props: any) => <Title {...props} />,
@@ -15,5 +16,6 @@ export default {
   a: (props: any) => <Link {...props} />,
   pre: (props: any) => <CodeBlock {...props} />,
   ol: (props: any) => <List ordered={true} {...props} />,
-  ul: (props: any) => <List ordered={false} {...props} />
+  ul: (props: any) => <List ordered={false} {...props} />,
+  blockquote: (props: any) => <Blockquote {...props} />
 };

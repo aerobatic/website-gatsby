@@ -92,7 +92,10 @@ export default () => (
   <StaticQuery
     query={graphql`
       {
-        allMdx(sort: { order: DESC, fields: [frontmatter___date] }) {
+        allMdx(
+          sort: { order: DESC, fields: [frontmatter___date] }
+          filter: { fileAbsolutePath: { regex: "/blog/.*.mdx$/" } }
+        ) {
           edges {
             node {
               id

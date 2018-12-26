@@ -7,31 +7,20 @@ import mdxComponents from '../components/mdx';
 import Page from '../components/Page';
 import IndexLayout from '../layouts';
 import { colors } from '../styles/variables';
-import { IBlogPost } from '../types';
 import MdxContainer from '../components/mdx/Container';
 
-interface BlogTemplateProps {
+interface DocsTemplateProps {
   data: {
     site: {
       siteMetadata: {
         title: string;
-        description: string;
-        author: {
-          name: string;
-          url: string;
-        };
       };
     };
     mdx: {
       code: { body: string };
-      excerpt: string;
       frontmatter: {
         title: string;
-        date: string;
       };
-    };
-    allMdx: {
-      edges: { node: IBlogPost }[];
     };
   };
 }
@@ -41,12 +30,6 @@ const StyledHeading = styled.h1`
   margin-top: 0;
   margin-bottom: 10px;
   font-size: 1.8em;
-`;
-
-const StyledDate = styled.div`
-  color: ${colors.gray};
-  margin-bottom: 15px;
-  font-style: italic;
 `;
 
 const Sidebar = styled.section`
@@ -83,16 +66,27 @@ const Footer = styled.footer`
   }
 `;
 
-const BlogTemplate: React.SFC<BlogTemplateProps> = ({ data }) => {
-  console.log(data);
+const DocsTemplate: React.SFC<DocsTemplateProps> = ({ data }) => {
   return (
     <IndexLayout>
       <Page marginTop="20px">
         <div className="container">
           <div className="row">
+            <div className="col-md-3">
+              <Sidebar>
+                <ul>
+                  {/* {sidebarLinks.map(({ node }) => (
+                    <li key={node.id}>
+                      <Link activeClassName="active" to={`/blog/${node.frontmatter.slug}/`}>
+                        {node.frontmatter.title}
+                      </Link>
+                    </li>
+                  ))} */}
+                </ul>
+              </Sidebar>
+            </div>
             <div className="col-md-9">
               <StyledHeading>{data.mdx.frontmatter.title}</StyledHeading>
-              <StyledDate>{data.mdx.frontmatter.date}</StyledDate>
               <MdxContainer>
                 <MDXProvider components={mdxComponents}>
                   <MDXRenderer>{data.mdx.code.body}</MDXRenderer>
@@ -111,20 +105,6 @@ const BlogTemplate: React.SFC<BlogTemplateProps> = ({ data }) => {
                 </a>
               </Footer>
             </div>
-            <div className="col-md-3">
-              <Sidebar>
-                <h3>Blog Posts</h3>
-                <ul>
-                  {data.allMdx.edges.map(({ node }) => (
-                    <li key={node.id}>
-                      <Link activeClassName="active" to={`/blog/${node.frontmatter.slug}/`}>
-                        {node.frontmatter.title}
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
-              </Sidebar>
-            </div>
           </div>
         </div>
       </Page>
@@ -132,7 +112,7 @@ const BlogTemplate: React.SFC<BlogTemplateProps> = ({ data }) => {
   );
 };
 
-export default BlogTemplate;
+export default DocsTemplate;
 
 export const pageQuery = graphql`
   query($slug: String!) {
@@ -143,24 +123,11 @@ export const pageQuery = graphql`
     }
     mdx(fields: { slug: { eq: $slug } }) {
       id
-      excerpt(pruneLength: 160)
       frontmatter {
         title
-        date(formatString: "MMMM DD, YYYY")
       }
       code {
         body
-      }
-    }
-    allMdx(sort: { order: DESC, fields: [frontmatter___date] }, limit: 20) {
-      edges {
-        node {
-          id
-          frontmatter {
-            slug
-            title
-          }
-        }
       }
     }
   }

@@ -2,7 +2,7 @@ import React, { SyntheticEvent } from 'react';
 import styled from 'styled-components';
 import { Link } from 'gatsby';
 import classNames from 'classnames';
-import { colors } from '../../styles/variables';
+import { colors, fonts } from '../../styles/variables';
 import generators, { IGeneratorCommand } from './generators';
 
 const TYPE_DELAY = 40;
@@ -20,7 +20,6 @@ const StyledTerminal = styled.div`
   position: relative;
   background-color: #272e39;
   color: #ffffff;
-  font-family: Menlo, Monaco, Consolas, 'Courier New', monospace;
   padding: 15px;
 
   &::before {
@@ -34,6 +33,10 @@ const StyledTerminal = styled.div`
     border-radius: 16px;
     box-shadow: 0 0 0 0 #ff6159, 22px 0 0 0 #ffbd2e, 44px 0 0 0 #28ca42;
     content: '';
+  }
+
+  pre code {
+    font-family: ${fonts.monospace};
   }
 
   pre code.prompt {
