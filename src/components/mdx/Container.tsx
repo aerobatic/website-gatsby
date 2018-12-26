@@ -17,10 +17,16 @@ export default styled.section`
     font-weight: bold;
     color: ${colors.black};
     border-bottom: solid 2px ${colors.softBlue};
+    text-decoration: none;
 
     &:hover {
       text-decoration: none;
       background-color: ${colors.softBlue};
+    }
+
+    &:active,
+    &:focus {
+      text-decoration: none;
     }
   }
 
@@ -33,6 +39,13 @@ export default styled.section`
       width: 10px;
       height: 10px;
       margin: 0 6px 0 4px;
+    }
+  }
+
+  ol > li {
+    margin-bottom: 6px;
+    &:last-child {
+      margin-bottom: 0;
     }
   }
 `;

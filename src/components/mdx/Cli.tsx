@@ -1,3 +1,4 @@
+import React, { SFC } from 'react';
 import styled from 'styled-components';
 import { colors, fonts } from '../../styles/variables';
 
@@ -18,7 +19,24 @@ const Styled = styled.div`
   }
 `;
 
-const Cli = (props: any) => {
+interface CliProps {
+  commands?: string[];
+}
+
+const Cli: SFC<CliProps> = props => {
+  if (props.commands) {
+    return (
+      <Styled>
+        {props.commands.map(cmd => (
+          <div className="cmd">
+            <span className="prompt">{PROMPT}</span>
+            <span className="cmd">{cmd}</span>
+          </div>
+        ))}
+      </Styled>
+    );
+  }
+
   return (
     <Styled>
       <span className="prompt">{PROMPT}</span>

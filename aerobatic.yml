@@ -95,6 +95,9 @@ plugins:
       /blog/how-to-host-your-static-web-site-with-hexo-js: /docs/deployment/#continuous-deployment
       /blog/faster-website-deployment-with-bitbucket-and-s3: /docs/plugins/s3-proxy/
       /blog/basic-auth-for-static-web-sites: /docs/plugins/password-protect/
+      /blog/automated-continuous-deployment-of-jekyll-sites: /docs/static-site-generators/#jekyll
+      /blog/easy-hugo-continuous-deployment: /docs/static-site-generators/#hugo
+      /blog/introducing-docker-pipeline: /docs/deployment/#continuous-deployment
   - name: health-check
     path: /health
   - name: custom-errors

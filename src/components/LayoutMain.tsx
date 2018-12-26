@@ -7,7 +7,6 @@ const StyledLayoutMain = styled.main`
   flex-direction: column;
   flex: 1;
   border-top: solid 1px ${colors.lightGray};
-  padding-top: 20px;
 `;
 
 interface LayoutMainProps {

@@ -40,6 +40,7 @@ const StyledHeading = styled.h1`
   font-weight: 300;
   margin-top: 0;
   margin-bottom: 10px;
+  font-size: 1.8em;
 `;
 
 const StyledDate = styled.div`
@@ -69,34 +70,56 @@ const Sidebar = styled.section`
   }
 `;
 
+const Footer = styled.footer`
+  margin-top: 20px;
+  padding: 15px;
+  background-color: ${colors.lightGray};
+  h3 {
+    margin: 0 0 10px 0;
+  }
+  p {
+    margin: 0;
+    margin-bottom: 10px;
+  }
+`;
+
 const BlogTemplate: React.SFC<BlogTemplateProps> = ({ data }) => {
   console.log(data);
   return (
     <IndexLayout>
-      <Page>
+      <Page marginTop="20px">
         <div className="container">
-          <div className="col-md-9">
-            <StyledHeading>{data.mdx.frontmatter.title}</StyledHeading>
-            <StyledDate>{data.mdx.frontmatter.date}</StyledDate>
-            <MdxContainer>
-              <MDXProvider components={mdxComponents}>
-                <MDXRenderer>{data.mdx.code.body}</MDXRenderer>
-              </MDXProvider>
-            </MdxContainer>
-          </div>
-          <div className="col-md-3">
-            <Sidebar>
-              <h3>Blog Posts</h3>
-              <ul>
-                {data.allMdx.edges.map(({ node }) => (
-                  <li key={node.id}>
-                    <Link activeClassName="active" to={`/blog/${node.frontmatter.slug}/`}>
-                      {node.frontmatter.title}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </Sidebar>
+          <div className="row">
+            <div className="col-md-9">
+              <StyledHeading>{data.mdx.frontmatter.title}</StyledHeading>
+              <StyledDate>{data.mdx.frontmatter.date}</StyledDate>
+              <MdxContainer>
+                <MDXProvider components={mdxComponents}>
+                  <MDXRenderer>{data.mdx.code.body}</MDXRenderer>
+                </MDXProvider>
+              </MdxContainer>
+              <Footer>
+                <h3>Ready to try Aerobatic?</h3>
+                <p>You can have your first website live in 30 seconds!</p>
+                <a className="btn btn-success btn-lg" rel="external" target="_blank" href="https://dashboard.aerobatic.com/register">
+                  Create free account
+                </a>
+              </Footer>
+            </div>
+            <div className="col-md-3">
+              <Sidebar>
+                <h3>Blog Posts</h3>
+                <ul>
+                  {data.allMdx.edges.map(({ node }) => (
+                    <li key={node.id}>
+                      <Link activeClassName="active" to={`/blog/${node.frontmatter.slug}/`}>
+                        {node.frontmatter.title}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </Sidebar>
+            </div>
           </div>
         </div>
       </Page>

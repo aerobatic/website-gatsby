@@ -62,4 +62,15 @@ declare module 'react-syntax-highlighter/dist/languages/hljs' {
   export { default as markdown } from 'react-syntax-highlighter/dist/languages/hljs/markdown';
   export { default as shell } from 'react-syntax-highlighter/dist/languages/hljs/shell';
   export { default as handlebars } from 'react-syntax-highlighter/dist/languages/hljs/handlebars';
+  export { default as scss } from 'react-syntax-highlighter/dist/languages/hljs/scss';
+}
+
+declare module 'react-anchor-link-smooth-scroll' {
+  export default class AnchorLink extends React.Component<{ href: string; className: string }> {}
+}
+
+declare module 'github-slugger' {
+  export default class GithubSlugger {
+    slug: (value: string) => string;
+  }
 }

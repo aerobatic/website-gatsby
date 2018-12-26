@@ -1,9 +1,15 @@
 import * as React from 'react';
 import styled from 'styled-components';
 import { Link } from 'gatsby';
+import { colors } from '../styles/variables';
+
+const StyledFooter = styled.footer`
+  border-top: solid 1px ${colors.lightGray};
+  padding-top: 20px;
+`;
 
 const QuickLinks = styled.ul`
-  margin-bottom: 0;
+  margin: 0;
   text-align: center;
   list-style-type: none;
   text-transform: none;
@@ -40,9 +46,8 @@ const SocialContainer = styled.div`
 `;
 
 const Footer: React.SFC = () => (
-  <footer className="footer">
+  <StyledFooter>
     <div className="container">
-      <hr />
       <div className="row">
         <div className="col-md-4">
           <Copyright>
@@ -86,7 +91,7 @@ const Footer: React.SFC = () => (
         </div>
       </div>
     </div>
-  </footer>
+  </StyledFooter>
 );
 
 export default Footer;

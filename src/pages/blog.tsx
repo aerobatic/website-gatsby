@@ -65,7 +65,7 @@ const BlogIndexPage = (props: IBlogIndexPageProps) => {
 
   return (
     <IndexLayout>
-      <Page>
+      <Page marginTop="20px">
         <div className="container">
           {rows.map((row, index) => (
             <div className="row" key={index}>

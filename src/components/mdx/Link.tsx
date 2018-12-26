@@ -1,5 +1,6 @@
 import React, { SFC } from 'react';
 import { Link } from 'gatsby';
+import AnchorLink from 'react-anchor-link-smooth-scroll';
 
 interface LinkProps {
   href: string;
@@ -11,6 +12,14 @@ const MdxLink: SFC<LinkProps> = props => {
       <Link className="internal-link" to={props.href}>
         {props.children}
       </Link>
+    );
+  }
+
+  if (props.href.startsWith('#')) {
+    return (
+      <AnchorLink className="internal-link" href={props.href}>
+        {props.children}
+      </AnchorLink>
     );
   }
 
