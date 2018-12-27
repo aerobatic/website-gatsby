@@ -13,5 +13,8 @@
     ".cache": true,
     "node_modules/**": true,
     "public/**": true
+  },
+  "files.exclude": {
+    "public": true
   }
 }

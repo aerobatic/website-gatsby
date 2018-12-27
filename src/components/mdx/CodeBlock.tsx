@@ -27,7 +27,15 @@ const LANG_ALIASES: { [key: string]: string } = {
 
 const CodeBlock = (props: any) => {
   const languageClassname = props.children.props.props.className;
-  let language = languageClassname.substr('language-'.length);
+
+  let language;
+  if (languageClassname) {
+    language = languageClassname.substr('language-'.length);
+    language = LANG_ALIASES[language] || language;
+  } else {
+    language = 'text';
+  }
+
   language = LANG_ALIASES[language] || language;
 
   return (

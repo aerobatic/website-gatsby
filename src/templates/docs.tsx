@@ -8,6 +8,7 @@ import Page from '../components/Page';
 import IndexLayout from '../layouts';
 import { colors } from '../styles/variables';
 import MdxContainer from '../components/mdx/Container';
+import PromoFooter from '../components/PromoFooter';
 
 interface DocsTemplateProps {
   data: {
@@ -33,38 +34,51 @@ const StyledHeading = styled.h1`
 `;
 
 const Sidebar = styled.section`
-  h3 {
-    margin: 0;
-  }
   ul {
     margin: 0;
     padding: 0;
   }
   li {
     list-style-type: none;
-    padding: 10px 0;
-    border-bottom: solid 1px ${colors.lightGray};
+    padding: 0;
+  }
+  a {
+    padding: 10px;
+    display: block;
+    &:hover {
+      text-decoration: none;
+      background-color: ${colors.hoverTile};
+    }
   }
   a.active {
-    color: ${colors.darkGray};
+    font-weight: bold;
+    color: ${colors.gray};
     &:hover {
       text-decoration: none;
     }
   }
 `;
 
-const Footer = styled.footer`
-  margin-top: 20px;
-  padding: 15px;
-  background-color: ${colors.lightGray};
-  h3 {
-    margin: 0 0 10px 0;
-  }
-  p {
-    margin: 0;
-    margin-bottom: 10px;
-  }
-`;
+interface DocSection {
+  title: string;
+  slug: string;
+  children?: DocSection[];
+}
+
+const DOC_LINKS: DocSection[] = [
+  { title: 'Getting Started', slug: 'getting-started' },
+  { title: 'Overview', slug: 'overview' },
+  { title: 'Deployment', slug: 'deployment' },
+  { title: 'CLI', slug: 'cli' },
+  { title: 'Static Website Serving', slug: 'static-serving' },
+  { title: 'Custom Domains / SSL', slug: 'custom-domains-ssl' },
+  { title: 'Static Site Generators', slug: 'static-site-generators' },
+  { title: 'Configuration', slug: 'configuration' },
+  { title: 'Access Control', slug: 'access-control' },
+  { title: 'Site Optimizer', slug: 'site-optimizer' },
+  { title: 'Plugins', slug: 'plugins' },
+  { title: "What's New", slug: 'whats-new' }
+];
 
 const DocsTemplate: React.SFC<DocsTemplateProps> = ({ data }) => {
   return (
@@ -75,13 +89,13 @@ const DocsTemplate: React.SFC<DocsTemplateProps> = ({ data }) => {
             <div className="col-md-3">
               <Sidebar>
                 <ul>
-                  {/* {sidebarLinks.map(({ node }) => (
-                    <li key={node.id}>
-                      <Link activeClassName="active" to={`/blog/${node.frontmatter.slug}/`}>
-                        {node.frontmatter.title}
+                  {DOC_LINKS.map(link => (
+                    <li key={link.slug}>
+                      <Link activeClassName="active" to={`/docs/${link.slug}/`}>
+                        {link.title}
                       </Link>
                     </li>
-                  ))} */}
+                  ))}
                 </ul>
               </Sidebar>
             </div>
@@ -92,18 +106,7 @@ const DocsTemplate: React.SFC<DocsTemplateProps> = ({ data }) => {
                   <MDXRenderer>{data.mdx.code.body}</MDXRenderer>
                 </MDXProvider>
               </MdxContainer>
-              <Footer>
-                <h3>Ready to try Aerobatic?</h3>
-                <p>You can have your first website live in 30 seconds!</p>
-                <a
-                  className="btn btn-success btn-lg"
-                  rel="external"
-                  target="_blank"
-                  href="https://dashboard.aerobatic.com/register"
-                >
-                  Create free account
-                </a>
-              </Footer>
+              <PromoFooter />
             </div>
           </div>
         </div>

@@ -6,9 +6,13 @@ date: 2017-02-10
 tags: docker, hugo, jekyll, cd, bitbucket pipelines
 ---
 
-<MdxImage align="center" src="//www.aerobatic.com/media/logos/docker-logo.png" style={{ maxHeight: '100px' }} />
+<MdxImage
+  align="center"
+  src="//www.aerobatic.com/media/logos/docker-logo.png"
+  style={{ maxHeight: '100px' }}
+/>
 
-Aerobatic now offers two pre-built CD images: [aerobatic/hugo](https://hub.docker.com/r/aerobatic/hugo/) and [aerobatic/jekyll](https://hub.docker.com/r/aerobatic/jekyll/), that can you can use with any Docker enabled continuous integration service such as [Bitbucket Pipelines](https://bitbucket.org/product/features). Both images include their respective static generator pre-installed as well as the [aerobatic-cli](/docs/cli/), so the only work to be done is clone your code, build your site, and run [aero deploy](/docs/cli/#deploy).
+Aerobatic now offers two pre-built CD images: [aerobatic/hugo](https://hub.docker.com/r/aerobatic/hugo/) and [aerobatic/jekyll](https://hub.docker.com/r/aerobatic/jekyll/), that can you can use with any Docker enabled continuous integration service such as [Bitbucket Pipelines](https://bitbucket.org/product/features). Both images include their respective static generator pre-installed as well as the [aerobatic-cli](/docs/cli/), so the only work to be done is clone your code, build your site, and run [aero deploy](/docs/cli/#deploy-command).
 
 Both images are based on the ultra-lightweight [Alpine Docker Image](http://gliderlabs.viewdocs.io/docker-alpine/). Smaller images lead to faster build container initialization. This, combined with less software to install with each build, means reduced time between pushing to your repo and fresh changes live on Aerobatic.
 

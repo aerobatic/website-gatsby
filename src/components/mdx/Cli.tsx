@@ -17,32 +17,43 @@ const Styled = styled.div`
   .prompt {
     color: ${colors.softBlue};
   }
+
+  .comment {
+    color: silver;
+  }
 `;
 
 interface CliProps {
   commands?: string[];
 }
 
+const print = (cmd: string) => {
+  let comment;
+  if (cmd.indexOf('#')) {
+    [cmd, comment] = cmd.split('#');
+  }
+
+  return (
+    <>
+      <span className="prompt">{PROMPT}</span>
+      <span className="cmd">{cmd}</span>
+      {comment && <span className="comment"># {comment}</span>}
+    </>
+  );
+};
+
 const Cli: SFC<CliProps> = props => {
   if (props.commands) {
     return (
       <Styled>
         {props.commands.map(cmd => (
-          <div className="cmd">
-            <span className="prompt">{PROMPT}</span>
-            <span className="cmd">{cmd}</span>
-          </div>
+          <div className="cmd">{print(cmd)}</div>
         ))}
       </Styled>
     );
   }
 
-  return (
-    <Styled>
-      <span className="prompt">{PROMPT}</span>
-      <span className="cmd">{props.children}</span>
-    </Styled>
-  );
+  return <Styled>{print(props.children as string)}</Styled>;
 };
 
 export default Cli;

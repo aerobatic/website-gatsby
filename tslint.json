@@ -3,6 +3,7 @@
   "extends": ["tslint-config-blvd/react", "tslint-config-prettier"],
   "rules": {
     "prettier": true,
-    "semicolon": [true, "always", "ignore-bound-class-methods"]
+    "semicolon": [true, "always", "ignore-bound-class-methods"],
+    "no-parameter-reassignment": false
   }
 }

@@ -9,6 +9,7 @@ import IndexLayout from '../layouts';
 import { colors } from '../styles/variables';
 import { IBlogPost } from '../types';
 import MdxContainer from '../components/mdx/Container';
+import PromoFooter from '../components/PromoFooter';
 
 interface BlogTemplateProps {
   data: {
@@ -70,19 +71,6 @@ const Sidebar = styled.section`
   }
 `;
 
-const Footer = styled.footer`
-  margin-top: 20px;
-  padding: 15px;
-  background-color: ${colors.lightGray};
-  h3 {
-    margin: 0 0 10px 0;
-  }
-  p {
-    margin: 0;
-    margin-bottom: 10px;
-  }
-`;
-
 const BlogTemplate: React.SFC<BlogTemplateProps> = ({ data }) => {
   console.log(data);
   return (
@@ -98,18 +86,7 @@ const BlogTemplate: React.SFC<BlogTemplateProps> = ({ data }) => {
                   <MDXRenderer>{data.mdx.code.body}</MDXRenderer>
                 </MDXProvider>
               </MdxContainer>
-              <Footer>
-                <h3>Ready to try Aerobatic?</h3>
-                <p>You can have your first website live in 30 seconds!</p>
-                <a
-                  className="btn btn-success btn-lg"
-                  rel="external"
-                  target="_blank"
-                  href="https://dashboard.aerobatic.com/register"
-                >
-                  Create free account
-                </a>
-              </Footer>
+              <PromoFooter />
             </div>
             <div className="col-md-3">
               <Sidebar>

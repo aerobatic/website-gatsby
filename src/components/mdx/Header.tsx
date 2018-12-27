@@ -13,30 +13,30 @@ const StyledH2 = styled.h2`
 
 const StyledH4 = styled.h4`
   text-align: left;
-  font-size: 16px;
+  font-size: 17px;
   margin-top: 20px;
-  margin-bottom: 20px;
+  margin-bottom: 15px;
   font-weight: 900;
   line-height: 1.1;
 `;
 
-export const H2 = (props: any) => {
-  const text = props.children.toString();
+const SLUG_OVERRIDE_REGEX: RegExp = /\{\#(.*)\}$/;
 
-  const slug = slugger.slug(text);
-  return <StyledH2 id={slug}>{props.children}</StyledH2>;
+const render = (Elem: React.ComponentType<any>, props: any) => {
+  let text = props.children.toString();
+
+  let slug;
+  const match = text.match(SLUG_OVERRIDE_REGEX);
+  if (!match) {
+    slug = slugger.slug(text);
+  } else {
+    slug = match[1];
+    text = text.substr(0, match.index);
+  }
+
+  return <Elem id={slug}>{text}</Elem>;
 };
 
-export const H3 = (props: any) => {
-  const text = props.children.toString();
-
-  const slug = slugger.slug(text);
-  return <StyledH2 id={slug}>{props.children}</StyledH2>;
-};
-
-export const H4 = (props: any) => {
-  const text = props.children.toString();
-
-  const slug = slugger.slug(text);
-  return <StyledH4 id={slug}>{props.children}</StyledH4>;
-};
+export const H2 = (props: any) => render(StyledH2, props);
+export const H3 = (props: any) => render(StyledH2, props);
+export const H4 = (props: any) => render(StyledH4, props);

@@ -195,7 +195,10 @@ class TerminalSimulation extends React.Component<{}, ISimulationState> {
       return null;
     }
     return (
-      <Link className="learn-more" to={`/docs/static-site-generators/#${this.state.activeGenerator}`}>
+      <Link
+        className="learn-more"
+        to={`/docs/static-site-generators/#${this.state.activeGenerator}`}
+      >
         Learn more about {generators[this.state.activeGenerator].title} and Aerobatic >
       </Link>
     );
@@ -220,7 +223,9 @@ class TerminalSimulation extends React.Component<{}, ISimulationState> {
           )}
           {this.renderLearnMore()}
         </StyledTerminal>
-        <p style={{ textAlign: 'center' }}>See how easy it is to deploy a site with one of these popular static site generators:</p>
+        <p style={{ textAlign: 'center' }}>
+          See how easy it is to deploy a site with one of these popular static site generators:
+        </p>
 
         <GeneratorMenu>
           {Object.keys(generators).map(key => (
