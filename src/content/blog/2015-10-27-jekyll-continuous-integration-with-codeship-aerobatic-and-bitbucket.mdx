@@ -7,7 +7,7 @@ date: 2015-10-27
 tags: continuous integration, static hosting, jekyll
 ---
 
-import Image from '$components/mdx/Image';
+import MdxImage from '$components/mdx/Image';
 
 [Codeship](https://codeship.com) is a popular Continuous Deployment (CD) tool that integrates nicely with Bitbucket, and [Jekyll](http://jekyllrb.com) is a static site generator. In fact, this site is built with Jekyll. Frequently, Jekyll users will deploy their site to Github Pages. In this post, we'll show you how to build your Jekyll site with Codeship and deploy to Bitbucket, with Aerobatic hosting the resultant static site.
 
@@ -29,7 +29,11 @@ In our case, we are not going to build the site locally, so in the `.gitignore` 
 
 1. Create a new Codeship project and select the repo on Bitbucket that you just pushed.
 
-<MdxImage screenshot src="//www.aerobatic.com/media/blog/codeship/codeship1.png" alt="Screenshot of setting up a Codeship repository" />
+<MdxImage
+  screenshot
+  src="//www.aerobatic.com/media/blog/codeship/codeship1.png"
+  alt="Screenshot of setting up a Codeship repository"
+/>
 
 2. In the Setup Commands section, select Ruby as your language.
 
@@ -37,7 +41,11 @@ In our case, we are not going to build the site locally, so in the `.gitignore` 
 
 4. Save your changes
 
-<MdxImage screenshot src="//www.aerobatic.com/media/blog/codeship/codeship2.png" alt="Screenshot of setting up a Codeship test commands" />
+<MdxImage
+  screenshot
+  src="//www.aerobatic.com/media/blog/codeship/codeship2.png"
+  alt="Screenshot of setting up a Codeship test commands"
+/>
 
 5. Create your deployment commands
 
@@ -55,15 +63,27 @@ By default, when you link your Bitbucket repository to Codeship, it will automat
 
 1. Delete the repository Deployment Key
 
-<MdxImage screenshot src="//www.aerobatic.com/media/blog/codeship/repo-ssh.png" alt="Screenshot of repository deployment key" />
+<MdxImage
+  screenshot
+  src="//www.aerobatic.com/media/blog/codeship/repo-ssh.png"
+  alt="Screenshot of repository deployment key"
+/>
 
 2. Copy the Codeship SSH Public Key
 
-<MdxImage screenshot src="//www.aerobatic.com/media/blog/codeship/codeship-ssh.png" alt="Screenshot of repository deployment key" />
+<MdxImage
+  screenshot
+  src="//www.aerobatic.com/media/blog/codeship/codeship-ssh.png"
+  alt="Screenshot of repository deployment key"
+/>
 
 3. Create an account level SSH Key
 
-<MdxImage screenshot src="//www.aerobatic.com/media/blog/codeship/acct-ssh.png" alt="Screenshot of repository deployment key" />
+<MdxImage
+  screenshot
+  src="//www.aerobatic.com/media/blog/codeship/acct-ssh.png"
+  alt="Screenshot of repository deployment key"
+/>
 
 ## Step 5: Create a Rakefile
 

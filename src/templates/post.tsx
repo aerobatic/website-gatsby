@@ -72,7 +72,6 @@ const Sidebar = styled.section`
 `;
 
 const BlogTemplate: React.SFC<BlogTemplateProps> = ({ data }) => {
-  console.log(data);
   return (
     <IndexLayout>
       <Page marginTop="20px">

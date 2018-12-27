@@ -22,7 +22,7 @@ const YouTube: SFC<YouTubeProps> = props => {
         id="ytplayer"
         width="640"
         height="360"
-        src={`https://www.youtube.com/embed/${props.videoId}?autoplay=0&origin=${document.location.origin}`}
+        src={`https://www.youtube.com/embed/${props.videoId}?autoplay=0`}
       />
     </Video>
   );
