@@ -46,8 +46,10 @@ const Cli: SFC<CliProps> = props => {
   if (props.commands) {
     return (
       <Styled>
-        {props.commands.map(cmd => (
-          <div className="cmd">{print(cmd)}</div>
+        {props.commands.map((cmd, index) => (
+          <div key={index} className="cmd">
+            {print(cmd)}
+          </div>
         ))}
       </Styled>
     );

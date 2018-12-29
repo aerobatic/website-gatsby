@@ -1,5 +1,7 @@
 import styled from 'styled-components';
 import GithubSlugger from 'github-slugger';
+import { colors } from '../../styles/variables';
+
 const slugger = new GithubSlugger();
 
 const StyledH2 = styled.h2`
@@ -9,6 +11,8 @@ const StyledH2 = styled.h2`
   margin-bottom: 20px;
   font-weight: 900;
   line-height: 1.1;
+  padding-bottom: 5px;
+  border-bottom: solid 1px ${colors.lightGray};
 `;
 
 const StyledH4 = styled.h4`
@@ -18,6 +22,8 @@ const StyledH4 = styled.h4`
   margin-bottom: 15px;
   font-weight: 900;
   line-height: 1.1;
+  padding-bottom: 4px;
+  border-bottom: solid 1px ${colors.lightGray};
 `;
 
 const SLUG_OVERRIDE_REGEX: RegExp = /\{\#(.*)\}$/;

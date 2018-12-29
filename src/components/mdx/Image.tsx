@@ -18,6 +18,7 @@ const StyledImage = styled.div`
   padding: ${(props: ImageProps) => (props.border ? '20px' : '0')};
   border-radius: 4px;
   border: ${getBorder};
+  width: ${(props: ImageProps) => props.width || 'auto'};
   text-align: ${(props: ImageProps) => props.align};
   img {
     max-width: 100%;
@@ -25,8 +26,6 @@ const StyledImage = styled.div`
 `;
 
 const MdxImage: SFC<ImageProps> = props => {
-  const imgProps: Pick<ImageProps, 'width' | 'src'> = props;
-
   // if (props.screenshot) {
   //   props.border = true;
   //   props.align = 'center';
@@ -34,7 +33,7 @@ const MdxImage: SFC<ImageProps> = props => {
 
   return (
     <StyledImage {...props}>
-      <img src={props.src} {...imgProps} />
+      <img src={props.src} />
     </StyledImage>
   );
 };

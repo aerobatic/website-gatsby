@@ -52,7 +52,7 @@ const Sidebar = styled.section`
   }
   a.active {
     font-weight: bold;
-    color: ${colors.gray};
+    color: ${colors.darkGray};
     &:hover {
       text-decoration: none;
     }

@@ -128,7 +128,11 @@ export const pageQuery = graphql`
         body
       }
     }
-    allMdx(sort: { order: DESC, fields: [frontmatter___date] }, limit: 20) {
+    allMdx(
+      filter: { fileAbsolutePath: { regex: "/blog/.*.mdx$/" } }
+      sort: { order: DESC, fields: [frontmatter___date] }
+      limit: 20
+    ) {
       edges {
         node {
           id

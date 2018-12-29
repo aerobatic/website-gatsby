@@ -6,6 +6,7 @@ const StyledLayoutMain = styled.main`
   display: flex;
   flex-direction: column;
   flex: 1;
+  position: relative;
   border-top: solid 1px ${colors.lightGray};
 `;
 

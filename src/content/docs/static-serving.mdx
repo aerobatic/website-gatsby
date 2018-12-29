@@ -1,9 +1,7 @@
 ---
-title: Static serving
+title: Static Website Serving
 slug: static-serving
 ---
-
-# Static website serving
 
 Aerobatic is a specialized platform for efficient delivery of static webpages and website assets. We take care of the configuration details for you that provide the best balance of performance and maintainability. Stop fiddling with CDNs and web server configs and focus on coding great front-end experiences.
 
@@ -21,14 +19,24 @@ Aerobatic applies best-practice conventions for redirecting to the "pretty" cano
 
 The table below illustrates how Aerobatic handles some common scenarios with **no** special configuration on your part:
 
-| Request URL   | File exists test          | Render page        | Redirect url | Response Code  |
-| ------------- | ------------------------- | ------------------ | ------------ | -------------- |
-| `/index.html` |                           |                    | `/`          | `301`          |
-| `/`           | `/index.html==true`       |                    |              | `200` or `304` |
-| `/blog`       | `/blog.html == true`      | `/blog.html`       |              | `200` or `304` |
-| `/blog.html`  |                           |                    | `/blog`      | `301`          |
-| `/blog/`      | `/blog/index.html==true`  | `/blog/index.html` |              | `200` or `304` |
-| `/blog/`      | `/blog/index.html==false` |
+| Request URL        | File exists test                                                              | Render page                  | Redirect url | Response Code  |
+| ------------------ | ----------------------------------------------------------------------------- | ---------------------------- | ------------ | -------------- |
+| `/index.html`      |                                                                               |                              | `/`          | `301`          |
+| `/`                | `/index.html==true`                                                           |                              |              | `200` or `304` |
+| `/blog`            | `/blog.html == true`                                                          | `/blog.html`                 |              | `200` or `304` |
+| `/blog.html`       |                                                                               |                              | `/blog`      | `301`          |
+| `/blog/`           | `/blog/index.html==true`                                                      | `/blog/index.html`           |              | `200` or `304` |
+| `/blog/`           | `/blog/index.html==false`                                                     |
+| `/blog/`           | `/blog/index.html==false`, `/blog.html == true`                               |                              | `/blog`      | `301`          |
+| `/blog/`           | `/blog/index.html==false`, `/blog/index.xml == true`                          | `/blog/index.xml`            |              | `200` or `304` |
+| `/blog/`           | `/blog/index.html==false`, `/blog/index.xml==false`, `/blog/index.json==true` | `/blog/index.json`           |              | `200` or `304` |
+| `/blog`            | `/blog.html==false`, `/blog/index.html==true`                                 |                              | `/blog/`     | `301`          |
+| `/blog/index`      |                                                                               |                              | `/blog/`     | `301`          |
+| `/blog/index.html` |                                                                               |                              | `/blog/`     | `301`          |
+| `/About-Us`        | `/About-Us.html==false`, `/about-us.html==true`                               |                              | `/about-us`  | `301`          |
+| `/favicon.ico`     | `/favicon.ico==true`                                                          | `/favicon.ico`               |              | `200` or `304` |
+| `/favicon.ico`     | `/favicon.ico==false`                                                         | default favicon              |              | `200` or `304` |
+| `/*`               | No condition matches                                                          | Default or custom error page |              | `404`          |
 
 ## Cache headers
 
