@@ -22,3 +22,8 @@ export default {
   blockquote: (props: any) => <Blockquote {...props} />,
   table: (props: any) => <Table {...props} />
 };
+
+export { default as Alert } from './Alert';
+export { default as Cli } from './Cli';
+export { default as Image } from './Image';
+export { default as Option } from './Option';

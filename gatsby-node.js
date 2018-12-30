@@ -125,6 +125,7 @@ const createDocPages = async (createPage, graphql) => {
             frontmatter {
               slug
               title
+              plugin
             }
             fields {
               slug
@@ -146,10 +147,10 @@ const createDocPages = async (createPage, graphql) => {
   const { edges } = data.allMdx;
 
   edges.forEach(({ node }, index) => {
-    const { slug } = node.frontmatter;
+    const { slug, plugin } = node.frontmatter;
 
     createPage({
-      path: `/docs/${slug}/`,
+      path: plugin ? `/docs/plugins/${slug}/` : `/docs/${slug}/`,
       component: componentWithMDXScope(
         path.resolve(`./src/templates/docs.tsx`),
         node.code.scope,

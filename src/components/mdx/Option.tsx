@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-const StyledArgument = styled.div`
+const StyledOption = styled.div`
   margin-bottom: 15px;
   > code {
     display: inline-block;
@@ -14,13 +14,13 @@ const StyledArgument = styled.div`
   }
 `;
 
-const Argument = (props: any) => {
+const Option = (props: any) => {
   return (
-    <StyledArgument>
+    <StyledOption>
       <code>{props.name}</code>
       <p>{props.children}</p>
-    </StyledArgument>
+    </StyledOption>
   );
 };
 
-export default Argument;
+export default Option;

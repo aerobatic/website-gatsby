@@ -1,5 +1,6 @@
 import React, { SFC } from 'react';
 import styled from 'styled-components';
+import { omit } from 'lodash-es';
 import { colors } from '../../styles/variables';
 
 interface ImageProps {
@@ -18,9 +19,9 @@ const StyledImage = styled.div`
   padding: ${(props: ImageProps) => (props.border ? '20px' : '0')};
   border-radius: 4px;
   border: ${getBorder};
-  width: ${(props: ImageProps) => props.width || 'auto'};
   text-align: ${(props: ImageProps) => props.align};
   img {
+    width: ${(props: ImageProps) => props.width || 'auto'};
     max-width: 100%;
   }
 `;
@@ -32,7 +33,7 @@ const MdxImage: SFC<ImageProps> = props => {
   // }
 
   return (
-    <StyledImage {...props}>
+    <StyledImage {...omit(props, 'src')}>
       <img src={props.src} />
     </StyledImage>
   );

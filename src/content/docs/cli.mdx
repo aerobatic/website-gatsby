@@ -5,7 +5,7 @@ description: Documentation for the Aerobatic CLI
 ---
 
 import Cli from '$components/mdx/Cli';
-import Argument from '$components/mdx/Argument';
+import Option from '$components/mdx/Option';
 
 The `aerobatic-cli` is a way to interact with the Aerobatic platform via the command line and the only way to deploy new versions. You can run it from your local machine, or from a build script in a [continuous deployment workflow](/docs/deployment/#continuous-deployment).
 
@@ -75,7 +75,7 @@ Get the api key for the current Aerobatic account. This value should be set as t
 
 **Options**
 
-<Argument name="-R, --reset">Reset the account api key to a new value.</Argument>
+<Option name="-R, --reset">Reset the account api key to a new value.</Option>
 
 **Examples**
 
@@ -87,11 +87,11 @@ Restrict website access to specific IP ranges using IPv4 and IPv6 addresses and/
 
 **Options**
 
-<Argument name="-v, --value">The comma delimited list of IPs and/or CIDR blocks.</Argument>
-<Argument name="-s, --stage">The deploy stage to set the value for. Omitting this option sets it for all stages.</Argument>
-<Argument name="-D, --delete">
+<Option name="-v, --value">The comma delimited list of IPs and/or CIDR blocks.</Option>
+<Option name="-s, --stage">The deploy stage to set the value for. Omitting this option sets it for all stages.</Option>
+<Option name="-D, --delete">
 Use this option to remove any client IP restrictions. To remove for a specific stage, also pass the `--stage` option.
-</Argument>
+</Option>
 
 **Examples**
 
@@ -110,24 +110,24 @@ Create a new Aerobatic website in the current directory. If no `aerobatic.yml` f
 
 **Options**
 
-<Argument name="-n, --name">
+<Option name="-n, --name">
 
 The desired name of the website. Names are globally unique and must be URL friendly (lower-case
 letters, numbers, and dashes). If no name is specified then a random website name will be
 generated for you. You can always use the [rename](#rename) command to change the name later.
 
-</Argument>
+</Option>
 
-<Argument name="-q, --quick-start">
+<Option name="-q, --quick-start">
 
 The name of a quick start from the [Aerobatic Quick Start gallery](/quickstarts/jekyll/) to use to kickstart the website. Quick starts are available for Hugo, Jekyll, and vanilla HTML5.
 
-</Argument>
+</Option>
 
-<Argument name="-S, --source">
+<Option name="-S, --source">
   URL to a `.tar.gz` archive to create the new website from. This will automatically create a new
   directory.
-</Argument>
+</Option>
 
 **Examples**
 
@@ -153,29 +153,29 @@ Deploy a new version of the website in the current directory.
 
 **Options**
 
-<Argument name="-d, --directory">
+<Option name="-d, --directory">
 
 Specify the sub-directory where the built website assets are located. This overrides any value specified in the `deploy` section of the `aerobatic.yml` file. If no value is specified in either location the current directory is deployed.
 
-</Argument>
+</Option>
 
-<Argument name="-s, --stage">
+<Option name="-s, --stage">
 
 Specify the [deploy stage](/docs/overview#deploy-stages) for the deployment. This impacts the URL of the deployed version. For example passing `--stage test` will make the new version available at `https://www--test.customdomain.com` or `https://SITENAME--test.aerobaticapp.com`. If no value is provided then the deployment will target the production URL.
 
-</Argument>
+</Option>
 
-<Argument name="-m, --message">
+<Option name="-m, --message">
 
 A short message that you want to attach to the deployment metadata. If being [invoked from a CI server](/docs/deployment/#continuous-deployment), it may be useful to pass the git commit message and the URL to the commit details that triggered the build. This information will be displayed in the Aerobatic control panel as part of the deployment history. It will also be displayed in any email or Slack [deploy alerts](/docs/deployment/#deploy-alerts).
 
-</Argument>
+</Option>
 
-<Argument name="-c, --commit-url">
+<Option name="-c, --commit-url">
 
 The URL to the commit that triggered this deployment. Also mostly useful when being invoked by a CI server. This URL will be linkable from the Aerobatic control panel.
 
-</Argument>
+</Option>
 
 **Examples**
 
@@ -194,14 +194,14 @@ Register a custom domain for the current website. This command requires that you
 
 **Options**
 
-<Argument name="-n, --name">
+<Option name="-n, --name">
   The name of the domain (without any sub-domain, i.e. `mydomain.com`)
-</Argument>
+</Option>
 
-<Argument name="-N, --subdomain">
+<Option name="-N, --subdomain">
   The subdomain you want your website to be accessible at. For apex domain enter the value '@'. For
   wildcard domain enter '*'.
-</Argument>
+</Option>
 
 You can also run the command without any arguments to get status information on the domain as well as DNS details.
 
@@ -217,9 +217,9 @@ You can also run the command without any arguments to get status information on 
 
 Set or display environment variables for the website. By default variables are set for all deploy stages, but you can also override a value for a specific stage. You might want to do this with the [password-protect](/docs/plugins/password-protect/) to configure a different password for different stages. Or for the `url` property of the [http-proxy](/docs/plugins/http-proxy/) if you are proxying to a different API endpoint for test and production. Calling the command with no options will display all your variables.
 
-<Argument name="-n, --name">The name of the environment variable</Argument>
+<Option name="-n, --name">The name of the environment variable</Option>
 
-<Argument name="-v, --value">The value of the environment variable.</Argument>
+<Option name="-v, --value">The value of the environment variable.</Option>
 
 **Examples**
 
@@ -284,7 +284,7 @@ Rename the current website. For custom domains this this only changes the name d
 
 **Options**
 
-<Argument name="-n, --name">The new name of the website</Argument>
+<Option name="-n, --name">The new name of the website</Option>
 
 <Cli>aero rename -n new-website-name</Cli>
 
@@ -300,21 +300,21 @@ Manage website versions including displaying all versions, deleting versions, pu
 
 **Options**
 
-<Argument name="-n, --name">
+<Option name="-n, --name">
   The name of the version (i.e "v21") or version number "21" of the version to act on.
-</Argument>
+</Option>
 
-<Argument name="-D, --delete">
+<Option name="-D, --delete">
 
 Delete the version identified by the `--name` option.
 
-</Argument>
+</Option>
 
-<Argument name="-s, --stage">
+<Option name="-s, --stage">
 
 If specified in conjunction with the `--name` option, indicates the stage to push the version to. If used in conjunction with the `--delete` option, then this specifies the stage to delete.
 
-</Argument>
+</Option>
 
 **Examples**
 

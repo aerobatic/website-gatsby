@@ -8,7 +8,7 @@ import { IBlogPost } from '../types';
 
 const PostTile = styled.div`
   display: block;
-  background-color: #eeeeee;
+  background-color: ${colors.lightGray};
   padding: 0;
   height: 250px;
   cursor: pointer;
@@ -21,7 +21,7 @@ const PostTile = styled.div`
 
     &:hover {
       text-decoration: none;
-      background-color: #c8d6f5;
+      background-color: ${colors.softBlue};
     }
 
     > h3 {

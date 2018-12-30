@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { graphql, Link } from 'gatsby';
+import classnames from 'classnames';
 import { MDXRenderer } from 'gatsby-mdx';
 import { MDXProvider } from '@mdx-js/tag';
 import styled from 'styled-components';
@@ -11,6 +12,9 @@ import MdxContainer from '../components/mdx/Container';
 import PromoFooter from '../components/PromoFooter';
 
 interface DocsTemplateProps {
+  location: {
+    pathname: string;
+  };
   data: {
     site: {
       siteMetadata: {
@@ -80,7 +84,7 @@ const DOC_LINKS: DocSection[] = [
   { title: "What's New", slug: 'whats-new' }
 ];
 
-const DocsTemplate: React.SFC<DocsTemplateProps> = ({ data }) => {
+const DocsTemplate: React.SFC<DocsTemplateProps> = ({ data, location }) => {
   return (
     <IndexLayout>
       <Page marginTop="20px">
@@ -91,7 +95,12 @@ const DocsTemplate: React.SFC<DocsTemplateProps> = ({ data }) => {
                 <ul>
                   {DOC_LINKS.map(link => (
                     <li key={link.slug}>
-                      <Link activeClassName="active" to={`/docs/${link.slug}/`}>
+                      <Link
+                        className={classnames({
+                          active: location.pathname.startsWith(`/docs/${link.slug}`)
+                        })}
+                        to={`/docs/${link.slug}/`}
+                      >
                         {link.title}
                       </Link>
                     </li>
