@@ -11,6 +11,9 @@ import { colors } from '../styles/variables';
 import MdxContainer from '../components/mdx/Container';
 import PromoFooter from '../components/PromoFooter';
 
+import KeyIcon from '../icons/key';
+import AsteriskIcon from '../icons/asterisk';
+
 interface DocsTemplateProps {
   location: {
     pathname: string;
@@ -55,12 +58,26 @@ const Sidebar = styled.section`
       text-decoration: none;
       background-color: ${colors.hoverTile};
     }
+
+    svg {
+      margin-left: 8px;
+      fill: ${colors.orange};
+    }
   }
   a.active {
     font-weight: bold;
     color: ${colors.darkGray};
     &:hover {
       text-decoration: none;
+    }
+
+    &:active,
+    &:focus {
+      text-decoration: none;
+    }
+
+    svg {
+      fill: ${colors.orange};
     }
   }
 `;
@@ -69,6 +86,7 @@ interface DocSection {
   title: string;
   slug: string;
   children?: DocSection[];
+  icon?: React.ReactNode;
 }
 
 const DOC_LINKS: DocSection[] = [
@@ -80,10 +98,10 @@ const DOC_LINKS: DocSection[] = [
   { title: 'Custom Domains / SSL', slug: 'custom-domains-ssl' },
   { title: 'Static Site Generators', slug: 'static-site-generators' },
   { title: 'Configuration', slug: 'configuration' },
-  { title: 'Access Control', slug: 'access-control' },
+  { title: 'Access Control', slug: 'access-control', icon: <KeyIcon /> },
   { title: 'Site Optimizer', slug: 'site-optimizer' },
   { title: 'Plugins', slug: 'plugins' },
-  { title: "What's New", slug: 'whats-new' }
+  { title: "What's New", slug: 'whats-new', icon: <AsteriskIcon width="18px" height="18px" /> }
 ];
 
 const DocsTemplate: React.SFC<DocsTemplateProps> = ({ data, location }) => {
@@ -104,6 +122,7 @@ const DocsTemplate: React.SFC<DocsTemplateProps> = ({ data, location }) => {
                         to={`/docs/${link.slug}/`}
                       >
                         {link.title}
+                        {link.icon && link.icon}
                       </Link>
                     </li>
                   ))}

@@ -24,6 +24,7 @@ export default {
 };
 
 export { default as Alert } from './Alert';
+export { default as Link } from './Link';
 export { default as Cli } from './Cli';
 export { default as Image } from './Image';
 export { default as Option } from './Option';

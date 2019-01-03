@@ -1,0 +1,49 @@
+---
+title: Webpage Plugin
+plugin: true
+slug: webpage
+---
+
+import { Alert, Option } from '$components/mdx';
+
+The webpage plugin is the core plugin for serving up an HTML webpage. You don't have to explicitly declare this plugin, one will be created automatically if omitted. However by declaring it in your `plugins` array of `aerobatic.yml`, there are some additional options that you can control.
+
+The webpage plugin should be declared at the **end** of the plugins array so that other plugins (such as [password-protect](/docs/plugins/password-protect/)) first have a chance to act on the request.
+
+### Usage
+
+```yaml
+plugins:
+  - name: webpage
+    options:
+      canonicalRedirects: true
+      pushState: true
+---
+
+```
+
+### Options
+
+<Option name="pushState">
+
+If true, returns the `index.html` file no matter the request URL path. Valuable for single page applications where view routing is handled by a client JavaScript framework such as React, Angular, and Ember. Defaults to `false`.
+
+</Option>
+
+<Option name="canonicalRedirects">
+
+If `true`, performs a `301` redirect to the canonical extension-less, all lower-case form of the URL. The table below illustrates sample redirection behavior. Defaults to `true`.
+
+</Option>
+
+| Request URL           | Destination      |
+| --------------------- | ---------------- |
+| `/About/Contact.html` | `/about/contact` |
+| `/blog/index.html`    | `/blog/`         |
+| `/Blog/index`         | `/blog/`         |
+
+<Alert type="tip">
+
+If you explicitly set `canonicalRedirects` to `false` Aerobatic will serve the same page for requests to `/about` and `/about.html`. If you are concerned about duplicate content, you could utilize the `<link rel="canonical">` tag.
+
+</Alert>

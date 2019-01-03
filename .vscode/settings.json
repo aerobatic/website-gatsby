@@ -15,6 +15,7 @@
     "public/**": true
   },
   "files.exclude": {
-    "public": true
+    "public": true,
+    ".cache": true
   }
 }

@@ -13,7 +13,7 @@ export default () => {
       {generatorRows.map(row => (
         <div className="row">
           {row.map(generator => (
-            <div className="col-md-4">
+            <div key={generator} className="col-md-4">
               <AnchorLink className="" href={`#${generator}-generator`}>
                 <img src={`/img/logos/${generator}.png`} />
               </AnchorLink>

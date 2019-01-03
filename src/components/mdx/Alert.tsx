@@ -3,6 +3,7 @@ import styled, { StyledComponent } from 'styled-components';
 import InfoIcon from '../../icons/info.svg';
 import WarningIcon from '../../icons/warning.svg';
 import LightbulbIcon from '../../icons/lightbulb.svg';
+import { colors } from '../../styles/variables';
 
 type AlertType = 'info' | 'warn' | 'alert' | 'tip';
 interface AlertProps {
@@ -41,8 +42,8 @@ const StyledTip = styled(StyledInfo)`
 
 const StyledWarning = styled(StyledAlert)`
   background-image: url(${WarningIcon});
-  background-color: #f1af57;
-  border-color: #ff700f;
+  background-color: ${colors.orange};
+  border-color: ${colors.darkOrange};
 `;
 
 const Alert: SFC<AlertProps> = props => {
