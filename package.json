@@ -1,14 +1,9 @@
 {
-  "name": "gatsby-starter-typescript-plus",
-  "description": "A starter kit for TypeScript-based Gatsby projects with sensible defaults.",
+  "name": "aerobatic-website-gatsby",
+  "description": "The www.aerobatic.com website built with Gatsby",
   "version": "1.0.0",
   "private": true,
-  "author": "Resi Respati <resir014@gmail.com>",
-  "keywords": [
-    "gatsby"
-  ],
-  "license": "MIT",
-  "main": "n/a",
+  "author": "David Von Lehman <david@aerobatic.com>",
   "scripts": {
     "build": "gatsby build",
     "clean": "rimraf public",

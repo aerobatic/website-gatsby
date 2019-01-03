@@ -7,24 +7,26 @@ interface ListProps {
 
 // http://jsfiddle.net/dcodesmith/DruxN/
 const OrderedList = styled.ol`
-  margin: 0 0 1.5em;
+  margin: 0 0 1.5em 0;
   padding: 0;
+  padding-left: 30px;
   counter-reset: item;
+  list-style-type: none;
 
   li {
     margin: 0;
-    padding: 0 0 0 2em;
-    text-indent: -2em;
+    padding: 0;
     list-style-type: none;
     counter-increment: item;
-    margin-bottom: 6px;
+    margin-bottom: 10px;
     &:last-child {
       margin-bottom: 0;
     }
     &:before {
       display: inline-block;
+      position: absolute;
+      left: 0;
       width: 1.5em;
-      padding-right: 0.5em;
       font-weight: bold;
       text-align: right;
       content: counter(item) '.';

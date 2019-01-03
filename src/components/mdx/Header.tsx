@@ -35,6 +35,12 @@ const render = (Elem: React.ComponentType<any>, props: any) => {
   const match = text.match(SLUG_OVERRIDE_REGEX);
   if (!match) {
     slug = slugger.slug(text);
+
+    // Chop off any "-2", "-7", etc. from the end of the slug
+    const endsWithNumber = slug.match(/-\d$/);
+    if (endsWithNumber) {
+      slug = slug.substr(0, endsWithNumber.index);
+    }
   } else {
     slug = match[1];
     text = text.substr(0, match.index);

@@ -47,9 +47,11 @@ const Sidebar = styled.section`
     padding: 0;
   }
   a {
+    color: ${colors.gray};
     padding: 10px;
     display: block;
     &:hover {
+      color: ${colors.darkGray};
       text-decoration: none;
       background-color: ${colors.hoverTile};
     }

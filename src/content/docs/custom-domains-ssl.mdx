@@ -47,11 +47,17 @@ The validation record will look something like so:
 | ------- | ----------------------------------- | ------------------------------------------------------- |
 | `CNAME` | `_3639ac514e785e898d2646601fa951d5` | `_fbc6a92e9dedgh546e4b606a613d305.acm-validations.aws.` |
 
-If interested, you can read more about the validation process in the [ACM documentation](https://docs.aws.amazon.com/acm/latest/userguide/gs-acm-validate-dns.html).
+After you've created the record above, you can validate that it has propaaged by running the following command (substituting in the name of your validation CNAME):
 
-<Alert type="warn">
+<Cli>nslookup -q=cname _3639ac514e785e898d2646601fa951d5.mydomain.com</Cli>
 
-Some domain registrars such as Namecheap do not allow an "\_" character in a CNAME value. In this case you will need to transfer your nameservers over to a different DNS provider. We recommend any of the providers listed in the [apex domains section below](#apex-domains). Cloudflare is free to use for basic DNS services, see our [Namecheap to Cloudflare directions](#namecheap-to-cloudflare).
+<Alert type="warn" style={{marginTop: '25px'}}>
+
+If your DNS provider prohibits a leading underscore in CNAME values, you can remove the leading underscore from the `_xxx.acm-validation.aws.` value.
+
+So instead of: `_fbc6a92e9dedgh546e4b606a613d305.acm-validations.aws.`
+
+Instead use: `fbc6a92e9dedgh546e4b606a613d305.acm-validations.aws.`.
 
 </Alert>
 
@@ -102,7 +108,9 @@ We suggest you **ONLY** utilize the apex domain if your DNS provider has special
 
 ### Apex workarounds
 
-If your DNS provider does not support `ANAME` or `ALIAS` records and it's not possible to switch, then your best bet is to redirect the apex URL to a CNAME like `www`. Below are two possible ways to configure this:
+If your DNS provider does not support `ANAME` or `ALIAS` records, we suggest transferring your nameservers to Cloudflare's free DNS hosting service and using CNAME flattening. See the [Cloudflare section](#cloudflare) below for details.
+
+However if it's not possible to switch, then your best bet is to redirect the apex URL to a CNAME like `www`. Below are two possible ways to configure this:
 
 - Many providers let you define a URL redirect record that will redirect the apex to any URL of your choice. In this case you would want to point to `https://www.mydomain.com`.
 
@@ -126,6 +134,20 @@ If you do choose to enable the Cloudflare Proxy/CDN functionality, then make sur
 - You **must** set SSL to "Full" to avoid your site getting caught in a redirect loop. [[CloudFlare docs](https://support.cloudflare.com/hc/en-us/articles/200170416-What-do-the-SSL-options-mean-)].
 - In order to force CloudFlare to use the HTTP headers set by Aerobatic make sure to set the "Respect Existing Headers" option. [[CloudFlare docs](https://support.cloudflare.com/hc/en-us/articles/200169266-Does-Cloudflare-honor-my-Expires-and-Cache-Control-headers-for-static-content-)]
 
+<MdxImage
+  screenshot
+  src="https://www.aerobatic.com/media/docs/--1/cloudflare-dns-records.png"
+  alt="Cloudflare DNS records"
+/>
+
+<Alert type="warn" style={{marginTop: '20px'}}>
+
+**IMPORTANT** Make sure the cloud icon in the **Status** column for the validation CNAME is gray rather than orange. Otherwise the CNAME will **not** be recognized by the domain validation process.
+
+</Alert>
+
+In order for your apex (aka naked) domain to resolve to Aerobatic you need to use Cloudflare [CNAME flattening](https://support.cloudflare.com/hc/en-us/articles/200169056-CNAME-Flattening-RFC-compliant-support-for-CNAME-at-the-root). First delete the automatically generated A record that points to an IP address. Then create a CNAME with the value "@" that points to the `*.cloudfront.net` domain assigned to your Aerobatic domain. The 3rd record in the screenshot above represents the flattened apex CNAME.
+
 ### Route 53 setup {#route53}
 
 If your current domain provider does not provide `ALIAS/ANAME` record types and you really want to host your site on the apex domain, we recommend transferring your name server records to [Amazon Route 53](https://aws.amazon.com/route53/). Route 53 can has a special relationship with CloudFront which is the CDN that Aerobatic uses to host your custom domain and SSL certificate.
@@ -136,33 +158,6 @@ You'll want to create two record sets, an `A` record for your apex domain and a 
 | ----- | ------------------ | ----- | ------------------------------------ |
 |       | `A - IPv4 address` | Yes   | `[domain_dns_value].cloudfront.net.` |
 | `www` | `CNAME`            | No    | `[domain_dns_value].cloudfront.net`  |
-
-### Namecheap to Cloudflare {#namecheap-to-cloudflare}
-
-Namecheap is a popular service for getting a good deal on a domain name, but their DNS management leaves much to be desired. In addition to not supporting ANAME records for apex domains, it also does not support the `\_` character in a `CNAME` which the domain validation record requires. For many users, the easiest and cheapest solution is to transfer the domain nameserver over to Cloudflare.
-
-1.  First you'll need to [create an account on Cloudflare](https://www.cloudflare.com/a/signup)
-2.  In the Cloudflare dashboard, click the **Add site** button and enter your domain name
-3.  Follow the wizard steps to setup your Cloudflare site
-4.  Transfer your nameservers in the Namecheap dashboard to the values provided by Cloudflare
-
-<MdxImage
-  screenshot
-  src="https://www.aerobatic.com/media/docs/namecheap-cloudflare-custom-nameservers.png"
-  alt="Namecheap Cloudflare custom nameservers"
-/>
-
-Now you should be able to create the validation CNAME in Cloudflare without any problems. Your final set of DNS records when fully configured for Aerobatic will look something like below. The 2nd `CNAME` record with the leading "\_" is the domain validation record. The others are for the actual custom domain resolution to your Aerobatic CDN distribution.
-
-Note the grayed out icon in the **Status** column. This indicates that only the Cloudflare DNS services are being utilized.
-
-<MdxImage
-  screenshot
-  src="https://www.aerobatic.com/media/docs/--1/cloudflare-dns-records.png"
-  alt="Cloudflare DNS records"
-/>
-
-In order for your apex (aka naked) domain to resolve to Aerobatic you need to use Cloudflare [CNAME flattening](https://support.cloudflare.com/hc/en-us/articles/200169056-CNAME-Flattening-RFC-compliant-support-for-CNAME-at-the-root). First delete the automatically generated A record that points to an IP address. Then create a CNAME with the value "@" that points to the `*.cloudfront.net` domain assigned to your Aerobatic domain. The 3rd record in the screenshot above represents the flattened apex CNAME.
 
 **Related links**
 

@@ -9,8 +9,12 @@ const StyledOption = styled.div`
     border: 1px solid #ddd;
     border-radius: 3px;
   }
-  p {
+  span {
+    display: block;
     margin: 0;
+    p {
+      margin-top: 0;
+    }
   }
 `;
 
@@ -18,7 +22,7 @@ const Option = (props: any) => {
   return (
     <StyledOption>
       <code>{props.name}</code>
-      <p>{props.children}</p>
+      <span>{props.children}</span>
     </StyledOption>
   );
 };

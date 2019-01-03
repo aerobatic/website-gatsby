@@ -1,0 +1,24 @@
+---
+title: Custom Errors Plugin
+plugin: true
+slug: custom-errors
+---
+
+By default Aerobatic will render a friendly error page for HTTP error responses such as `404`, `500`, `403`, etc. The `custom-errors` plugin allows you to override those pages with your own custom pages.
+
+### Usage
+
+```yaml
+plugins:
+  - name: custom-errors
+    options:
+      errors:
+        500: errors/500.html
+        404: errors/404.html
+        401: errors/401.html
+```
+
+#### Demo site
+
+- Here is a basic example web site that uses the Aerobatic `custom-errors` plugin. [http://custom-errors.aerobaticapp.com/](http://custom-errors-demo.aerobaticapp.com/)
+- The code for this sample app can be found on GitHub at [https://github.com/aerobatic/custom-errors-demo](https://github.com/aerobatic/custom-errors-demo)

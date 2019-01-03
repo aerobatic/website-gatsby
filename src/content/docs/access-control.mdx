@@ -23,7 +23,7 @@ You can lock your website down so that it is only accessible to specific IP rang
 - [IPv4 Range To CIDR converter](https://www.ipaddressguide.com/cidr)
 - [IPv6 Range To CIDR converter](https://www.ipaddressguide.com/ipv6-cidr)
 
-  The IP range is set using the CLI [clientip](/docs/cli/#clientip) command. For example, say you want to restrict access to clients with IPs between `97.113.60.20` and `97.113.60.40`. Input those values into the converter above, and the following CIDR values are returned: `97.113.60.20/30`, `97.113.60.24/29`,`97.113.60.32/28`, `97.113.60.40/32`. Then use the following CLI command to set the ranges:
+The IP range is set using the CLI [clientip](/docs/cli/#clientip) command. For example, say you want to restrict access to clients with IPs between `97.113.60.20` and `97.113.60.40`. Input those values into the converter above, and the following CIDR values are returned: `97.113.60.20/30`, `97.113.60.24/29`,`97.113.60.32/28`, `97.113.60.40/32`. Then use the following CLI command to set the ranges:
 
 <Cli>aero clientip --value \"97.113.60.20/30,97.113.60.24/29,97.113.60.32/29,97.113.60.40/32\"</Cli>
 

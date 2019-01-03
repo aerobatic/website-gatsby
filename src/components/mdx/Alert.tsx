@@ -20,7 +20,12 @@ const StyledAlert = styled.div`
 
   p {
     color: #000;
-    margin: 0;
+    &:first-child {
+      margin-top: 0;
+    }
+    &:last-child {
+      margin-bottom: 0;
+    }
   }
 `;
 

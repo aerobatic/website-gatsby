@@ -111,11 +111,18 @@ interface HeaderProps {
 const Header: React.SFC<HeaderProps> = () => (
   <>
     <StyledPromo>
-      <Link to="/blog/announcing-i18n-plugin/">NEW! — Internationalize your site with our i18n plugin</Link>
+      <Link to="/blog/announcing-i18n-plugin/">
+        NEW! — Internationalize your site with our i18n plugin
+      </Link>
     </StyledPromo>
     <div className="container">
       <StyledHeader className="navbar-header">
-        <button type="button" className="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <button
+          type="button"
+          className="navbar-toggle collapsed"
+          data-toggle="collapse"
+          data-target="#navbar"
+        >
           <span className="sr-only">Toggle navigation</span>
           <span className="icon-bar" />
           <span className="icon-bar" />
