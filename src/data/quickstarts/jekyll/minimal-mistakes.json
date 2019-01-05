@@ -1,6 +1,6 @@
 {
   "title": "Minimal Mistakes",
-  "homepage": "https://github.com/mmistakes/minimal-mistakes",
+  "repoUrl": "https://github.com/mmistakes/minimal-mistakes",
   "thumbnail": "minimal-mistakes.png",
   "thumbnailUrl": "https://raw.githubusercontent.com/mattvh/jekyllthemes/master/thumbnails/minimal-mistakes.png",
   "slug": "minimal-mistakes",

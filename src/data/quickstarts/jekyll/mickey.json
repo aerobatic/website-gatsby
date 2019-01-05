@@ -1,6 +1,6 @@
 {
   "title": "Mickey",
-  "homepage": "https://github.com/vincentchan/mickey",
+  "repoUrl": "https://github.com/vincentchan/mickey",
   "thumbnail": "mickey.png",
   "thumbnailUrl": "https://raw.githubusercontent.com/mattvh/jekyllthemes/master/thumbnails/mickey.png",
   "slug": "mickey",

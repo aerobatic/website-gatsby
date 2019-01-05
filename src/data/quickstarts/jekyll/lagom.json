@@ -1,6 +1,6 @@
 {
   "title": "Lagom",
-  "homepage": "https://github.com/swanson/lagom",
+  "repoUrl": "https://github.com/swanson/lagom",
   "thumbnail": "lagom.png",
   "thumbnailUrl": "https://raw.githubusercontent.com/mattvh/jekyllthemes/master/thumbnails/lagom.png",
   "slug": "lagom",

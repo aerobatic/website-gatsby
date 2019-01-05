@@ -1,6 +1,6 @@
 {
   "title": "Resume",
-  "homepage": "https://github.com/jglovier/resume-template",
+  "repoUrl": "https://github.com/jglovier/resume-template",
   "thumbnail": "resume.png",
   "thumbnailUrl": "https://raw.githubusercontent.com/mattvh/jekyllthemes/master/thumbnails/resume.png",
   "slug": "resume-template",

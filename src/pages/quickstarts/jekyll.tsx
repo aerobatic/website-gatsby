@@ -12,10 +12,12 @@ export default () => (
             node {
               id
               slug
+              description
               demoAppId
               demoAppName
               siteType
               title
+              repoUrl
             }
           }
         }

@@ -1,6 +1,6 @@
 {
   "title": "Landing Page",
-  "homepage": "https://github.com/swcool/landing-page-theme",
+  "repoUrl": "https://github.com/swcool/landing-page-theme",
   "thumbnail": "landing-page.png",
   "thumbnailUrl": "https://raw.githubusercontent.com/mattvh/jekyllthemes/master/thumbnails/landing-page.png",
   "slug": "landing-page",

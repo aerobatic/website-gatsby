@@ -1,6 +1,6 @@
 {
   "title": "Poole",
-  "homepage": "https://github.com/poole/poole",
+  "repoUrl": "https://github.com/poole/poole",
   "thumbnail": "poole.png",
   "thumbnailUrl": "https://raw.githubusercontent.com/mattvh/jekyllthemes/master/thumbnails/poole.png",
   "slug": "poole",
