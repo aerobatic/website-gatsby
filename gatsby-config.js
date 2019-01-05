@@ -25,6 +25,19 @@ module.exports = {
         extensions: ['.md', '.mdx']
       }
     },
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        name: `QuickStarts`,
+        path: `${__dirname}/src/data/quickstarts`
+      }
+    },
+    {
+      resolve: 'gatsby-transformer-json',
+      options: {
+        path: `./src/data/**/*.json`
+      }
+    },
 
     // {
     //   resolve: 'gatsby-plugin-feed',
@@ -106,7 +119,6 @@ module.exports = {
     //     ]
     //   }
     // },
-    'gatsby-transformer-json',
     {
       resolve: 'gatsby-plugin-canonical-urls',
       options: {
