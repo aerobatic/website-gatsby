@@ -6,7 +6,7 @@ import IndexLayout from './index';
 import styled from 'styled-components';
 import { IQuickStart, QuickStartSiteType } from '../types';
 import Jumbotron from '../components/Jumbotron';
-import { colors } from '../styles/variables';
+import { colors, fonts } from '../styles/variables';
 import { chunk } from 'lodash-es';
 import CopyCommand from '../components/CopyCommand';
 import ExternalLink from '../icons/external-link.svg';
@@ -15,11 +15,12 @@ import GitHubIcon from '../icons/github.svg';
 interface IProps {
   type: QuickStartSiteType;
   quickstarts: IQuickStart[];
+  cliSample: string;
 }
 
 const SiteTypeMenu = styled.ul`
   padding: 0;
-  margin: 0 0 20px 0;
+  margin: 0 0 15px 0;
   list-style: none;
   li {
     display: inline-block;
@@ -77,6 +78,20 @@ const StyledQuickStart = styled.div`
         height: 16px;
       }
     }
+  }
+`;
+
+const CliSample = styled.div`
+  pre {
+    margin: 0;
+    display: inline-block;
+    background-color: ${colors.primaryDark};
+    padding: 10px;
+    border-radius: 5px;
+  }
+  code {
+    font-size: 22px;
+    font-family: ${fonts.monospace};
   }
 `;
 
@@ -172,6 +187,13 @@ class QuickStartLayout extends Component<IProps, IState> {
           <Jumbotron>
             <h1>Quick Starts</h1>
             <p>Quick starts are a great way to get a new website up and running fast</p>
+            <CliSample>
+              <pre>
+                <code>
+                  aero create --quick-start {`${this.props.type}/${this.props.cliSample}`}
+                </code>
+              </pre>
+            </CliSample>
           </Jumbotron>
 
           <div className="container">

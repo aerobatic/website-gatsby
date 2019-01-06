@@ -28,7 +28,7 @@ const StyledSection = styled.section`
     max-width: 600px;
     display: inline-block;
     font-size: 18px;
-    margin: 10px 0 15px;
+    margin: 0 0 15px;
   }
 }
 `;

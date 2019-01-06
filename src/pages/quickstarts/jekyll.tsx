@@ -27,6 +27,7 @@ export default () => (
       <QuickStartLayout
         quickstarts={data.allJekyllJson.edges.map((edge: any) => edge.node as IQuickStart)}
         type="jekyll"
+        cliSample="agency"
       />
     )}
   />

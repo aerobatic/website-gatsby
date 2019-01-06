@@ -82,9 +82,6 @@ const Footer: React.SFC = () => (
               <Link to="/legal">Legal</Link>
             </li>
             <li>
-              <Link to="/gallery">Gallery</Link>
-            </li>
-            <li>
               <Link to="/about">About</Link>
             </li>
           </QuickLinks>

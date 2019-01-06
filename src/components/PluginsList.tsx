@@ -1,23 +1,15 @@
-import React from 'react';
+import React, { ReactNode } from 'react';
 import { chunk } from 'lodash-es';
 import styled from 'styled-components';
 import { Link } from 'gatsby';
 import { colors } from '../styles/variables';
+import Auth0Logo from '../icons/auth0';
 
 interface Plugin {
   name: string;
   description: string;
-  icon?: any;
+  icon?: () => ReactNode;
 }
-
-const Auth0Logo = (
-  <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 64 64">
-    <path
-      d="M49.012 51.774L42.514 32l17.008-12.219H38.503L32.005.007V0h21.032l6.498 19.781h.007c3.768 11.468-.118 24.521-10.53 31.993zm-34.022 0L31.998 64l17.014-12.226-17.007-12.219zm-10.516-32c-3.976 12.1.64 24.918 10.509 32.007v-.007L21.482 32 4.474 19.774l21.025.007L31.998.007V0H10.972z"
-      fill="#eb5424"
-    />
-  </svg>
-);
 
 const StyledItem = styled.div`
   height: 150px;
@@ -47,6 +39,9 @@ const StyledItem = styled.div`
       position: absolute;
       top: 10px;
       right: 10px;
+      width: 24px;
+      height: 24px;
+      fill: ${colors.darkOrange};
     }
   }
 `;
@@ -126,7 +121,7 @@ export default () => {
           {row.map((plugin: Plugin) => (
             <StyledItem key={plugin.name} className="col-md-4">
               <Link to={`/docs/plugins/${plugin.name}/`}>
-                {plugin.icon && plugin.icon}
+                {plugin.icon && plugin.icon()}
                 <h3>{plugin.name}</h3>
                 <p>{plugin.description}</p>
               </Link>

@@ -1,9 +1,8 @@
 import * as React from 'react';
 import Helmet from 'react-helmet';
 import { StaticQuery, graphql } from 'gatsby';
+import { Location } from '../types';
 
-// import 'modern-normalize';
-// import '../styles/normalize';
 import '../styles/bootstrap.css';
 import '../styles/global.css';
 
@@ -24,7 +23,11 @@ type StaticQueryProps = {
   };
 };
 
-const IndexLayout: React.SFC = ({ children }) => (
+interface IProps {
+  location: Location;
+}
+
+const IndexLayout: React.SFC<IProps> = props => (
   <StaticQuery
     query={graphql`
       query IndexLayoutQuery {
@@ -60,9 +63,9 @@ const IndexLayout: React.SFC = ({ children }) => (
             title="Aerobatic"
           />
         </Helmet>
-        <Header title={data.site.siteMetadata.title} />
+        <Header title={data.site.siteMetadata.title} location={location} />
         <LayoutMain>
-          {children}
+          {props.children}
           <BackToTop />
         </LayoutMain>
         <Footer />

@@ -27,6 +27,7 @@ export default () => (
       <QuickStartLayout
         quickstarts={data.allHugoJson.edges.map((edge: any) => edge.node as IQuickStart)}
         type="hugo"
+        cliSample="aerial"
       />
     )}
   />

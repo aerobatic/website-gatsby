@@ -15,9 +15,7 @@ import KeyIcon from '../icons/key';
 import AsteriskIcon from '../icons/asterisk';
 
 interface DocsTemplateProps {
-  location: {
-    pathname: string;
-  };
+  location: Location;
   data: {
     site: {
       siteMetadata: {
@@ -106,7 +104,7 @@ const DOC_LINKS: DocSection[] = [
 
 const DocsTemplate: React.SFC<DocsTemplateProps> = ({ data, location }) => {
   return (
-    <IndexLayout>
+    <IndexLayout location={location}>
       <Page marginTop="20px">
         <div className="container">
           <div className="row">

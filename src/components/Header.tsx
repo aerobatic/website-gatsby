@@ -1,12 +1,10 @@
 import * as React from 'react';
 import styled from 'styled-components';
-// import { transparentize } from 'polished';
+import AnchorLink from 'react-anchor-link-smooth-scroll';
 import { Link } from 'gatsby';
 import headerLogo from '../img/header-logo.png';
 import SearchBox from './SearchBox';
-
-// import { heights, dimensions, colors } from '../styles/variables';
-// import Container from './Container';
+import { Location } from '../types';
 
 const StyledHeader = styled.header`
   height: 55px;
@@ -106,9 +104,10 @@ const StyledPromo = styled.div`
 
 interface HeaderProps {
   title: string;
+  location: Location;
 }
 
-const Header: React.SFC<HeaderProps> = () => (
+const Header: React.SFC<HeaderProps> = props => (
   <>
     <StyledPromo>
       <Link to="/blog/announcing-i18n-plugin/">
@@ -140,10 +139,22 @@ const Header: React.SFC<HeaderProps> = () => (
       <Navbar className="collapse navbar-collapse" id="navbar">
         <ul className="nav navbar-nav navbar-right">
           <NavbarLink>
-            <a href="/#pricing">Pricing</a>
+            {props.location.pathname === '/' ? (
+              <AnchorLink className="" href="#pricing">
+                Pricing
+              </AnchorLink>
+            ) : (
+              <Link to="/#pricing">Pricing</Link>
+            )}
           </NavbarLink>
           <NavbarLink>
-            <a href="/#features">Features</a>
+            {props.location.pathname === '/' ? (
+              <AnchorLink className="" href="#features">
+                Features
+              </AnchorLink>
+            ) : (
+              <Link to="/#features">Features</Link>
+            )}
           </NavbarLink>
           <NavbarLink>
             <Link to="/blog/">Blog</Link>

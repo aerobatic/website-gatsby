@@ -32,3 +32,7 @@ export interface IQuickStart {
   demoAppId: string;
   demoAppName: string;
 }
+
+export interface Location {
+  pathname: string;
+}

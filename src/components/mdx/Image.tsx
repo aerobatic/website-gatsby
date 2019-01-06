@@ -7,9 +7,20 @@ interface ImageProps {
   border: boolean;
   src: string;
   align: 'center' | 'left' | 'right';
-  width?: string;
+  width?: string | number;
+  height?: string | number;
   screenshot: boolean;
 }
+
+const unitString = (val: number | string | undefined) => {
+  if (!val) {
+    return 'auto';
+  }
+  if (typeof val === 'string') {
+    return val;
+  }
+  return `${val}px`;
+};
 
 const getBorder = (props: ImageProps) => {
   return props.border || props.screenshot ? `solid 1px ${colors.gray}` : 'none';
@@ -21,7 +32,8 @@ const StyledImage = styled.div`
   border: ${getBorder};
   text-align: ${(props: ImageProps) => props.align};
   img {
-    width: ${(props: ImageProps) => props.width || 'auto'};
+    width: ${(props: ImageProps) => unitString(props.width)};
+    height: ${(props: ImageProps) => unitString(props.height)};
     max-width: 100%;
   }
 `;

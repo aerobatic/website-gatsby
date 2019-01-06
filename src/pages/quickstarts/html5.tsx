@@ -27,6 +27,7 @@ export default () => (
       <QuickStartLayout
         quickstarts={data.allHtml5Json.edges.map((edge: any) => edge.node as IQuickStart)}
         type="html5"
+        cliSample="sb-agency"
       />
     )}
   />

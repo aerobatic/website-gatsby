@@ -45,6 +45,7 @@ const PostTile = styled.div`
 `;
 
 interface IBlogIndexPageProps {
+  location: Location;
   data: {
     allMdx: { edges: { node: IBlogPost }[] };
   };
@@ -64,7 +65,7 @@ const BlogIndexPage = (props: IBlogIndexPageProps) => {
   }
 
   return (
-    <IndexLayout>
+    <IndexLayout location={props.location}>
       <Page marginTop="20px">
         <div className="container">
           {rows.map((row, index) => (
@@ -88,7 +89,7 @@ const BlogIndexPage = (props: IBlogIndexPageProps) => {
   );
 };
 
-export default () => (
+export default (props: { location: Location }) => (
   <StaticQuery
     query={graphql`
       {
@@ -111,6 +112,6 @@ export default () => (
         }
       }
     `}
-    render={data => <BlogIndexPage data={data} />}
+    render={data => <BlogIndexPage data={data} location={props.location} />}
   />
 );
