@@ -10,10 +10,7 @@ import MdxContainer from '../components/mdx/Container';
 import PromoFooter from '../components/PromoFooter';
 import SidebarNav, { ISidebarLink } from '../components/SidebarNav';
 
-import KeyIcon from '../icons/key';
-import AsteriskIcon from '../icons/asterisk';
-
-interface DocsTemplateProps {
+interface LegalTemplateProps {
   location: Location;
   data: {
     site: {
@@ -37,29 +34,22 @@ const StyledHeading = styled.h1`
   font-size: 1.8em;
 `;
 
-const DOC_LINKS: ISidebarLink[] = [
-  { title: 'Getting Started', slug: 'getting-started' },
-  { title: 'Overview', slug: 'overview' },
-  { title: 'Deployment', slug: 'deployment' },
-  { title: 'CLI', slug: 'cli' },
-  { title: 'Static Website Serving', slug: 'static-serving' },
-  { title: 'Custom Domains / SSL', slug: 'custom-domains-ssl' },
-  { title: 'Static Site Generators', slug: 'static-site-generators' },
-  { title: 'Configuration', slug: 'configuration' },
-  { title: 'Access Control', slug: 'access-control', icon: <KeyIcon /> },
-  { title: 'Site Optimizer', slug: 'site-optimizer' },
-  { title: 'Plugins', slug: 'plugins' },
-  { title: "What's New", slug: 'whats-new', icon: <AsteriskIcon width="18px" height="18px" /> }
+const LEGAL_LINKS: ISidebarLink[] = [
+  { title: 'Terms of Service', slug: 'tos' },
+  { title: 'Acceptable Use Policy', slug: 'aup' },
+  { title: 'Service Level Agreement', slug: 'sla' },
+  { title: 'Privacy', slug: 'privacy' },
+  { title: 'Copyright', slug: 'copyright' }
 ];
 
-const DocsTemplate: React.SFC<DocsTemplateProps> = ({ data, location }) => {
+const DocsTemplate: React.SFC<LegalTemplateProps> = ({ data, location }) => {
   return (
     <IndexLayout location={location}>
       <Page marginTop="20px">
         <div className="container">
           <div className="row">
             <div className="col-md-3">
-              <SidebarNav links={DOC_LINKS} pathPrefix="docs/" />
+              <SidebarNav links={LEGAL_LINKS} pathPrefix="legal/" />
             </div>
             <div className="col-md-9">
               <StyledHeading>{data.mdx.frontmatter.title}</StyledHeading>

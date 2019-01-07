@@ -163,11 +163,60 @@ const createDocPages = async (createPage, graphql) => {
   });
 };
 
+const createLegalPages = async (createPage, graphql) => {
+  const { data, errors } = await graphql(`
+    query {
+      allMdx(filter: { fileAbsolutePath: { regex: "/legal/.*.mdx$/" } }) {
+        edges {
+          node {
+            id
+            frontmatter {
+              slug
+              title
+              plugin
+            }
+            fields {
+              slug
+            }
+            code {
+              scope
+            }
+          }
+        }
+      }
+    }
+  `);
+
+  if (errors) {
+    console.error(errors);
+    throw new Error(errors);
+  }
+
+  const { edges } = data.allMdx;
+
+  edges.forEach(({ node }, index) => {
+    const { slug, plugin } = node.frontmatter;
+
+    createPage({
+      path: `/legal/${slug}/`,
+      component: componentWithMDXScope(
+        path.resolve(`./src/templates/legal.tsx`),
+        node.code.scope,
+        __dirname
+      ),
+      context: {
+        slug
+      }
+    });
+  });
+};
+
 exports.createPages = async ({ graphql, actions }) => {
   const { createPage } = actions;
 
   await Promise.all([
     await createDocPages(createPage, graphql),
-    await createBlogPosts(createPage, graphql)
+    await createBlogPosts(createPage, graphql),
+    await createLegalPages(createPage, graphql)
   ]);
 };

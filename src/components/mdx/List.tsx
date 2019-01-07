@@ -7,7 +7,7 @@ interface ListProps {
 
 // http://jsfiddle.net/dcodesmith/DruxN/
 const OrderedList = styled.ol`
-  margin: 0 0 1.5em 0;
+  margin: 0 0 1.5em 1em;
   padding: 0;
   padding-left: 30px;
   counter-reset: item;
@@ -25,7 +25,7 @@ const OrderedList = styled.ol`
     &:before {
       display: inline-block;
       position: absolute;
-      left: 0;
+      left: 25px;
       width: 1.5em;
       font-weight: bold;
       text-align: right;

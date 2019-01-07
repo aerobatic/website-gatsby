@@ -51,7 +51,7 @@ const Footer: React.SFC = () => (
       <div className="row">
         <div className="col-md-4">
           <Copyright>
-            Copyright <Link to="/">Aerobatic LLC</Link> 2018
+            Copyright <Link to="/">Aerobatic LLC</Link> 2019
           </Copyright>
         </div>
         <div className="col-md-4">
@@ -76,13 +76,10 @@ const Footer: React.SFC = () => (
         <div className="col-md-4">
           <QuickLinks>
             <li>
-              <Link to="/contact">Contact</Link>
+              <Link to="/contact/">Contact</Link>
             </li>
             <li>
-              <Link to="/legal">Legal</Link>
-            </li>
-            <li>
-              <Link to="/about">About</Link>
+              <Link to="/legal/tos/">Legal</Link>
             </li>
           </QuickLinks>
         </div>
