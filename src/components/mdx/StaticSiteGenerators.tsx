@@ -17,8 +17,8 @@ export default () => {
 
   return (
     <StyledContainer>
-      {generatorRows.map(row => (
-        <div className="row">
+      {generatorRows.map((row, i) => (
+        <div className="row" key={i}>
           {row.map(generator => (
             <div key={generator} className="col-md-4">
               <AnchorLink className="" href={`#${generator}-generator`}>

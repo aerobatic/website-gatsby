@@ -97,7 +97,6 @@ interface ISimulationState {
   terminalInput?: string;
   terminalOutput?: string[];
   showSpinner: boolean;
-  isUnmounted: boolean;
 }
 
 const delay = async (duration: number) => {
@@ -107,10 +106,11 @@ const delay = async (duration: number) => {
 };
 
 class TerminalSimulation extends React.Component<{}, ISimulationState> {
+  hasUnmounted = false;
+
   state: ISimulationState = {
     isRunning: false,
     showSpinner: false,
-    isUnmounted: false,
     terminalInput: ''
   };
 
@@ -127,7 +127,7 @@ class TerminalSimulation extends React.Component<{}, ISimulationState> {
       },
       async () => {
         for (const command of generators[generatorKey].commands) {
-          if (this.state.isUnmounted) break;
+          if (this.hasUnmounted) break;
 
           // Clear the previous command's output
           this.setState({
@@ -144,7 +144,7 @@ class TerminalSimulation extends React.Component<{}, ISimulationState> {
           await delay(COMMAND_DELAY);
         }
 
-        if (!this.state.isUnmounted) {
+        if (!this.hasUnmounted) {
           this.setState({
             isRunning: false
           });
@@ -155,7 +155,8 @@ class TerminalSimulation extends React.Component<{}, ISimulationState> {
 
   autotypeInput = async (commandText: string) => {
     for (let i = 0; i < commandText.length; i += 1) {
-      if (this.state.isUnmounted) return;
+      if (this.hasUnmounted) return;
+
       this.setState({
         terminalInput: `${this.state.terminalInput || ''}${commandText[i]}`
       });
@@ -166,7 +167,8 @@ class TerminalSimulation extends React.Component<{}, ISimulationState> {
 
   writeCommandOutput = async (command: IGeneratorCommand) => {
     for (const output of command.output || []) {
-      if (this.state.isUnmounted) return;
+      if (this.hasUnmounted) return;
+
       this.setState({
         showSpinner: true,
         terminalOutput: [...(this.state.terminalOutput || []), `> ${output}`]
@@ -174,6 +176,8 @@ class TerminalSimulation extends React.Component<{}, ISimulationState> {
 
       await delay(STEP_DELAY);
     }
+
+    if (this.hasUnmounted) return;
 
     this.setState({
       showSpinner: false,
@@ -186,8 +190,7 @@ class TerminalSimulation extends React.Component<{}, ISimulationState> {
   }
 
   componentWillUnmount() {
-    // TODO: cancel all subscriptions and asynchronous tasks in the componentWillUnmount method.
-    this.setState({ isUnmounted: true });
+    this.hasUnmounted = true;
   }
 
   renderLearnMore() {

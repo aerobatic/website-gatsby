@@ -10,6 +10,7 @@ import IndexLayout from '../layouts';
 import { colors } from '../styles/variables';
 import MdxContainer from '../components/mdx/Container';
 import PromoFooter from '../components/PromoFooter';
+import { legacyNavClassnames } from '../utils';
 
 import KeyIcon from '../icons/key';
 import AsteriskIcon from '../icons/asterisk';
@@ -46,6 +47,25 @@ const Sidebar = styled.section`
   li {
     list-style-type: none;
     padding: 0;
+
+    &.active {
+      a {
+        font-weight: bold;
+        color: ${colors.darkGray};
+        &:hover {
+          text-decoration: none;
+        }
+
+        &:active,
+        &:focus {
+          text-decoration: none;
+        }
+
+        svg {
+          fill: ${colors.orange};
+        }
+      }
+    }
   }
   a {
     color: ${colors.gray};
@@ -59,22 +79,6 @@ const Sidebar = styled.section`
 
     svg {
       margin-left: 8px;
-      fill: ${colors.orange};
-    }
-  }
-  a.active {
-    font-weight: bold;
-    color: ${colors.darkGray};
-    &:hover {
-      text-decoration: none;
-    }
-
-    &:active,
-    &:focus {
-      text-decoration: none;
-    }
-
-    svg {
       fill: ${colors.orange};
     }
   }
@@ -110,15 +114,15 @@ const DocsTemplate: React.SFC<DocsTemplateProps> = ({ data, location }) => {
           <div className="row">
             <div className="col-md-3">
               <Sidebar>
-                <ul>
+                <ul className={classnames(legacyNavClassnames)}>
                   {DOC_LINKS.map(link => (
-                    <li key={link.slug}>
-                      <Link
-                        className={classnames({
-                          active: location.pathname.startsWith(`/docs/${link.slug}`)
-                        })}
-                        to={`/docs/${link.slug}/`}
-                      >
+                    <li
+                      key={link.slug}
+                      className={classnames({
+                        active: location.pathname.startsWith(`/docs/${link.slug}`)
+                      })}
+                    >
+                      <Link to={`/docs/${link.slug}/`}>
                         {link.title}
                         {link.icon && link.icon}
                       </Link>

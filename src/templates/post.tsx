@@ -1,4 +1,5 @@
 import * as React from 'react';
+import classnames from 'classnames';
 import { graphql, Link } from 'gatsby';
 import { MDXRenderer } from 'gatsby-mdx';
 import { MDXProvider } from '@mdx-js/tag';
@@ -10,8 +11,10 @@ import { colors } from '../styles/variables';
 import { IBlogPost } from '../types';
 import MdxContainer from '../components/mdx/Container';
 import PromoFooter from '../components/PromoFooter';
+import { legacyNavClassnames } from '../utils';
 
 interface BlogTemplateProps {
+  location: Location;
   data: {
     site: {
       siteMetadata: {
@@ -62,18 +65,21 @@ const Sidebar = styled.section`
     list-style-type: none;
     padding: 10px 0;
     border-bottom: solid 1px ${colors.lightGray};
-  }
-  a.active {
-    color: ${colors.darkGray};
-    &:hover {
-      text-decoration: none;
+
+    &.active {
+      a {
+        color: ${colors.darkGray};
+        &:hover {
+          text-decoration: none;
+        }
+      }
     }
   }
 `;
 
-const BlogTemplate: React.SFC<BlogTemplateProps> = ({ data }) => {
+const BlogTemplate: React.SFC<BlogTemplateProps> = ({ data, location }) => {
   return (
-    <IndexLayout>
+    <IndexLayout location={location}>
       <Page marginTop="20px">
         <div className="container">
           <div className="row">
@@ -90,12 +96,15 @@ const BlogTemplate: React.SFC<BlogTemplateProps> = ({ data }) => {
             <div className="col-md-3">
               <Sidebar>
                 <h3>Blog Posts</h3>
-                <ul>
+                <ul className={classnames(legacyNavClassnames)}>
                   {data.allMdx.edges.map(({ node }) => (
-                    <li key={node.id}>
-                      <Link activeClassName="active" to={`/blog/${node.frontmatter.slug}/`}>
-                        {node.frontmatter.title}
-                      </Link>
+                    <li
+                      key={node.id}
+                      className={classnames({
+                        active: location.pathname === `/blog/${node.frontmatter.slug}/`
+                      })}
+                    >
+                      <Link to={`/blog/${node.frontmatter.slug}/`}>{node.frontmatter.title}</Link>
                     </li>
                   ))}
                 </ul>

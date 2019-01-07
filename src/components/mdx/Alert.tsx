@@ -28,6 +28,10 @@ const StyledAlert = styled.div`
       margin-bottom: 0;
     }
   }
+
+  li:before {
+    left: 71px !important;
+  }
 `;
 
 const StyledInfo = styled(StyledAlert)`

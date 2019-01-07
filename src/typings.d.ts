@@ -74,3 +74,5 @@ declare module 'github-slugger' {
     slug: (value: string) => string;
   }
 }
+
+declare const docsearch: (options: object) => void;

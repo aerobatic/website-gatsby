@@ -5,8 +5,8 @@ import Page from '../components/Page';
 import Container from '../components/Container';
 import IndexLayout from '../layouts';
 
-const NotFoundPage = () => (
-  <IndexLayout>
+const NotFoundPage = (props: { location: Location }) => (
+  <IndexLayout location={props.location}>
     <Page>
       <Container>
         <h1>404: Page not found.</h1>
