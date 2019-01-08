@@ -64,16 +64,8 @@ class SearchBox extends Component {
         input: { setVal: (val: string) => void },
         _event: any,
         suggestion: { url: string },
-        _datasetNumber: any,
-        context: { selectionMethod: string }
+        _datasetNumber: any
       ) => {
-        // Do nothing if click on the suggestion, as it's already a <a href>, the
-        // browser will take care of it. This allow Ctrl-Clicking on results and not
-        // having the main window being redirected as well
-        if (context.selectionMethod === 'click') {
-          return;
-        }
-
         input.setVal('');
         navigate(suggestion.url.replace(location.origin, ''));
       }

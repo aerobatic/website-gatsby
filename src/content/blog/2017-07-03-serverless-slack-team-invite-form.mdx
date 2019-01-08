@@ -7,7 +7,7 @@ slug: serverless-slack-team-invite-form
 
 import MdxImage from '$components/mdx/Image';
 
-<MdxImage src="/img/slack.svg" style={{ float: 'right', width: '150px' }} />
+<MdxImage src="/img/slack.svg" style={{ float: 'right' }} width={150} height={150} />
 
 Slack has exploded in popularity in recent years as a tool for teams to collaborate. More recently it's also emerged as a way for companies and organizations to have direct conversations with **external** customers. This post describes how you can implement a Slack invitation form on your Aerobatic website that allows customers to enter their email to join the community. Slack will send them an invite with a link to complete the setup process. Aerobatic just [launched our own public Slack community](/slack) using the same technique described below.
 
@@ -25,23 +25,43 @@ You'll need to create a dedicated Slack app for the invite form. This app will p
 
 1. Visit https://api.slack.com/apps and click **Create New App**. Make sure the **Development Slack Team** is set to the team that you will be inviting users to.
 
-<MdxImage screenshot src="https://www.aerobatic.com/media/slack-create-app-screenshot.png" alt="Slack Create Application" />
+<MdxImage
+  screenshot
+  src="https://www.aerobatic.com/media/slack-create-app-screenshot.png"
+  alt="Slack Create Application"
+/>
 
 2. Click **Permissions**:
 
-<MdxImage screenshot src="https://www.aerobatic.com/media/slack-app-permissions.png" alt="Slack App Permissions" />
+<MdxImage
+  screenshot
+  src="https://www.aerobatic.com/media/slack-app-permissions.png"
+  alt="Slack App Permissions"
+/>
 
 3. In **OAuth & Permissions** page, select admin scope under **Permission Scopes** menu and save changes.
 
-<MdxImage screenshot src="https://www.aerobatic.com/media/slack-app-scopes.png" alt="Slack App Scopes" />
+<MdxImage
+  screenshot
+  src="https://www.aerobatic.com/media/slack-app-scopes.png"
+  alt="Slack App Scopes"
+/>
 
 4. Click **Install App to Team**
 
-<MdxImage screenshot src="https://www.aerobatic.com/media/slack-install-app.png" alt="Slack Install App" />
+<MdxImage
+  screenshot
+  src="https://www.aerobatic.com/media/slack-install-app.png"
+  alt="Slack Install App"
+/>
 
 5. Copy **OAuth Access Token**
 
-<MdxImage screenshot src="https://www.aerobatic.com/media/--2/slack-oauth-access-token.png" alt="Slack OAuth Token" />
+<MdxImage
+  screenshot
+  src="https://www.aerobatic.com/media/--2/slack-oauth-access-token.png"
+  alt="Slack OAuth Token"
+/>
 
 ### Authorize App
 
@@ -80,14 +100,20 @@ The `<token>` should be replaced with the access token copied in **step 5** abov
 The final step is to create an HTML form where visitors to your website can enter their email to receive an invite to the team. We'll use some JavaScript to intercept the form submit event and make a `fetch` call to the proxy endpoint. An appropriate message will be displayed to the user based on the Slack API response.
 
 ```html
-<form id="inviteForm" method="POST"><input id="email" type="email" /> <button type="submit">Send Invite</button></form>
+<form id="inviteForm" method="POST">
+  <input id="email" type="email" /> <button type="submit">Send Invite</button>
+</form>
 <span id="alreadyInvited" style="display:none">
-  You have already been invited. <a href="https://TEAM_NAME.slack.com" target="_blank">Visit the community on Slack</a>
+  You have already been invited.
+  <a href="https://TEAM_NAME.slack.com" target="_blank">Visit the community on Slack</a>
 </span>
 <span id="alreadyMember" style="display:none">
-  You are already a member. <a href="https://TEAM_NAME.slack.com" target="_blank">Visit the community on Slack</a>
+  You are already a member.
+  <a href="https://TEAM_NAME.slack.com" target="_blank">Visit the community on Slack</a>
 </span>
-<span id="success" style="display:none"> <strong>Invitation sent!</strong> Check your inbox for an invite from Slack. </span>
+<span id="success" style="display:none">
+  <strong>Invitation sent!</strong> Check your inbox for an invite from Slack.
+</span>
 <span id="invalidEmail" style="display:none"> Email is invalid </span>
 <span id="otherError" style="display:none"> An unexpected error has occurred </span>
 
