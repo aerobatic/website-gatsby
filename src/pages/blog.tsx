@@ -3,7 +3,7 @@ import { Link, graphql, StaticQuery } from 'gatsby';
 import Page from '../components/Page';
 import IndexLayout from '../layouts';
 import styled from 'styled-components';
-import { colors } from '../styles/variables';
+import { breakpoints, colors } from '../styles/variables';
 import { IBlogPost } from '../types';
 
 const PostTile = styled.div`
@@ -41,6 +41,10 @@ const PostTile = styled.div`
     p {
       color: ${colors.black};
     }
+  }
+
+  @media (max-width: ${breakpoints.md}px) {
+    height: auto;
   }
 `;
 

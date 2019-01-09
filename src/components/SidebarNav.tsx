@@ -4,12 +4,7 @@ import { Link } from 'gatsby';
 import classnames from 'classnames';
 import { colors } from '../styles/variables';
 import { legacyNavClassnames } from '../utils';
-
-export interface ISidebarLink {
-  title: string;
-  slug: string;
-  icon?: React.ReactNode;
-}
+import { INavLink } from '../types';
 
 const StyledContainer = styled.section`
   ul {
@@ -57,7 +52,7 @@ const StyledContainer = styled.section`
 `;
 
 interface ISidebarProps {
-  links: ISidebarLink[];
+  links: INavLink[];
   pathPrefix: string;
 }
 

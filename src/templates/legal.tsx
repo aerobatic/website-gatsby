@@ -8,7 +8,10 @@ import Page from '../components/Page';
 import IndexLayout from '../layouts';
 import MdxContainer from '../components/mdx/Container';
 import PromoFooter from '../components/PromoFooter';
-import SidebarNav, { ISidebarLink } from '../components/SidebarNav';
+import SidebarNav from '../components/SidebarNav';
+import { INavLink } from '../types';
+import { breakpoints } from '../styles/variables';
+import MobileNavSelect from '../components/MobileNavSelect';
 
 interface LegalTemplateProps {
   location: Location;
@@ -34,7 +37,15 @@ const StyledHeading = styled.h1`
   font-size: 1.8em;
 `;
 
-const LEGAL_LINKS: ISidebarLink[] = [
+const StyledTemplate = styled.div`
+  @media (max-width: ${breakpoints.md}px) {
+    .sidebar {
+      display: none;
+    }
+  }
+`;
+
+const LEGAL_LINKS: INavLink[] = [
   { title: 'Terms of Service', slug: 'tos' },
   { title: 'Acceptable Use Policy', slug: 'aup' },
   { title: 'Service Level Agreement', slug: 'sla' },
@@ -46,12 +57,13 @@ const DocsTemplate: React.SFC<LegalTemplateProps> = ({ data, location }) => {
   return (
     <IndexLayout location={location}>
       <Page marginTop="20px">
-        <div className="container">
+        <StyledTemplate className="container">
           <div className="row">
-            <div className="col-md-3">
+            <div className="col-md-3 sidebar">
               <SidebarNav links={LEGAL_LINKS} pathPrefix="legal/" />
             </div>
             <div className="col-md-9">
+              <MobileNavSelect links={LEGAL_LINKS} pathPrefix="legal/" location={location} />
               <StyledHeading>{data.mdx.frontmatter.title}</StyledHeading>
               <MdxContainer>
                 <MDXProvider components={mdxComponents}>
@@ -61,7 +73,7 @@ const DocsTemplate: React.SFC<LegalTemplateProps> = ({ data, location }) => {
               <PromoFooter />
             </div>
           </div>
-        </div>
+        </StyledTemplate>
       </Page>
     </IndexLayout>
   );

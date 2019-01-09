@@ -5,25 +5,16 @@ import { Link } from 'gatsby';
 import headerLogo from '../img/header-logo.png';
 import SearchBox from './SearchBox';
 import { Location } from '../types';
+import { breakpoints } from '../styles/variables';
 
 const StyledHeader = styled.header`
   height: 55px;
   margin-bottom: 0;
 
-  a.mobile-search {
-    display: none;
-  }
-
   .navbar-nav {
     height: 50px;
     display: flex;
     align-items: center;
-
-    a.whats-new {
-      i {
-        color: #f91;
-      }
-    }
   }
 
   .navbar-brand {
@@ -32,13 +23,16 @@ const StyledHeader = styled.header`
     padding: 8px 0px;
     width: 160px;
 
-    @media (min-width: 992px) {
-      width: 200px;
-    }
-
     img {
       width: 100%;
       height: auto;
+    }
+  }
+
+  @media (max-width: ${breakpoints.md}px) {
+    height: 43px;
+    .navbar-brand {
+      margin-left: 10px;
     }
   }
 `;
@@ -49,13 +43,21 @@ const Navbar = styled.div`
     display: flex;
     align-items: center;
   }
-  // Hide the label "Search" and just show the icon
-  .nav.navbar-nav.navbar-right .search-link span {
-    display: none;
+  @media (max-width: ${breakpoints.md}px) {
+    ul {
+      height: auto;
+      justify-content: center;
+    }
   }
 `;
 
 const NavbarLink = styled.li`
+  &.search {
+    @media (max-width: ${breakpoints.md}px) {
+      display: none;
+    }
+  }
+
   > a {
     padding-top: 6px;
     padding-bottom: 8px;
@@ -70,6 +72,10 @@ const NavbarLink = styled.li`
 `;
 
 const SignInLink = styled.a`
+  @media (max-width: ${breakpoints.md}px) {
+    display: none !important;
+  }
+
   height: 34px;
   padding: 0 15px;
   margin: 0;
@@ -116,21 +122,6 @@ const Header: React.SFC<HeaderProps> = props => (
     </StyledPromo>
     <div className="container">
       <StyledHeader className="navbar-header">
-        <button
-          type="button"
-          className="navbar-toggle collapsed"
-          data-toggle="collapse"
-          data-target="#navbar"
-        >
-          <span className="sr-only">Toggle navigation</span>
-          <span className="icon-bar" />
-          <span className="icon-bar" />
-          <span className="icon-bar" />
-        </button>
-        <a href="/search" className="mobile-search">
-          <i className="fa fa-search fa-2x" />
-        </a>
-
         <Link className="navbar-brand" to="/">
           <img src={headerLogo} alt="Logo" />
         </Link>
@@ -162,7 +153,7 @@ const Header: React.SFC<HeaderProps> = props => (
           <NavbarLink>
             <Link to="/docs/getting-started/">Docs</Link>
           </NavbarLink>
-          <NavbarLink>
+          <NavbarLink className="search">
             <SearchBox />
           </NavbarLink>
           <li>

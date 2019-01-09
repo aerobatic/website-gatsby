@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { breakpoints } from '../styles/variables';
 
 const StyledSection = styled.section`
   background-color: #4e7ce5;
@@ -19,16 +20,18 @@ const StyledSection = styled.section`
     -webkit-font-smoothing: antialiased;
   }
 
-  @media screen and (min-width: 768px)
-  .jumbotron .h1, .jumbotron h1 {
-    font-size: 63px;
-  }
-
   p {
     max-width: 600px;
     display: inline-block;
     font-size: 18px;
     margin: 0 0 15px;
+  }
+
+  @media (max-width: ${breakpoints.md}px) {
+    h1 {
+      padding-top: 15px;
+      font-size: 32px;
+    }
   }
 }
 `;

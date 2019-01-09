@@ -2,7 +2,7 @@ import React, { ReactNode } from 'react';
 import { chunk } from 'lodash-es';
 import styled from 'styled-components';
 import { Link } from 'gatsby';
-import { colors } from '../styles/variables';
+import { breakpoints, colors } from '../styles/variables';
 import Auth0Logo from '../icons/auth0';
 
 interface Plugin {
@@ -43,6 +43,10 @@ const StyledItem = styled.div`
       height: 24px;
       fill: ${colors.darkOrange};
     }
+  }
+
+  @media (max-width: ${breakpoints.md}px) {
+    height: auto;
   }
 `;
 

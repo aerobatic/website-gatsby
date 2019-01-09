@@ -2,7 +2,7 @@ import React, { SyntheticEvent } from 'react';
 import styled from 'styled-components';
 import { Link } from 'gatsby';
 import classNames from 'classnames';
-import { colors, fonts } from '../../styles/variables';
+import { breakpoints, colors, fonts } from '../../styles/variables';
 import generators, { IGeneratorCommand } from './generators';
 
 const TYPE_DELAY = 40;
@@ -10,10 +10,16 @@ const COMMAND_DELAY = 1000; // amount of time to pause between commands
 const STEP_DELAY = 1000; // amount of time to show the spinner between step messages
 const DEFAULT_INPUT = 'Try clicking one of the items below to see how it works!';
 
+const StyledContainer = styled.div`
+  @media (max-width: ${breakpoints.md}px) {
+    display: none;
+  }
+`;
+
 const StyledTerminal = styled.div`
   width: 740px;
   height: 360px;
-  margin: 0 auto;
+  margin: -55px auto 0 auto;
   border: solid 2px #eeeeee;
   border-top: solid 40px #eeeeee;
   border-radius: 4px 4px 0 0;
@@ -209,7 +215,7 @@ class TerminalSimulation extends React.Component<{}, ISimulationState> {
 
   render() {
     return (
-      <>
+      <StyledContainer>
         <StyledTerminal>
           <pre>
             <code className="prompt">$</code>
@@ -245,7 +251,7 @@ class TerminalSimulation extends React.Component<{}, ISimulationState> {
             </li>
           ))}
         </GeneratorMenu>
-      </>
+      </StyledContainer>
     );
   }
 }

@@ -8,10 +8,13 @@ import Page from '../components/Page';
 import IndexLayout from '../layouts';
 import MdxContainer from '../components/mdx/Container';
 import PromoFooter from '../components/PromoFooter';
-import SidebarNav, { ISidebarLink } from '../components/SidebarNav';
+import SidebarNav from '../components/SidebarNav';
+import MobileNavSelect from '../components/MobileNavSelect';
+import { breakpoints } from '../styles/variables';
 
 import KeyIcon from '../icons/key';
 import AsteriskIcon from '../icons/asterisk';
+import { INavLink } from '../types';
 
 interface DocsTemplateProps {
   location: Location;
@@ -37,7 +40,15 @@ const StyledHeading = styled.h1`
   font-size: 1.8em;
 `;
 
-const DOC_LINKS: ISidebarLink[] = [
+const StyledTemplate = styled.div`
+  @media (max-width: ${breakpoints.md}px) {
+    .sidebar {
+      display: none;
+    }
+  }
+`;
+
+const DOC_LINKS: INavLink[] = [
   { title: 'Getting Started', slug: 'getting-started' },
   { title: 'Overview', slug: 'overview' },
   { title: 'Deployment', slug: 'deployment' },
@@ -56,12 +67,13 @@ const DocsTemplate: React.SFC<DocsTemplateProps> = ({ data, location }) => {
   return (
     <IndexLayout location={location}>
       <Page marginTop="20px">
-        <div className="container">
+        <StyledTemplate className="container">
           <div className="row">
-            <div className="col-md-3">
+            <div className="col-md-3 sidebar">
               <SidebarNav links={DOC_LINKS} pathPrefix="docs/" />
             </div>
             <div className="col-md-9">
+              <MobileNavSelect links={DOC_LINKS} pathPrefix="docs/" location={location} />
               <StyledHeading>{data.mdx.frontmatter.title}</StyledHeading>
               <MdxContainer>
                 <MDXProvider components={mdxComponents}>
@@ -71,7 +83,7 @@ const DocsTemplate: React.SFC<DocsTemplateProps> = ({ data, location }) => {
               <PromoFooter />
             </div>
           </div>
-        </div>
+        </StyledTemplate>
       </Page>
     </IndexLayout>
   );

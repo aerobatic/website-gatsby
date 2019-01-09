@@ -23,7 +23,7 @@ const IndexPage = (props: { location: Location }) => (
           </Link>
         </div>
       </Jumbotron>
-      <div className="container" style={{ marginTop: '-55px' }}>
+      <div className="container">
         <TerminalSimulation />
         <Features />
         <Pricing />

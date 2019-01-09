@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import classnames from 'classnames';
 import { graphql, Link } from 'gatsby';
 import { MDXRenderer } from 'gatsby-mdx';
@@ -7,7 +7,7 @@ import styled from 'styled-components';
 import mdxComponents from '../components/mdx';
 import Page from '../components/Page';
 import IndexLayout from '../layouts';
-import { colors } from '../styles/variables';
+import { breakpoints, colors } from '../styles/variables';
 import { IBlogPost } from '../types';
 import MdxContainer from '../components/mdx/Container';
 import PromoFooter from '../components/PromoFooter';
@@ -54,6 +54,10 @@ const StyledDate = styled.div`
 `;
 
 const Sidebar = styled.section`
+  @media (max-width: ${breakpoints.md}px) {
+    margin-top: 20px;
+  }
+
   h3 {
     margin: 0;
   }
@@ -66,6 +70,9 @@ const Sidebar = styled.section`
     padding: 10px 0;
     border-bottom: solid 1px ${colors.lightGray};
 
+    &:last-child {
+      border-bottom: none;
+    }
     &.active {
       a {
         color: ${colors.darkGray};

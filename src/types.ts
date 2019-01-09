@@ -36,3 +36,9 @@ export interface IQuickStart {
 export interface Location {
   pathname: string;
 }
+
+export interface INavLink {
+  title: string;
+  slug: string;
+  icon?: React.ReactNode;
+}

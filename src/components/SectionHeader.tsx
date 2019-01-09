@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { colors } from '../styles/variables';
+import { breakpoints, colors } from '../styles/variables';
 
 const StyledSection = styled.div`
   h1,
@@ -18,6 +18,15 @@ const StyledSection = styled.div`
     color: ${colors.gray};
     margin-bottom: 50px;
     font-size: 18px;
+  }
+
+  @media (max-width: ${breakpoints.md}px) {
+    h1 {
+      font-size: 28px;
+    }
+    h4 {
+      margin-bottom: 25px;
+    }
   }
 `;
 
