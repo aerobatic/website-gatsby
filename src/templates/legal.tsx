@@ -53,14 +53,14 @@ const LEGAL_LINKS: INavLink[] = [
   { title: 'Copyright', slug: 'copyright' }
 ];
 
-const DocsTemplate: React.SFC<LegalTemplateProps> = ({ data, location }) => {
+const LegalPagesTemplate: React.SFC<LegalTemplateProps> = ({ data, location }) => {
   return (
     <IndexLayout location={location}>
       <Page marginTop="20px">
         <StyledTemplate className="container">
           <div className="row">
             <div className="col-md-3 sidebar">
-              <SidebarNav links={LEGAL_LINKS} pathPrefix="legal/" />
+              <SidebarNav links={LEGAL_LINKS} pathPrefix="legal/" location={location} />
             </div>
             <div className="col-md-9">
               <MobileNavSelect links={LEGAL_LINKS} pathPrefix="legal/" location={location} />
@@ -79,7 +79,7 @@ const DocsTemplate: React.SFC<LegalTemplateProps> = ({ data, location }) => {
   );
 };
 
-export default DocsTemplate;
+export default LegalPagesTemplate;
 
 export const pageQuery = graphql`
   query($slug: String!) {

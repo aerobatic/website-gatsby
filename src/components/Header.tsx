@@ -1,11 +1,11 @@
-import * as React from 'react';
+import React, { ReactNode } from 'react';
 import styled from 'styled-components';
 import AnchorLink from 'react-anchor-link-smooth-scroll';
 import { Link } from 'gatsby';
 import headerLogo from '../img/header-logo.png';
 import SearchBox from './SearchBox';
-import { Location } from '../types';
 import { breakpoints } from '../styles/variables';
+import { Location, LocationContext } from '@reach/router';
 
 const StyledHeader = styled.header`
   height: 55px;
@@ -110,10 +110,24 @@ const StyledPromo = styled.div`
 
 interface HeaderProps {
   title: string;
-  location: Location;
 }
 
-const Header: React.SFC<HeaderProps> = props => (
+const renderAnchorOrLink = (text: string, hash: string) => {
+  const render = (location: { pathname: string }): ReactNode => {
+    if (location.pathname === '/') {
+      return (
+        <AnchorLink className="" href={hash}>
+          {text}
+        </AnchorLink>
+      );
+    }
+    return <Link to={`/${hash}`}>{text}</Link>;
+  };
+
+  return <Location>{(context: LocationContext) => render(context.location)}</Location>;
+};
+
+const Header: React.SFC<HeaderProps> = () => (
   <>
     <StyledPromo>
       <Link to="/blog/announcing-i18n-plugin/">
@@ -129,24 +143,8 @@ const Header: React.SFC<HeaderProps> = props => (
 
       <Navbar className="collapse navbar-collapse" id="navbar">
         <ul className="nav navbar-nav navbar-right">
-          <NavbarLink>
-            {props.location.pathname === '/' ? (
-              <AnchorLink className="" href="#pricing">
-                Pricing
-              </AnchorLink>
-            ) : (
-              <Link to="/#pricing">Pricing</Link>
-            )}
-          </NavbarLink>
-          <NavbarLink>
-            {props.location.pathname === '/' ? (
-              <AnchorLink className="" href="#features">
-                Features
-              </AnchorLink>
-            ) : (
-              <Link to="/#features">Features</Link>
-            )}
-          </NavbarLink>
+          <NavbarLink>{renderAnchorOrLink('Pricing', '#pricing')}</NavbarLink>
+          <NavbarLink>{renderAnchorOrLink('Features', '#features')}</NavbarLink>
           <NavbarLink>
             <Link to="/blog/">Blog</Link>
           </NavbarLink>

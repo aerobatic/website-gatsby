@@ -49,7 +49,7 @@ class IndexLayout extends Component<IProps> {
             title="Aerobatic"
           />
         </Helmet>
-        <Header title={props.siteMetadata.title} location={props.location} />
+        <Header title={props.siteMetadata.title} />
         <LayoutMain>
           {props.children}
           <BackToTop />

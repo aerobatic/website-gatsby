@@ -70,7 +70,7 @@ const DocsTemplate: React.SFC<DocsTemplateProps> = ({ data, location }) => {
         <StyledTemplate className="container">
           <div className="row">
             <div className="col-md-3 sidebar">
-              <SidebarNav links={DOC_LINKS} pathPrefix="docs/" />
+              <SidebarNav links={DOC_LINKS} pathPrefix="docs/" location={location} />
             </div>
             <div className="col-md-9">
               <MobileNavSelect links={DOC_LINKS} pathPrefix="docs/" location={location} />

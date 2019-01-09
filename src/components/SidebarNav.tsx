@@ -53,6 +53,7 @@ const StyledContainer = styled.section`
 
 interface ISidebarProps {
   links: INavLink[];
+  location: Location;
   pathPrefix: string;
 }
 
@@ -63,7 +64,7 @@ export default (props: ISidebarProps) => (
         <li
           key={link.slug}
           className={classnames({
-            active: location.pathname.startsWith(`/${props.pathPrefix}${link.slug}`)
+            active: props.location.pathname.startsWith(`/${props.pathPrefix}${link.slug}`)
           })}
         >
           <Link to={`/${props.pathPrefix}${link.slug}/`}>
