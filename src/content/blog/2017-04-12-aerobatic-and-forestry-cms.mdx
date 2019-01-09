@@ -2,7 +2,7 @@
 title: Powering a Website Publishing workflow with Forestry CMS and Aerobatic
 description: Forestry.io is a CMS designed for managing content for Jekyll and Hugo sites. Here we demonstrate how to continuously deploy content updates to Aerobatic.
 date: 2017-04-12
-tags: cms, forestry, github, cd, deploy
+tags: [cms, forestry, github, cd, deploy]
 slug: forestry-aerobatic-publishing-workflow
 ---
 
@@ -74,7 +74,11 @@ The demo repo already has an [appveyor.yml](https://github.com/aerobatic/forestr
 
 Now our end to end publishing toolchain is all in place. Go ahead and try updating the title or body of a blog post back in Forestry and click the **Publish** button. Visit the AppVeyor dashboard and within seconds you should see a new build triggered. The build page for the demo site is at [https://ci.appveyor.com/project/dvonlehman/forestry-cms-demo](https://ci.appveyor.com/project/dvonlehman/forestry-cms-demo). If the build completes with a green status, that means it's been successfully deployed to Aerobatic.
 
-<MdxImage screenshot alt="AppVeyor build output screenshot" src="https://www.aerobatic.com/media/blog/appveyor-forestry-demo.png" />
+<MdxImage
+  screenshot
+  alt="AppVeyor build output screenshot"
+  src="https://www.aerobatic.com/media/blog/appveyor-forestry-demo.png"
+/>
 
 Now whenever a change is pushed to the repo, whether a stylesheet update by a developer, or a blog post update from a marketer, the same build pipeline is run to integrate the changes and deploy them live.
 

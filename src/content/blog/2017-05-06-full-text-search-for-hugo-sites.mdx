@@ -2,7 +2,7 @@
 title: Implementing full-text search for Hugo sites
 description: This new keyword-search plugin makes it super easy to add search to your site. This post specifically dives into how to set it up for a Hugo site.
 date: 2017-05-11
-tags: hugo, search, keyword-search
+tags: [hugo, search, keyword-search]
 slug: full-text-search-for-hugo-sites
 ---
 
@@ -91,7 +91,9 @@ For this we need to create a new file at `content/search.html`. Here's where thi
 
 The template will be bound on Aerobatic to a data object containing the search results. This data object can be seen by running the following curl command:
 
-<Cli>curl -H 'Accept:application/json' https://hugo-search-demo.aerobaticapp.com/search/?q=raven"</Cli>
+<Cli>
+  curl -H 'Accept:application/json' https://hugo-search-demo.aerobaticapp.com/search/?q=raven"
+</Cli>
 
 Which returns:
 
@@ -165,7 +167,9 @@ options:
 Now we have a way to display custom formatted search results, but we haven't actually create a search form for users to enter their query. Oftentimes the search box is right in the global header so it is available from every page on the site. In [nav.html](https://github.com/aerobatic/hugo-search-demo/blob/master/layouts/partials/nav.html) the following basic html form does the trick:
 
 ```html
-<form class="search" method="get" action="/search/"><input type="text" name="q" placeholder="Search poems" /></form>
+<form class="search" method="get" action="/search/">
+  <input type="text" name="q" placeholder="Search poems" />
+</form>
 ```
 
 ## Metadata
@@ -174,10 +178,9 @@ In the data object bound to the template, each search result includes the proper
 
 ```html
 <!-- Metadata for the Aerobatic scanner to index -->
-{{ if .Params.description }}<meta name="description" content="{{ .Params.description }}" />{{ end }} {{ if .Params.author }}<meta
-  name="author"
-  content="{{ .Params.author }}"
-/>{{ end }} {{ if .Params.year }}<meta name="year" content="{{ .Params.year }}" />{{ end }}
+{{ if .Params.description }}<meta name="description" content="{{ .Params.description }}" />{{ end }}
+{{ if .Params.author }}<meta name="author" content="{{ .Params.author }}" />{{ end }} {{ if
+.Params.year }}<meta name="year" content="{{ .Params.year }}" />{{ end }}
 ```
 
 Finally we need to inform the Aerobatic crawler to look for these meta tags and add them to the search index. This is done by setting the `metadataKeys` property:

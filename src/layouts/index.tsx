@@ -37,17 +37,22 @@ class IndexLayout extends Component<IProps> {
           title={props.siteMetadata.title}
           meta={[
             { name: 'description', content: props.siteMetadata.description },
-            { name: 'keywords', content: props.siteMetadata.keywords }
+            { name: 'keywords', content: props.siteMetadata.keywords },
+            { name: 'og:image', content: '/opengraph-image.png' },
+            { name: 'og:image:width', content: '495' },
+            { name: 'og:image:height', content: '259' },
+            { name: 'twitter:card', content: 'summary_large_image' },
+            { name: 'twitter:domain', content: props.siteMetadata.siteUrl },
+            {
+              name: 'twitter:image',
+              content: `${props.siteMetadata.siteUrl}/img/twitter-card.png`
+            },
+            { name: 'twitter:description', content: props.siteMetadata.description }
           ]}
         >
+          <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com" />
           <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
           <link href="https://fonts.googleapis.com/css?family=Muli:400,700" rel="stylesheet" />
-          <link
-            rel="alternate"
-            href={`${props.siteMetadata.siteUrl}/feed.xml`}
-            type="application/rss+xml"
-            title="Aerobatic"
-          />
         </Helmet>
         <Header title={props.siteMetadata.title} />
         <LayoutMain>
@@ -69,6 +74,7 @@ export default (props: { location: Location; children: any }) => (
             title
             description
             keywords
+            siteUrl
           }
         }
       }

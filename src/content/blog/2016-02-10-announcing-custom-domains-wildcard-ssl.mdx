@@ -3,14 +3,19 @@ title: Custom domains with automatic wildcard SSL/TLS
 description: Register your own domain with Aerobatic and get an automatic self-renewing wildcard certificate at no extra charge.
 slug: announcing-custom-domains-wildcard-ssl
 date: 2016-02-10
-tags: ssl, tls, custom domain, cname, apex, dns, wildcard
+tags: [ssl, tls, custom domain, cname, apex, dns, wildcard]
 ---
 
 import MdxImage from '$components/mdx/Image';
 
 Just in time for Valentine's Day, we have a special gift for our customers. All custom domains on Aerobatic now come with a wildcard SSL/TLS certificate **automatically**. Now there's no reason why all your websites shouldn't have that pretty little green padlock. And best of all, no crazy OpenSSL incantations to recite, no stressing over expirations. Oh yeah, did I mention these certs auto-renew? What's not to love??
 
-<MdxImage src="//www.aerobatic.com/media/blog/--1/padlock-yourdomain-com.png" alt="SSL on your domain" width="600px" align="center" />
+<MdxImage
+  src="//www.aerobatic.com/media/blog/--1/padlock-yourdomain-com.png"
+  alt="SSL on your domain"
+  width="600px"
+  align="center"
+/>
 
 Because these are wildcard certificates, a single cert covers your apex (aka "naked") domain and any subdomain. This allows you to run multiple Aerobatic websites off the same certificate, each on their own subdomain:
 

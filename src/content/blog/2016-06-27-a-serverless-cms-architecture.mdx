@@ -3,7 +3,7 @@ title: A Serverless CMS Architecture
 description: Think outside the WordPress box with static sites and Contentful.
 slug: a-serverless-cms-architecture
 date: 2016-06-27
-tags: gatsby, react, static site generator, javascript
+tags: [gatsby, react, static site generator, javascript]
 ---
 
 import MdxImage from '$components/mdx/Image';
@@ -37,7 +37,11 @@ Aerobatic allows me to accelerate the delivery of best practices in web hosting:
 
 Here's the Architectural Diagram:
 
-<MdxImage screenshot src="//www.aerobatic.com/media/blog/serverless-cms-architecture.svg" alt="Serverless CMS Architectural Diagram" />
+<MdxImage
+  screenshot
+  src="//www.aerobatic.com/media/blog/serverless-cms-architecture.svg"
+  alt="Serverless CMS Architectural Diagram"
+/>
 
 After looking at that diagram, you might be wondering — why we didn't just go with WordPress? If the reasons above about not managing servers don't hold purchase with you, consider these:
 
@@ -76,7 +80,10 @@ async function getEntriesByType(contentType, fields) {
 
 async function renderPost(post) {
   try {
-    return fs.outputFile(`pages/blog/${post.fields.slug}/index.json`, JSON.stringify(post, null, 2));
+    return fs.outputFile(
+      `pages/blog/${post.fields.slug}/index.json`,
+      JSON.stringify(post, null, 2)
+    );
   } catch (error) {
     console.log('Error creating post', error);
     return Promise.reject('error');
