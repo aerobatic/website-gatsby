@@ -72,7 +72,7 @@ const DocsTemplate: React.SFC<DocsTemplateProps> = ({ data, location }) => {
             <div className="col-md-3 sidebar">
               <SidebarNav links={DOC_LINKS} pathPrefix="docs/" location={location} />
             </div>
-            <div className="col-md-9">
+            <div className="col-md-9 markdown">
               <MobileNavSelect links={DOC_LINKS} pathPrefix="docs/" location={location} />
               <StyledHeading>{data.mdx.frontmatter.title}</StyledHeading>
               <MdxContainer>

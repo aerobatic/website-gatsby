@@ -90,7 +90,7 @@ const BlogTemplate: React.SFC<BlogTemplateProps> = ({ data, location }) => {
       <Page marginTop="20px">
         <div className="container">
           <div className="row">
-            <div className="col-md-9">
+            <div className="col-md-9 markdown">
               <StyledHeading>{data.mdx.frontmatter.title}</StyledHeading>
               <StyledDate>{data.mdx.frontmatter.date}</StyledDate>
               <MdxContainer>
