@@ -26,13 +26,20 @@ plugins:
       clientId: $AUTH0_CLIENT_ID
       clientSecret: $AUTH0_CLIENT_SECRET
       tenant: auth0-tenant-name
+      customDomain: false
 ```
 
 ### Options
 
 <Option name="tenant">
 
-The name of your Auth0 tenant. This could be a dedicated tenant for your website, or a tenant that is shared amongst multiple websites. See the [Single Sign-On](#single-signon) section for more on this.
+The name of your Auth0 tenant. This could be a dedicated tenant for your website, or a tenant that is shared amongst multiple websites. See the [Single Sign-On](#single-signon) section for more on this. You can also use an Auth0 custom domain.
+
+</Option>
+
+<Option name="customDomain">
+
+Set to `true` if the `tenant` is an Auth0 [custom domain](https://auth0.com/docs/custom-domains).
 
 </Option>
 

@@ -55,9 +55,13 @@ Go to [https://circleci.com/dashboard](https://circleci.com/dashboard) and selec
 
 Once you've done that, you'll then also need to add the `AEROBATIC_API_KEY` to CircleCI. You can get your Aerobatic API key by running `aero apikey` from the command line.
 
-<MdxImage screenshot src="/img/circle-ci-env-var.png" alt="Aerobatic API Key" />
+<MdxImage
+  screenshot
+  src="https://www.aerobatic.com/media/blog/hugo/circle-ci-env-var.png"
+  alt="Aerobatic API Key"
+/>
 
-## Step 4: Create `circle.yml`
+## Step 4: Create circle.yml
 
 In the root of your repository, you should create a `circle.yml` file to deploy your Hugo site to Aerobatic.
 
@@ -87,12 +91,20 @@ git remote add origin https://github.com/Dundonian/aerohugo.git
 git push -u origin master
 ```
 
-<MdxImage screenshot src="/img/aero-deploy.png" alt="Aerobatic Deploy" />
+<MdxImage
+  screenshot
+  src="https://www.aerobatic.com/media/blog/hugo/aero-deploy.png"
+  alt="Aerobatic Deploy"
+/>
 
 ## Conclusion
 
 At this point, with your build process set up, you can now author new blog posts directly in GitHub, make your commit, everything will be built, and a new version of your site will be deployed immediately.
 
-<MdxImage screenshot src="/img/author-gh.png" alt="Author in GitHub" />
+<MdxImage
+  screenshot
+  src="https://www.aerobatic.com/media/blog/hugo/author-gh.png"
+  alt="Author in GitHub"
+/>
 
 And that's it. Happy Coding! p.s. The code for this tutorial can be found at [https://github.com/Dundonian/aerohugo](https://github.com/Dundonian/aerohugo)

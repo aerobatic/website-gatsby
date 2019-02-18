@@ -97,6 +97,7 @@ plugins:
       /blog/automated-continuous-deployment-of-jekyll-sites: /docs/static-site-generators/#jekyll
       /blog/easy-hugo-continuous-deployment: /docs/static-site-generators/#hugo
       /blog/introducing-docker-pipeline: /docs/deployment/#continuous-deployment
+      /blog/optimized-docker-images-continuous-deployment: /docs/deployment/#continuous-deployment
       /legal: /legal/tos/
       /about: /
   - name: health-check
