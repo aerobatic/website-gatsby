@@ -135,7 +135,7 @@ const renderFeature = (highlight: IFeatureHighlight) => {
       <Link to={highlight.href}>
         <h3>{highlight.title}</h3>
         {highlight.icon()}
-        <p>{highlight.caption}</p>
+        <p dangerouslySetInnerHTML={{ __html: highlight.caption }} />
       </Link>
     </StyledHighlight>
   );
