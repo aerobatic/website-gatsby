@@ -52,7 +52,7 @@ const PRICE_PLANS: IPricePlan[] = [
   },
   {
     title: 'Pro Plan',
-    subTitle: 'For when you\re ready to go live',
+    subTitle: 'For when you\'re ready to go live',
     price: () => (<PriceDisplay amount={15} period="/ mo per site" />),
     active: true,
     detailLines: () => [
