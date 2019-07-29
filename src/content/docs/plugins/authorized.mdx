@@ -162,15 +162,3 @@ plugins:
 ## Accessing user authorization in your html
 
 You might want to tweak what is displayed on your site based on the logged-in user's authorization. For example, maybe you have an admin section locked down to the `admin` role, and you want a link in your navigation that only displays for administrators. The `authorization` object from the Auth0 `app_metadata` is exposed in the Aerobatic user object. You can use the technique described in the auth0 plugin docs for [displaying logged in user info](/docs/plugins/auth0/#display-logged-in-user-info).
-
-Here's how you might go about conditionally displaying that admin link:
-
-```html
-<a id="admin-link" class="hidden" href="/admin">Admin</a>
-<script>
-  // You would want to guard against undefined here
-  if (window['__aerobatic__'].user.authorization.roles.indexOf('admin') >= 0) {
-    document.getElementById('admin-link').classList.remove('hidden');
-  }
-</script>
-```
