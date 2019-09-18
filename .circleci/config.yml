@@ -13,8 +13,8 @@ jobs:
 
       - run: npm install
       - run: npm install aerobatic-cli
-      - run: NODE_ENV=production npm run build
       - run: npm run test
+      - run: NODE_ENV=production npm run build
       - run:
           name: Deploy based on branch
           command: |
