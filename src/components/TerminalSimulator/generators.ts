@@ -168,7 +168,11 @@ const GENERATORS: Record<string, IGenerator> = {
       },
       {
         text: 'gatsby build',
-        output: ['Building CSS', 'Building production JavaScript bundles', 'Building static HTML for pages'],
+        output: [
+          'Building CSS',
+          'Building production JavaScript bundles',
+          'Building static HTML for pages'
+        ],
         success: 'Done building'
       },
       {

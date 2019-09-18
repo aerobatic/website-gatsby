@@ -1,0 +1,39 @@
+version: 2
+jobs:
+  build-deploy-job:
+    docker:
+      - image: circleci/node:9.9.0
+
+    steps:
+      - checkout
+
+      # Restore the dependency cache
+      - restore_cache:
+          key: dependency-cache-{{ checksum "package.json" }}
+
+      - run: npm install
+      - run: npm install aerobatic-cli
+      - run: npm run test
+      - run: NODE_ENV=production npm run build
+      - run:
+          name: Deploy based on branch
+          command: |
+            if [ $CIRCLE_BRANCH == 'master' ]
+            then
+              echo 'Deploy to production'
+              ./node_modules/.bin/aero deploy
+            else
+              echo 'No deploy for branch $CIRCLE_BRANCH'
+            fi
+
+      # Save dependency cache
+      - save_cache:
+          key: dependency-cache-{{ checksum "package.json" }}
+          paths:
+            - ./node_modules
+
+workflows:
+  version: 2
+  build-deploy:
+    jobs:
+      - build-deploy-job

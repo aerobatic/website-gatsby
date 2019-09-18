@@ -16,6 +16,7 @@ interface IProps {
   type: QuickStartSiteType;
   quickstarts: IQuickStart[];
   cliSample: string;
+  location: Location;
 }
 
 const SiteTypeMenu = styled.ul`
@@ -162,16 +163,15 @@ class QuickStartLayout extends Component<IProps, IState> {
             <a className="btn btn-default btn-sm" href={quickStart.repoUrl} target="_blank">
               <img src={GitHubIcon} /> <span>Star</span>
             </a>
-            {this.state.starCounts &&
-              this.state.starCounts[quickStart.slug] && (
-                <a
-                  className="btn btn-default btn-sm btn-arrow btn-arrow-left"
-                  target="_blank"
-                  href={quickStart.repoUrl}
-                >
-                  {this.state.starCounts[quickStart.slug]}
-                </a>
-              )}
+            {this.state.starCounts && this.state.starCounts[quickStart.slug] && (
+              <a
+                className="btn btn-default btn-sm btn-arrow btn-arrow-left"
+                target="_blank"
+                href={quickStart.repoUrl}
+              >
+                {this.state.starCounts[quickStart.slug]}
+              </a>
+            )}
           </div>
         </div>
       </StyledQuickStart>
@@ -182,7 +182,7 @@ class QuickStartLayout extends Component<IProps, IState> {
     const rows = chunk(this.props.quickstarts, 2) as IQuickStart[][];
 
     return (
-      <IndexLayout>
+      <IndexLayout location={this.props.location}>
         <Page>
           <Jumbotron>
             <h1>Quick Starts</h1>

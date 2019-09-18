@@ -3,7 +3,7 @@ import { graphql, StaticQuery } from 'gatsby';
 import { IQuickStart } from '../../types';
 import QuickStartLayout from '../../layouts/QuickStart';
 
-export default () => (
+export default (props: { location: Location }) => (
   <StaticQuery
     query={graphql`
       {
@@ -28,6 +28,7 @@ export default () => (
         quickstarts={data.allHtml5Json.edges.map((edge: any) => edge.node as IQuickStart)}
         type="html5"
         cliSample="sb-agency"
+        location={props.location}
       />
     )}
   />

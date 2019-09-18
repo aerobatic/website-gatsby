@@ -3,7 +3,7 @@ import { graphql, StaticQuery } from 'gatsby';
 import { IQuickStart } from '../../types';
 import QuickStartLayout from '../../layouts/QuickStart';
 
-export default () => (
+export default (props: { location: Location }) => (
   <StaticQuery
     query={graphql`
       {
@@ -28,6 +28,7 @@ export default () => (
         quickstarts={data.allJekyllJson.edges.map((edge: any) => edge.node as IQuickStart)}
         type="jekyll"
         cliSample="agency"
+        location={props.location}
       />
     )}
   />
