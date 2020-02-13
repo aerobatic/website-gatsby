@@ -20,6 +20,7 @@ jobs:
           command: |
             if [ $CIRCLE_BRANCH == 'master' ]
             then
+              npm install aerobatic-cli
               echo 'Deploy to production'
               ./node_modules/.bin/aero deploy
             else
