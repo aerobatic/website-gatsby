@@ -58,7 +58,6 @@ const DOC_LINKS: INavLink[] = [
   { title: 'Static Site Generators', slug: 'static-site-generators' },
   { title: 'Configuration', slug: 'configuration' },
   { title: 'Access Control', slug: 'access-control', icon: <KeyIcon /> },
-  { title: 'Site Optimizer', slug: 'site-optimizer' },
   { title: 'Plugins', slug: 'plugins' },
   { title: "What's New", slug: 'whats-new', icon: <AsteriskIcon width="18px" height="18px" /> }
 ];
