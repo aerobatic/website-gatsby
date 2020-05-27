@@ -7,7 +7,6 @@ import styled from 'styled-components';
 import { colors } from '../styles/variables';
 import EmailIcon from '../icons/email';
 import SlackIcon from '../icons/slack';
-import AddressIcon from '../icons/envelope';
 
 const Styled = styled.section`
   margin: 80px auto;
