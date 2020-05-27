@@ -63,20 +63,6 @@ const CONTACT_METHODS: IContactMethod[] = [
         Join us on <Link to="/slack">Slack</Link>
       </span>
     )
-  },
-  {
-    icon: AddressIcon,
-    content: () => (
-      <span>
-        Aerobatic LLC
-        <br />
-        3212 13th Ave. W.
-        <br />
-        Seattle, WA 98119
-        <br />
-        (360) 519-6994
-      </span>
-    )
   }
 ];
 
