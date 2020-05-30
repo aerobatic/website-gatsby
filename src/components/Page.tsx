@@ -16,7 +16,7 @@ interface PageProps {
   marginTop?: string;
 }
 
-const Page: React.SFC<PageProps> = props => {
+const Page: React.SFC<PageProps> = (props) => {
   return <StyledPage {...props}>{props.children}</StyledPage>;
 };
 

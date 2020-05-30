@@ -6,7 +6,7 @@ interface LinkProps {
   href: string;
 }
 
-const MdxLink: SFC<LinkProps> = props => {
+const MdxLink: SFC<LinkProps> = (props) => {
   if (props.href.startsWith('/')) {
     return (
       <Link className="internal-link" to={props.href}>

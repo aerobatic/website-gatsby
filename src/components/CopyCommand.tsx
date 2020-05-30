@@ -51,7 +51,7 @@ export default (props: ICopyCommandProps) => {
         className="form-control"
         defaultValue={props.command}
         onFocus={copyToClipboard}
-        ref={elem => {
+        ref={(elem) => {
           textbox = elem;
         }}
       />

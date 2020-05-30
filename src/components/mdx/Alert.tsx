@@ -50,7 +50,7 @@ const StyledWarning = styled(StyledAlert)`
   border-color: ${colors.darkOrange};
 `;
 
-const Alert: SFC<AlertProps> = props => {
+const Alert: SFC<AlertProps> = (props) => {
   let Component: StyledComponent<'div', any>;
   switch (props.type) {
     case 'warn':

@@ -119,8 +119,8 @@ class QuickStartLayout extends Component<IProps, IState> {
     // Load the stargazers count for each quickstart repo
     const starCounts: { [key: string]: number | undefined } = {};
     await Promise.all(
-      this.props.quickstarts.map(quickstart => {
-        return this.fetchStars(quickstart).then(starCount => {
+      this.props.quickstarts.map((quickstart) => {
+        return this.fetchStars(quickstart).then((starCount) => {
           starCounts[quickstart.slug] = starCount;
         });
       })
@@ -151,7 +151,9 @@ class QuickStartLayout extends Component<IProps, IState> {
         <div className="details">
           <h3>{quickStart.title}</h3>
           <p className="description">{quickStart.description}</p>
-          <CopyCommand command={`aero create --quick-start ${this.props.type}/${quickStart.slug}`} />
+          <CopyCommand
+            command={`aero create --quick-start ${this.props.type}/${quickStart.slug}`}
+          />
           <div className="buttons">
             <a
               className="btn btn-default btn-sm"
@@ -198,7 +200,7 @@ class QuickStartLayout extends Component<IProps, IState> {
 
           <div className="container">
             <SiteTypeMenu>
-              {['HTML5', 'Jekyll', 'Hugo'].map(name => (
+              {['HTML5', 'Jekyll', 'Hugo'].map((name) => (
                 <li key={name.toLowerCase()}>
                   <Link
                     to={`/quickstarts/${name.toLowerCase()}/`}
@@ -213,7 +215,7 @@ class QuickStartLayout extends Component<IProps, IState> {
             {rows.map((row, index) => {
               return (
                 <div className="row" key={index}>
-                  {row.map(quickstart => (
+                  {row.map((quickstart) => (
                     <div key={quickstart.slug} className="col-md-6">
                       {this.renderQuickStart(quickstart)}
                     </div>
