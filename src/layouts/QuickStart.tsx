@@ -151,7 +151,7 @@ class QuickStartLayout extends Component<IProps, IState> {
         <div className="details">
           <h3>{quickStart.title}</h3>
           <p className="description">{quickStart.description}</p>
-          <CopyCommand command={`aero create --quickstart ${this.props.type}/${quickStart.slug}`} />
+          <CopyCommand command={`aero create --quick-start ${this.props.type}/${quickStart.slug}`} />
           <div className="buttons">
             <a
               className="btn btn-default btn-sm"
