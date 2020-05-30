@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Helmet from 'react-helmet';
+import { Helmet } from 'react-helmet';
 import { StaticQuery, graphql } from 'gatsby';
 import { Location } from '../types';
 

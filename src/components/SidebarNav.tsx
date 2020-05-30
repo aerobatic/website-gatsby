@@ -60,7 +60,7 @@ interface ISidebarProps {
 export default (props: ISidebarProps) => (
   <StyledContainer>
     <ul className={classnames(legacyNavClassnames)}>
-      {props.links.map(link => (
+      {props.links.map((link) => (
         <li
           key={link.slug}
           className={classnames({

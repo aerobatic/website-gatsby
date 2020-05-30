@@ -1,7 +1,7 @@
 import React from 'react';
 import classnames from 'classnames';
 import { graphql, Link } from 'gatsby';
-import { MDXRenderer } from 'gatsby-mdx';
+import { MDXRenderer } from 'gatsby-plugin-mdx';
 import { MDXProvider } from '@mdx-js/tag';
 import styled from 'styled-components';
 import mdxComponents from '../components/mdx';
@@ -27,7 +27,7 @@ interface BlogTemplateProps {
       };
     };
     mdx: {
-      code: { body: string };
+      body: string;
       excerpt: string;
       frontmatter: {
         title: string;
@@ -95,7 +95,7 @@ const BlogTemplate: React.SFC<BlogTemplateProps> = ({ data, location }) => {
               <StyledDate>{data.mdx.frontmatter.date}</StyledDate>
               <MdxContainer>
                 <MDXProvider components={mdxComponents}>
-                  <MDXRenderer>{data.mdx.code.body}</MDXRenderer>
+                  <MDXRenderer>{data.mdx.body}</MDXRenderer>
                 </MDXProvider>
               </MdxContainer>
               <PromoFooter />
@@ -140,9 +140,7 @@ export const pageQuery = graphql`
         title
         date(formatString: "MMMM DD, YYYY")
       }
-      code {
-        body
-      }
+      body
     }
     allMdx(
       filter: { fileAbsolutePath: { regex: "/blog/.*.mdx$/" } }

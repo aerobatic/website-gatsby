@@ -1,7 +1,7 @@
 import React from 'react';
 import { Light as SyntaxHighlighter } from 'react-syntax-highlighter';
-import { monoBlue } from 'react-syntax-highlighter/dist/styles/hljs';
-import * as languages from 'react-syntax-highlighter/dist/languages/hljs';
+import { monoBlue } from 'react-syntax-highlighter/dist/esm/styles/hljs';
+import * as languages from 'react-syntax-highlighter/dist/esm/languages/hljs';
 
 SyntaxHighlighter.registerLanguage('javascript', languages.javascript);
 SyntaxHighlighter.registerLanguage('typescript', languages.typescript);

@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { graphql } from 'gatsby';
-import { MDXRenderer } from 'gatsby-mdx';
+import { MDXRenderer } from 'gatsby-plugin-mdx';
 import { MDXProvider } from '@mdx-js/tag';
 import styled from 'styled-components';
 import mdxComponents from '../components/mdx';
@@ -22,7 +22,7 @@ interface LegalTemplateProps {
       };
     };
     mdx: {
-      code: { body: string };
+      body: string;
       frontmatter: {
         title: string;
       };
@@ -67,7 +67,7 @@ const LegalPagesTemplate: React.SFC<LegalTemplateProps> = ({ data, location }) =
               <StyledHeading>{data.mdx.frontmatter.title}</StyledHeading>
               <MdxContainer>
                 <MDXProvider components={mdxComponents}>
-                  <MDXRenderer>{data.mdx.code.body}</MDXRenderer>
+                  <MDXRenderer>{data.mdx.body}</MDXRenderer>
                 </MDXProvider>
               </MdxContainer>
               <PromoFooter />
@@ -93,9 +93,7 @@ export const pageQuery = graphql`
       frontmatter {
         title
       }
-      code {
-        body
-      }
+      body
     }
   }
 `;

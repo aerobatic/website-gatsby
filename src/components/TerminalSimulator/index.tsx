@@ -106,7 +106,7 @@ interface ISimulationState {
 }
 
 const delay = async (duration: number) => {
-  return new Promise(resolve => {
+  return new Promise((resolve) => {
     setTimeout(resolve, duration);
   });
 };
@@ -208,7 +208,7 @@ class TerminalSimulation extends React.Component<{}, ISimulationState> {
         className="learn-more"
         to={`/docs/static-site-generators/#${this.state.activeGenerator}`}
       >
-        Learn more about {generators[this.state.activeGenerator].title} and Aerobatic >
+        Learn more about {generators[this.state.activeGenerator].title} and Aerobatic {'>'}
       </Link>
     );
   }
@@ -237,7 +237,7 @@ class TerminalSimulation extends React.Component<{}, ISimulationState> {
         </p>
 
         <GeneratorMenu>
-          {Object.keys(generators).map(key => (
+          {Object.keys(generators).map((key) => (
             <li
               key={key}
               className={classNames({
@@ -245,7 +245,7 @@ class TerminalSimulation extends React.Component<{}, ISimulationState> {
                 inactive: this.state.isRunning && key !== this.state.activeGenerator
               })}
             >
-              <a href={`#${key}`} onClick={e => this.handleGeneratorClick(e, key)}>
+              <a href={`#${key}`} onClick={(e) => this.handleGeneratorClick(e, key)}>
                 <img alt={generators[key].title} src={generators[key].logo} />
               </a>
             </li>

@@ -26,7 +26,7 @@ const onChange = (event: FormEvent<HTMLSelectElement>) => {
 export default (props: IProps) => (
   <StyledSelect>
     <select className="form-control" value={props.location.pathname} onChange={onChange}>
-      {props.links.map(link => (
+      {props.links.map((link) => (
         <option key={link.slug} value={`/${props.pathPrefix}${link.slug}`}>
           {link.title}
         </option>

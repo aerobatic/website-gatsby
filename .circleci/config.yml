@@ -2,17 +2,19 @@ version: 2
 jobs:
   build-deploy-job:
     docker:
-      - image: circleci/node:9.9.0
+      - image: circleci/node:12
 
     steps:
       - checkout
 
       # Restore the dependency cache
       - restore_cache:
-          key: dependency-cache-{{ checksum "package.json" }}
-
-      - run: npm install
-      - run: npm install aerobatic-cli
+          name: Restore Yarn Package Cache
+          keys:
+            - yarn-packages-{{ checksum "yarn.lock" }}
+      - run:
+          name: Install Dependencies
+          command: yarn install --frozen-lockfile
       - run: npm run test
       - run: NODE_ENV=production npm run build
       - run:
@@ -29,9 +31,10 @@ jobs:
 
       # Save dependency cache
       - save_cache:
-          key: dependency-cache-{{ checksum "package.json" }}
+          name: Save Yarn Package Cache
+          key: yarn-packages-{{ checksum "yarn.lock" }}
           paths:
-            - ./node_modules
+            - ~/.cache/yarn
 
 workflows:
   version: 2
