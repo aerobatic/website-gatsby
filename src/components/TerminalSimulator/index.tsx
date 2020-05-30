@@ -208,7 +208,7 @@ class TerminalSimulation extends React.Component<{}, ISimulationState> {
         className="learn-more"
         to={`/docs/static-site-generators/#${this.state.activeGenerator}`}
       >
-        Learn more about {generators[this.state.activeGenerator].title} and Aerobatic >
+        Learn more about {generators[this.state.activeGenerator].title} and Aerobatic {'>'}
       </Link>
     );
   }
