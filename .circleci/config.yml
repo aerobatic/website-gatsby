@@ -9,13 +9,12 @@ jobs:
 
       # Restore the dependency cache
       - restore_cache:
-        name: Restore Yarn Package Cache
-        keys:
-          - yarn-packages-{{ checksum "yarn.lock" }}
-
+          name: Restore Yarn Package Cache
+          keys:
+            - yarn-packages-{{ checksum "yarn.lock" }}
       - run:
-        name: Install Dependencies
-        command: yarn install --frozen-lockfile
+          name: Install Dependencies
+          command: yarn install --frozen-lockfile
       - run: npm run test
       - run: NODE_ENV=production npm run build
       - run:
@@ -32,10 +31,10 @@ jobs:
 
       # Save dependency cache
       - save_cache:
-        name: Save Yarn Package Cache
-        key: yarn-packages-{{ checksum "yarn.lock" }}
-        paths:
-          - ~/.cache/yarn
+          name: Save Yarn Package Cache
+          key: yarn-packages-{{ checksum "yarn.lock" }}
+          paths:
+            - ~/.cache/yarn
 
 workflows:
   version: 2
