@@ -9,10 +9,13 @@ jobs:
 
       # Restore the dependency cache
       - restore_cache:
-          key: dependency-cache-{{ checksum "package.json" }}
+        name: Restore Yarn Package Cache
+        keys:
+          - yarn-packages-{{ checksum "yarn.lock" }}
 
-      - run: npm install
-      - run: npm install aerobatic-cli
+      - run:
+        name: Install Dependencies
+        command: yarn install --frozen-lockfile
       - run: npm run test
       - run: NODE_ENV=production npm run build
       - run:
@@ -29,9 +32,10 @@ jobs:
 
       # Save dependency cache
       - save_cache:
-          key: dependency-cache-{{ checksum "package.json" }}
+        name: Save Yarn Package Cache
+        key: yarn-packages-{{ checksum "yarn.lock" }}
           paths:
-            - ./node_modules
+            - ~/.cache/yarn
 
 workflows:
   version: 2
