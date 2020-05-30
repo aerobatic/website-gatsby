@@ -34,8 +34,8 @@ jobs:
       - save_cache:
         name: Save Yarn Package Cache
         key: yarn-packages-{{ checksum "yarn.lock" }}
-          paths:
-            - ~/.cache/yarn
+        paths:
+          - ~/.cache/yarn
 
 workflows:
   version: 2
