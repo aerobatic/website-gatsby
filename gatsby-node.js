@@ -1,7 +1,7 @@
 'use strict';
 
 const path = require('path');
-const componentWithMDXScope = require('gatsby-mdx/component-with-mdx-scope');
+// const componentWithMDXScope = require('gatsby-mdx/component-with-mdx-scope');
 
 exports.onCreateNode = ({ node, actions, getNode }) => {
   const { createNodeField } = actions;
@@ -75,9 +75,6 @@ const createBlogPosts = async (createPage, graphql) => {
             fields {
               slug
             }
-            code {
-              scope
-            }
           }
         }
       }
@@ -99,11 +96,12 @@ const createBlogPosts = async (createPage, graphql) => {
 
     createPage({
       path: `/blog/${slug}/`,
-      component: componentWithMDXScope(
-        path.resolve(`./src/templates/post.tsx`),
-        node.code.scope,
-        __dirname
-      ),
+      component: path.resolve(`./src/templates/post.tsx`),
+      // component: componentWithMDXScope(
+      //   path.resolve(`./src/templates/post.tsx`),
+      //   node.code.scope,
+      //   __dirname
+      // ),
       context: {
         // Data passed to context is available in page queries as GraphQL variables.
         slug,
@@ -130,9 +128,6 @@ const createDocPages = async (createPage, graphql) => {
             fields {
               slug
             }
-            code {
-              scope
-            }
           }
         }
       }
@@ -151,11 +146,12 @@ const createDocPages = async (createPage, graphql) => {
 
     createPage({
       path: plugin ? `/docs/plugins/${slug}/` : `/docs/${slug}/`,
-      component: componentWithMDXScope(
-        path.resolve(`./src/templates/docs.tsx`),
-        node.code.scope,
-        __dirname
-      ),
+      component: path.resolve(`./src/templates/docs.tsx`),
+      // component: componentWithMDXScope(
+      //   path.resolve(`./src/templates/docs.tsx`),
+      //   node.code.scope,
+      //   __dirname
+      // ),
       context: {
         slug
       }
@@ -178,9 +174,6 @@ const createLegalPages = async (createPage, graphql) => {
             fields {
               slug
             }
-            code {
-              scope
-            }
           }
         }
       }
@@ -199,11 +192,12 @@ const createLegalPages = async (createPage, graphql) => {
 
     createPage({
       path: `/legal/${slug}/`,
-      component: componentWithMDXScope(
-        path.resolve(`./src/templates/legal.tsx`),
-        node.code.scope,
-        __dirname
-      ),
+      component: path.resolve(`./src/templates/legal.tsx`),
+      // component: componentWithMDXScope(
+      //   path.resolve(`./src/templates/legal.tsx`),
+      //   node.code.scope,
+      //   __dirname
+      // ),
       context: {
         slug
       }

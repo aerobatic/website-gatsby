@@ -17,7 +17,7 @@ declare module '*.module.css' {
 declare module '*.png';
 declare module '*.svg';
 
-declare module 'gatsby-mdx' {
+declare module 'gatsby-plugin-mdx' {
   declare class MDXRenderer extends React.Component<any> {}
 }
 
@@ -47,11 +47,11 @@ declare module 'react-syntax-highlighter' {
   }
 }
 
-declare module 'react-syntax-highlighter/dist/styles/hljs' {
-  export { default as monoBlue } from 'react-syntax-highlighter/dist/styles/hljs/mono-blue';
+declare module 'react-syntax-highlighter/dist/esm/styles/hljs' {
+  export { default as monoBlue } from 'react-syntax-highlighter/dist/esm/styles/hljs/mono-blue';
 }
 
-declare module 'react-syntax-highlighter/dist/languages/hljs' {
+declare module 'react-syntax-highlighter/dist/esm/languages/hljs' {
   export { default as javascript } from 'react-syntax-highlighter/dist/languages/hljs/javascript';
   export { default as python } from 'react-syntax-highlighter/dist/languages/hljs/python';
   export { default as typescript } from 'react-syntax-highlighter/dist/languages/hljs/typescript';
