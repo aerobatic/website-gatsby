@@ -70,7 +70,6 @@ const LegalPagesTemplate: React.SFC<LegalTemplateProps> = ({ data, location }) =
                   <MDXRenderer>{data.mdx.body}</MDXRenderer>
                 </MDXProvider>
               </MdxContainer>
-              <PromoFooter />
             </div>
           </div>
         </StyledTemplate>

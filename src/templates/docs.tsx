@@ -79,7 +79,6 @@ const DocsTemplate: React.SFC<DocsTemplateProps> = ({ data, location }) => {
                   <MDXRenderer>{data.mdx.body}</MDXRenderer>
                 </MDXProvider>
               </MdxContainer>
-              <PromoFooter />
             </div>
           </div>
         </StyledTemplate>
