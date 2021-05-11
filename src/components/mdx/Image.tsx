@@ -38,7 +38,7 @@ const StyledImage = styled.div`
   }
 `;
 
-const MdxImage: SFC<ImageProps> = (props) => {
+const MdxImage: SFC<ImageProps> = props => {
   // if (props.screenshot) {
   //   props.border = true;
   //   props.align = 'center';

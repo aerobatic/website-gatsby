@@ -43,7 +43,7 @@ const BulletList = styled.ul`
   }
 `;
 
-const List: SFC<ListProps> = (props) => {
+const List: SFC<ListProps> = props => {
   if (props.ordered) {
     return <OrderedList>{props.children}</OrderedList>;
   }

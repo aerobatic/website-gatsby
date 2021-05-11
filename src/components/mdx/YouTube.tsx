@@ -14,7 +14,7 @@ const Video = styled.div`
   }
 `;
 
-const YouTube: SFC<YouTubeProps> = (props) => {
+const YouTube: SFC<YouTubeProps> = props => {
   return (
     <Video>
       <iframe

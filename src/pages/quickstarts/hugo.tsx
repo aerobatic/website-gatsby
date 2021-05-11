@@ -23,7 +23,7 @@ export default (props: { location: Location }) => (
         }
       }
     `}
-    render={(data) => (
+    render={data => (
       <QuickStartLayout
         quickstarts={data.allHugoJson.edges.map((edge: any) => edge.node as IQuickStart)}
         type="hugo"

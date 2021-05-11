@@ -42,7 +42,7 @@ const print = (cmd: string) => {
   );
 };
 
-const Cli: SFC<CliProps> = (props) => {
+const Cli: SFC<CliProps> = props => {
   if (props.commands) {
     return (
       <Styled>

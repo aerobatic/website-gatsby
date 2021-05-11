@@ -3,7 +3,7 @@ export async function loadScript(scriptUrl: string) {
   const elem = document.createElement('script');
   elem.setAttribute('src', scriptUrl);
   document.head.append(elem);
-  return new Promise((resolve) => {
+  return new Promise(resolve => {
     elem.addEventListener('load', () => {
       resolve();
     });

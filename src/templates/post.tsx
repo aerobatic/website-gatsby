@@ -10,7 +10,6 @@ import IndexLayout from '../layouts';
 import { breakpoints, colors } from '../styles/variables';
 import { IBlogPost } from '../types';
 import MdxContainer from '../components/mdx/Container';
-import PromoFooter from '../components/PromoFooter';
 import { legacyNavClassnames } from '../utils';
 
 interface BlogTemplateProps {

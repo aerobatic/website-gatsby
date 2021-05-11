@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { Link } from 'gatsby';
 import { Location } from '../types';
 import Page from '../components/Page';
 import IndexLayout from '../layouts';

@@ -7,7 +7,6 @@ import mdxComponents from '../components/mdx';
 import Page from '../components/Page';
 import IndexLayout from '../layouts';
 import MdxContainer from '../components/mdx/Container';
-import PromoFooter from '../components/PromoFooter';
 import SidebarNav from '../components/SidebarNav';
 import MobileNavSelect from '../components/MobileNavSelect';
 import { breakpoints } from '../styles/variables';

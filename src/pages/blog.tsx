@@ -56,7 +56,7 @@ interface IBlogIndexPageProps {
 }
 
 const BlogIndexPage = (props: IBlogIndexPageProps) => {
-  const posts = props.data.allMdx.edges.map((edge) => edge.node);
+  const posts = props.data.allMdx.edges.map(edge => edge.node);
 
   // Gets posts in groups of 3
   const rows = [];
@@ -74,7 +74,7 @@ const BlogIndexPage = (props: IBlogIndexPageProps) => {
         <div className="container">
           {rows.map((row, index) => (
             <div className="row" key={index}>
-              {row.map((post) => (
+              {row.map(post => (
                 <div className="col-md-4" key={post.id}>
                   <PostTile>
                     <Link to={`/blog/${post.frontmatter.slug}/`}>
@@ -116,6 +116,6 @@ export default (props: { location: Location }) => (
         }
       }
     `}
-    render={(data) => <BlogIndexPage data={data} location={props.location} />}
+    render={data => <BlogIndexPage data={data} location={props.location} />}
   />
 );
