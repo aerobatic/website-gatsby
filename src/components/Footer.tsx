@@ -75,7 +75,7 @@ const Footer: React.SFC = () => (
   <StyledFooter>
     <div className="container">
       <Copyright>
-        Copyright <Link to="/">Aerobatic LLC</Link> 2019
+        Copyright <Link to="/">Aerobatic LLC</Link> 2021
       </Copyright>
       <SocialContainer>
         <a href="https://twitter.com/aerobaticapp" target="_blank">

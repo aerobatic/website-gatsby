@@ -130,8 +130,8 @@ const renderAnchorOrLink = (text: string, hash: string) => {
 const Header: React.SFC<HeaderProps> = () => (
   <>
     <StyledPromo>
-      <Link to="/blog/announcing-i18n-plugin/">
-        NEW! — Internationalize your site with our i18n plugin
+      <Link to="/blog/aerobatic-shutting-down/">
+        ATTENTION! Aerobatic will be ceasing operations on October 30th, 2021
       </Link>
     </StyledPromo>
     <div className="container">

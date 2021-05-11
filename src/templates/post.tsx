@@ -98,7 +98,6 @@ const BlogTemplate: React.SFC<BlogTemplateProps> = ({ data, location }) => {
                   <MDXRenderer>{data.mdx.code.body}</MDXRenderer>
                 </MDXProvider>
               </MdxContainer>
-              <PromoFooter />
             </div>
             <div className="col-md-3">
               <Sidebar>
